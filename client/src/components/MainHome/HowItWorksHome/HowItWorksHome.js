@@ -3,7 +3,9 @@ import style from './HowItWorksHome.module.sass';
 
 import ButtonsHomePage from '../../Buttons/ButtonsHomePage/ButtonsHomePage'
 
-import { Carousel } from 'react-bootstrap';
+import TemplateCarouselHome from '../TemplateCarouselHome/TemplateCarouselHome'
+
+import { LinksForHowItWorksHome } from '../../../utils/textAndLinksForPages';
 
 function HowItWorksHome(){
 
@@ -27,46 +29,13 @@ function HowItWorksHome(){
                             </li>
                         </ul>
 
-                        <div className={style.tabContent}>
-                            <Carousel
-                                indicators={false}
-                                pauseOnHover={true}
+                        <TemplateCarouselHome
+                            prevIcon={prevIcon}
+                            nextIcon={nextIcon}
+                            images={LinksForHowItWorksHome.names}
+                        />
 
-                                nextIcon={nextIcon}
-                                prevIcon={prevIcon}
-                            >
-                                <Carousel.Item>
-                                    <div className={style.carousel}>
-                                        <div className={style.item}
-                                            style={{backgroundImage: "url(https://www.squadhelp.com/story_images/visual_images/B_2_15.jpg)"}}
-                                        />
-                                        <div className={style.item}
-                                             style={{backgroundImage: "url(https://www.squadhelp.com/story_images/visual_images/B_2_15.jpg)"}}
-                                        />
-                                        <div className={style.item}
-                                             style={{backgroundImage: "url(https://www.squadhelp.com/story_images/visual_images/B_2_15.jpg)"}}
-                                        />
-                                    </div>
-                                </Carousel.Item>
-                                <Carousel.Item>
-                                    <div className={style.carousel}>
-                                        <div className={style.item}
-                                             style={{backgroundImage: "url(https://www.squadhelp.com/story_images/visual_images/B_2_15.jpg)"}}
-                                        />
-                                        <div className={style.item}
-                                             style={{backgroundImage: "url(https://www.squadhelp.com/story_images/visual_images/B_2_15.jpg)"}}
-                                        />
-                                        <div className={style.item}
-                                             style={{backgroundImage: "url(https://www.squadhelp.com/story_images/visual_images/B_2_15.jpg)"}}
-                                        />
-                                    </div>
-                                </Carousel.Item>
-                            </Carousel>
-                        </div>
-
-
-
-                        <div className={style.Button}>
+                        <div className={style.button}>
                             <ButtonsHomePage link={"/Name-Ideas"}>More Name Examples</ButtonsHomePage>
                         </div>
 

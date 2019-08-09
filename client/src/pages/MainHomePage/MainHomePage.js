@@ -6,6 +6,8 @@ import HeaderNavigation from '../../components/HeaderNavigation/HeaderNavigation
 import BannerHome from '../../components/MainHome/BannerHome/BannerHome'
 import HowItWorksHome from '../../components/MainHome/HowItWorksHome/HowItWorksHome'
 import MarketplaceDomainsHome from '../../components/MainHome/MarketplaceDomainsHome/MarketplaceDomainsHome'
+import GrowBusinessHome from '../../components/MainHome/GrowBusinessHome/GrowBusinessHome'
+import HowDoNameContestsWork from "../../components/MainHome/HowDoNameContestsWork/HowDoNameContestsWork";
 
 class MainHomePage extends Component{
     render() {
@@ -18,6 +20,8 @@ class MainHomePage extends Component{
                     <BannerHome />
                     <HowItWorksHome />
                     <MarketplaceDomainsHome />
+                    <GrowBusinessHome />
+                    <HowDoNameContestsWork />
                 </div>
             </>
         )

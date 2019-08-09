@@ -1,70 +1,46 @@
-import React, { useState }  from 'react';
+import React  from 'react';
 import style from './GrowBusinessHome.module.sass';
 
-import { Link } from "react-router-dom";
-
-import { textAndLinksForGrowBusinessHome } from '../../../utils/textAndLinksForPages'
 
 function GrowBusinessHome(){
-
-    const [imagesColor, setImagesColor] = useState('');
-
     const arrayOfImages = [
-        'Forbes-logo-vectorb',
+        'Forbes-logo-vector',
         'the_next_web',
-        'chicago',
+        'chicago-hover',
         'mashable-hover'
     ];
 
-    const images = (img, color) => ({ backgroundImage: `url(https://www.squadhelp.com/assets/nimages/home_images/${img}${color}.png)`});
-
-    const divImg = (items, color) => items.map( item => {
-        if(color === 'blue') return (
-            <div key={item}
-                 style={images(item, '_blue')}
-                 className={style.image}
-            />);
-
-        return (
-            <div key={item}
-                 style={images(item, '_grey')}
-                 className={style.image}
-            />)
+    const rowOfImages = (items) => items.map( item => {
+            return(
+                <div className={style.image} style={images(item)} key={item}/>
+            )
     });
 
+    const liItems = (count, text) => (
+            <li>
+                <h6>{count}</h6>
+                <p>{text}</p>
+            </li>
+    );
 
-    const arrayOflinks = ( images ) => {
-      return images.map( img => {
-          return(
-              <>
-                  <Link to={'/'}>
-                        <div className={style.images} style={}/>
-                  </Link>
-              </>
-          )
-      })
-    };
+    const images = (img) => ({ backgroundImage:  `url(https://www.squadhelp.com/assets/nimages/home_images/${img}.png)`});
 
-        return (
-            <div className={style.growBusinessHome}>
-                <div className={style.container}>
-
-                    <div className={style.links}
-                         onMouseOver={() => setImagesColor('w')}
-                         onMouseOut={() => setImagesColor('')}
-                    >
-                        {arrayOflinks(links)}
-                    </div>
-
-                    <div className={style.value}>
-
-                    </div>
-
-
+    return (
+        <div className={style.growBusinessHome}>
+            <div className={style.container}>
+                <div className={style.links}>
+                    {rowOfImages(arrayOfImages)}
+                </div>
+                <div className={style.text}>
+                    <ul>
+                        {liItems('222,681', 'Creatives')}
+                        {liItems('23,141', 'Customers')}
+                        {liItems('85', 'Industries')}
+                    </ul>
                 </div>
             </div>
-        )
+        </div>
+    )
 }
 
 export default GrowBusinessHome;
-

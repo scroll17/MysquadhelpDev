@@ -9,7 +9,7 @@ function MarketplaceDomainsHome(){
             return obj.map( content => {
                 const img = {backgroundImage: `url(${content.src})`};
                 return(
-                    <div className={style.heroHighlightContainer}>
+                    <div className={style.heroHighlightContainer} key={content.title}>
                         <div className={style.heroHighlight}>
                             <div className={style.images} style={img} />
                         </div>
