@@ -1,28 +1,18 @@
 import ACTION from '../actions/actiontsTypes';
 
 const initialState = {
-  isFetching: "null",
+  isFetching: false,
   error: null,
   user: null,
   users: [],
-  contest: ['select'],
-  contestQueue:[],
 };
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case ACTION.STAGE_CONTEST: {
-      return {
-        ...state,
-        contest: action.constest,
-        contestQueue: action.contestQueue,
-        error: null
-      }
-    }
     case ACTION.USERS_REQUEST: {
       return {
         ...state,
-        isFetching: "requested",
+        isFetching: true,
         error: null
       }
     }
@@ -30,7 +20,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         ...action,
-        isFetching: "answered",
+        isFetching: false,
         error: null
       }
     }

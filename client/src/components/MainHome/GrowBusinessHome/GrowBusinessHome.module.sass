@@ -18,6 +18,7 @@
         margin: 35px 0 0 0
         text-align: center
         display: flex
+        flex-wrap: wrap
         li:last-child
           border-right: none
           margin-right: 0
@@ -52,3 +53,17 @@
         filter: grayscale(100%)
         &:hover
           filter: grayscale(0)
+
+@media only screen and (max-width: 780px)
+  .growBusinessHome
+    .container
+      .links
+        .image
+          width: 20vw
+      .text
+        ul
+          justify-content: center
+          li
+            margin: 5px
+            flex-direction: column
+            border: none

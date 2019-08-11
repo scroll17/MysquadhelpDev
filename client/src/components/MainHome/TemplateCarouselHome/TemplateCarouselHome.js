@@ -18,11 +18,11 @@ function TemplateCarouselHome(props){
     };
     const resizeWidth = () =>{
         if(window.innerWidth <= 725){
-            return 2
-        }else if(window.innerWidth <= 900){
             return 1
+        }else if(window.innerWidth <= 900){
+            return 2
         }
-        return 0
+        return 3
     };
 
 
@@ -33,25 +33,22 @@ function TemplateCarouselHome(props){
     let arrayOfImages = [].concat(props.images);
     const carouselItem  = (items) => {
         const image = (img) => ({backgroundImage: `url(${img})`});
+        const lastElement = (element) => [element].length-1;
 
-        let newArrayOfImages = [].concat(props.images);
-        if(width === 1){
-            const a = [];
-            newArrayOfImages.forEach( images => {
-                if(a.length === 0){
-                    a.push({src: []})
+        //let newArrayOfImages = [].concat(props.images);
+/*        if(width === 2){
+            let newArrayOfImages = [].concat(props.images);
+            items.forEach( item => {
+                if(item.src.length > width || lastElement(items).src.length > width){
+                    items.push({
+                        src: item.src.splice(-1, 1)
+                    })
+
                 }
-                if(a[a.length - 1].src.length === 2){
-                    a.push({src: []})
-                }
-                const lastImage = images.src.pop();
-                a[a.length - 1].src.push(lastImage)
             });
+            console.log(items);
 
-            const newA = a.concat(newArrayOfImages);
-            console.log(newA);
-
-            return newA.map( item => (
+            return newArrayOfImages.map( item => (
                 <Carousel.Item>
                     <div className={style.carousel}>
                         {
@@ -59,10 +56,8 @@ function TemplateCarouselHome(props){
                         }
                     </div>
                 </Carousel.Item>
-            ));
-
-        }
-
+            ))
+        }*/
 
         return items.map( item => (
             <Carousel.Item>
@@ -86,12 +81,29 @@ function TemplateCarouselHome(props){
                 {carouselItem(arrayOfImages)}
             </Carousel>
         </div>
-    )
+    );
 
 
 }
 
 export default TemplateCarouselHome;
+
+/*if(width < 3){
+    const a = [];
+    newArrayOfImages.forEach( images => {
+        if(a.length === 0){
+            a.push({src: []})
+        }
+        if(a[a.length - 1].src.length === 2){
+            a.push({src: []})
+        }
+        const lastImage = images.src.pop();
+        a[a.length - 1].src.push(lastImage)
+    });
+
+    const newA = a.concat(newArrayOfImages);
+    console.log(newA);*/
+
 
 /*
 

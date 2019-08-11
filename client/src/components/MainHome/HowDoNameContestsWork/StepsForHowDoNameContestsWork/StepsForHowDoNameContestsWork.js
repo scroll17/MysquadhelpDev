@@ -6,13 +6,13 @@ function StepsForHowDoNameContestsWork(props ){
     const { dataForPage, bgColor, positionOfGif } = props;
 
     let backgroundColor;
-    let positionGif;
+    let textPositionNearTheGif = positionOfGif ?
+        `${style.blockWithInformation} ${style.informationReverse}`
+        : style.blockWithInformation;
 
     if(positionOfGif === "right"){
         backgroundColor = {backgroundColor: bgColor, color: "white"};
-        positionGif = {flexDirection: "row-reverse"};
     }else{
-        positionGif = {flexDirection: "row"};
         backgroundColor = {backgroundColor: bgColor};
     }
 
@@ -28,7 +28,7 @@ function StepsForHowDoNameContestsWork(props ){
             <div className={style.container}>
                 <div className={style.row}>
                     <div className={style.title}>{props.children}</div>
-                    <div className={style.blockWithInformation} style={positionGif}>
+                    <div className={textPositionNearTheGif}>
                         <div className={style.box}>
                             <h4>{dataForPage.title}</h4>
                             <ul>

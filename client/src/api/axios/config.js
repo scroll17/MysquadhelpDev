@@ -14,7 +14,8 @@ axios.interceptors.request.use(  config => {
     return Promise.reject(error);
 });
 
-axios.interceptors.response.use(
+
+/*axios.interceptors.response.use(
     response => response,
     async (error) => {
         const { response: {config} } = error;
@@ -26,7 +27,6 @@ axios.interceptors.response.use(
                     history.push('/login');
                     return Promise.reject(error);
                 case 419:
-                    //console.clear(); //TODO console._commandLineAPI.clear();
 
                     const {data: {tokenPair,  user}} = await axios.post(`${restURL}/refresh`, {refreshToken: localStorage.getItem("refreshToken")});
                     const tokens = tokenPair;
@@ -44,7 +44,7 @@ axios.interceptors.response.use(
 
         return axios.request(config);
     }
-);
+);*/
 
 export const setAuthRequest = (accessToken) => {
     axios.defaults.headers.common['Authorization'] = "Bearer " + accessToken;

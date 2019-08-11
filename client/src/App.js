@@ -6,7 +6,8 @@ import connect from "react-redux/es/connect/connect";
 import history from "./boot/browserHistory";
 
 
-import MainHomePage from './pages/MainHomePage/MainHomePage'
+import MainHomePage from './pages/MainHomePage/MainHomePage';
+import LoginPages from './pages/LoginPages/LoginPages';
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 
 import UserLoader from './components/Route/UserLoader';
@@ -26,6 +27,7 @@ class App extends Component{
                 <Router history={history}>
                     <Switch>
                         <Route exact path={"/"}  component={MainHomePage}/>
+                        <Route path={"/login"} component={LoginPages}/>
                         <Route component={ NotFoundPage } />
                     </Switch>
                 </Router>

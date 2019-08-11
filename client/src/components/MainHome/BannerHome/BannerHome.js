@@ -5,7 +5,7 @@ import ButtonsHomePage from '../../Buttons/ButtonsHomePage/ButtonsHomePage'
 
 function BannerHome(){
 
-        const ivites = [
+        const invites = [
             ' a Company',
             " a Brand",
             " a Website",
@@ -20,7 +20,7 @@ function BannerHome(){
 
         useEffect(() => {
             const interval = setInterval(() => {
-                if(sentence < ivites.length - 1 ) setSentence(sentence + 1);
+                if(sentence < invites.length - 1 ) setSentence(sentence + 1);
                 else {setSentence(0)}
             },4000);
             return () => clearInterval(interval);
@@ -37,7 +37,7 @@ function BannerHome(){
 
                                 <h1 className={style.loadingBar}>
                                     <span>Find the Perfect Name for</span>
-                                    <span className={style.wordsWrapper}>{ivites[sentence]}</span>
+                                    <span className={style.wordsWrapper}>{invites[sentence]}</span>
                                 </h1>
 
                                 <p>
