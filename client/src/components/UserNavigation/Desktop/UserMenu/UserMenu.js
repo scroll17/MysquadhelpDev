@@ -6,7 +6,7 @@ import {userLogout} from "../../../../actions/actionCreator";
 import connect from "react-redux/es/connect/connect";
 
 
-function UserNavigation(props){
+function UserNavigationSmartphone(props){
     const [display, setDisplay] = useState('none');
 
     const toOpenMenu = () => {
@@ -55,5 +55,5 @@ const mapDispatchToProps = dispatch => ({
     toLogoutClick: () => dispatch(userLogout(localStorage.getItem("refreshToken"))),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserNavigation);*/
+export default connect(mapStateToProps, mapDispatchToProps)(UserNavigationSmartphone);*/
 

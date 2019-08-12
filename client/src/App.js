@@ -8,6 +8,7 @@ import history from "./boot/browserHistory";
 
 import MainHomePage from './pages/MainHomePage/MainHomePage';
 import LoginPages from './pages/LoginPages/LoginPages';
+import SignUpPage from './pages/SignUpPage/SignUpPage';
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 
 import UserLoader from './components/Route/UserLoader';
@@ -28,6 +29,7 @@ class App extends Component{
                     <Switch>
                         <Route exact path={"/"}  component={MainHomePage}/>
                         <Route path={"/login"} component={LoginPages}/>
+                        <Route path={"/signup"} component={SignUpPage}/>
                         <Route component={ NotFoundPage } />
                     </Switch>
                 </Router>

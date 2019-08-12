@@ -20,7 +20,8 @@ const schema = yup.object().shape({
     password: yup
         .string()
         .min(8)
-        .matches(/^[a-z]|[0-9]|[A-Z]/),
+        .matches(/^[a-z]|[0-9]|[A-Z]/)
+        .required(),
     role: yup
         .string()
         .required(),

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-import style from './HeaderLoginAndSignup.module.sass';
+import style from './HeaderLoginAndSignUp.module.sass';
 
-function HeaderLoginAndSignup(props) {
+function HeaderLoginAndSignUp(props) {
     const link = props.children;
     return (
         <div className={style.header}>
@@ -16,4 +16,4 @@ function HeaderLoginAndSignup(props) {
         </div>
     )
 }
-export default HeaderLoginAndSignup;
+export default HeaderLoginAndSignUp;

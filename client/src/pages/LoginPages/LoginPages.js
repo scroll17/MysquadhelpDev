@@ -4,7 +4,7 @@ import style from "./LoginPages.module.sass";
 
 import { loginUser } from "../../actions/actionCreator";
 
-import HeaderLoginAndSignup from "../../components/HeaderLoginAndSignup/HeaderLoginAndSignup";
+import HeaderLoginAndSignUp from "../../components/HeaderLoginAndSignUp/HeaderLoginAndSignUp";
 import LoginForm from "../../components/Forms/LoginForm/LoginForm";
 
 import { SubmissionError } from 'redux-form';
@@ -16,14 +16,14 @@ function LoginPage(props){
 
     const toLoginUser = async (values) => {
 
-        const resEmail = await yup.reach(schema, 'email').isValid(values.email);
+        const email = await yup.reach(schema, 'email').isValid(values.email);
 
         if (!values.email) {
             throw new SubmissionError({
                 email: 'Email field is required',
                 _error: 'Login failed!',
             });
-        }else if(!resEmail){
+        }else if(!email){
             throw new SubmissionError({
                 email: 'Email is not valid format',
                 _error: 'Login failed!',
@@ -40,9 +40,9 @@ function LoginPage(props){
     };
 
     return (
-        <main className={style.userSignupFlow}>
+        <main className={style.userSignUpFlow}>
             <div className={style.container}>
-                <HeaderLoginAndSignup>Signup</HeaderLoginAndSignup>
+                <HeaderLoginAndSignUp>Signup</HeaderLoginAndSignUp>
                 <LoginForm onSubmit={toLoginUser}/>
             </div>
         </main>

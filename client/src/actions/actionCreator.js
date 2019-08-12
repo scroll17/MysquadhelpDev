@@ -16,3 +16,7 @@ export const userLogout = (refreshToken) => ({
 export const getUser = () => ({
   type: ACTION.GET_USER
 });
+
+export const getUserResponse = () => ({
+  type: ACTION.USERS_RESPONSE
+});

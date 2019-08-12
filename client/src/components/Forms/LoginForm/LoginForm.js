@@ -8,6 +8,8 @@ import { toast } from 'react-toastify';
 
 import { error } from "../../../utils/consts";
 
+import { getUserResponse } from "../../../actions/actionCreator";
+
 function LoginForm(props){
 
     const [notFoundError, setNotFoundError] = useState(false);
@@ -22,13 +24,21 @@ function LoginForm(props){
                 });
             }
         }
+        return () => {
+            props.getUserResponse();
+        };
     });
 
     const renderField = ({input, placeholder, type, meta: { touched, error },}) => {
-        const borderError = error ? style.inputError : null;
+        const borderError = error ? {border: '2px solid #f00'} : null;
         return(
                 <>
-                    <input {...input} type={type} placeholder={placeholder} className={`${style.inputNormal} ${borderError}`}/>
+                    <input {...input}
+                           type={type}
+                           placeholder={placeholder}
+                           className={style.inputNormal}
+                           style={borderError}
+                    />
                     {touched && error && <div className={style.errorContainer}>{error}</div>}
                 </>
         )};
@@ -41,30 +51,33 @@ function LoginForm(props){
                     <h2>LOGIN TO YOUR ACCOUNT</h2>
                 </div>
 
-                {!notFoundError ?
-                    null
-                    :
+                { notFoundError ?
                     <div className={style.serverError}>
                         Invalid Email or Password.
                     </div>
+                    :
+                    null
                 }
 
                 <form onSubmit={ handleSubmit } className={style.form}>
                     <div className={style.email}>
-                        <Field name="email" component={renderField}
-                               type="email" placeholder="Email address"
+                        <Field name="email"
+                               component={renderField}
+                               type="email"
+                               placeholder="Email address"
                                className={style.inputNormal}
                         />
                     </div>
                     <div className={style.email}>
-                        <Field name="password" component={renderField}
+                        <Field name="password"
+                               component={renderField}
                                type="password"
                                placeholder="Password"
                                className={style.inputNormal}
                         />
                     </div>
-                    <div className={style.buttom}>
-                        <button type="submit" disabled={submitting}>LOGIN</button>
+                    <div className={style.button}>
+                        <button type="submit" disabled={submitting}>login</button>
                     </div>
                 </form>
             </div>
@@ -80,5 +93,8 @@ LoginForm = reduxForm ({
 const mapStateToProps = (state) => ({
     err: state.userReducers.error
 });
+const mapDispatchToProps = dispatch => ({
+    getUserResponse: () => dispatch(getUserResponse())
+});
 
-export default connect(mapStateToProps)(LoginForm);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

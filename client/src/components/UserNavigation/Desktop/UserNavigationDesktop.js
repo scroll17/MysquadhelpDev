@@ -1,10 +1,10 @@
 import React from 'react';
-import style from './UserNavigation.module.sass';
+import style from './UserNavigationDesktop.module.sass';
 
 import ContactsDetails from './ContactsDetails/ContactsDetails'
 import LoginSignUp from './LoginSignUp/LoginSignUp'
 
-function UserNavigation() {
+function UserNavigationDesktop() {
     return (
         <header className={style.header}>
             <div className={style.headerTop}>
@@ -17,4 +17,4 @@ function UserNavigation() {
     )
 }
 
-export default UserNavigation;
+export default UserNavigationDesktop;

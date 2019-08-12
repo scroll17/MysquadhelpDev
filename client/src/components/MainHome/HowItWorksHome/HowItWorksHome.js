@@ -21,10 +21,10 @@ function HowItWorksHome(){
                             <li  className={style.active}>
                                 <span>Names</span>
                             </li>
-                            <li  className={style.larged}>
+                            <li  className={style.lagged}>
                                 <span>Taglines & Slogans</span>
                             </li>
-                            <li  className={style.larged}>
+                            <li  className={style.lagged}>
                                 <span>Logo Designs</span>
                             </li>
                         </ul>
