@@ -1,4 +1,4 @@
-const {jwtSignAccess, jwtSignRefresh } = require('../utils/jwtTokenVerify');
+const {jwtSignAccess, jwtSignRefresh } = require('../utils/checkJwtTokens');
 const { RefreshToken } = require('../models/index');
 
 
@@ -10,11 +10,10 @@ module.exports = async (req, res, next) => {
             refreshToken: await jwtSignRefresh(user.id, user.role)
         };
 
-        const count = await RefreshToken.update(
-                {tokenString: tokenPair.refreshToken},
-                {where: {userId: user.id}}
+        await RefreshToken.update(
+                { tokenString: tokenPair.refreshToken },
+                { where:  {userId: user.id} }
             );
-
 
         return res.send({
             user: req.user,

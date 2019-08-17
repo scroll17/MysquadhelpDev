@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-import schema from "./yupValidation";
+import schema from "./yupShema";
 
 import { ROLE } from '../utils/consts'
 

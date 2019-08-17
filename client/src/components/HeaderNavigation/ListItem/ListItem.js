@@ -17,7 +17,7 @@ function ListItem(props){
                         <i className="fa fa-angle-down" />
                     </Link>
                 </li>
-                { <DropDownList elements={item} visible={drop}/>}
+                { <DropDownList elements={item} displayStyle={drop}/>}
             </div>
         )
 }

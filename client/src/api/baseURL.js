@@ -1,6 +1,13 @@
-export const baseURL = 'http://192.168.0.107:3000';
+export const baseURL = 'http://localhost:3000'; //192.168.0.106 //localhost
 export const restURL = `${baseURL}`;
 
-export const url = {
-  login: '/login'
+export const URL = {
+  LOGIN: '/login',
+  LOGOUT: "/logout",
+  USER: '/user',
+  ALL_USER: "/alluser",
+  SIGN_UP: "/signup",
+  NOT_FOUND: "/notfound",
+  CONTEST_TYPE: "/contesttype",
+  ADMIN_PANEL: "/adminpanel",
 };

@@ -6,9 +6,11 @@ import connect from "react-redux/es/connect/connect";
 
 import { toast } from 'react-toastify';
 
-import { error } from "../../../utils/consts";
+import { ERROR } from "../../../utils/consts";
 
 import { getUserResponse } from "../../../actions/actionCreator";
+
+import { isUndefined } from 'lodash';
 
 function LoginForm(props){
 
@@ -17,15 +19,20 @@ function LoginForm(props){
     useEffect(() => {
         if(props.err){
             const response = props.err.response;
-            if(response.status === error.NotFound) setNotFoundError(true);
-            if(response.status === error.Forbidden) {
-                toast.error(response.data.statusText, {
+
+            if(response.status === ERROR.NotFound) setNotFoundError(true);
+            if(response.status === ERROR.Forbidden) {
+                toast.error(response.statusText, {
                     position: toast.POSITION.TOP_RIGHT
                 });
             }
+
+            if(isUndefined(response)){ // TODO toast form smartphone
+                alert('Error...');
+            }
         }
         return () => {
-            props.getUserResponse();
+            props.getUserResponse(); // обнулить все ошибки в сторе
         };
     });
 

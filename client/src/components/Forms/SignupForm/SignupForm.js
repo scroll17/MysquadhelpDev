@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import style from './SignupForm.module.sass';
 
+import { ROLE } from '../../../utils/consts'
+
 import { Link } from "react-router-dom";
 
 import { reduxForm, Fields } from 'redux-form';
@@ -32,7 +34,7 @@ class SignUpForm extends Component {
         const { handleSubmit, submitting } = this.props;
         return (
 
-            <div className={style.loginForm}>
+            <div className={style.signUpForm}>
                 <div className={style.signUpText}>
                     <h2>CREATE AN ACCOUNT</h2>
                     <h4>We always keep your name and email address private.</h4>
@@ -43,8 +45,8 @@ class SignUpForm extends Component {
                     <Fields names={[ 'displayName', 'email' ]} component={this.secondInputs}/>
                     <Fields names={[ 'password', 'passwordRepeat' ]} component={this.thirdInputs}/>
 
-                    <JoinAs roles={'Buyer'}  />
-                    <JoinAs roles={'Creative'} />
+                    <JoinAs roles={ROLE.BUYER}  />
+                    <JoinAs roles={ROLE.CREATIVE} />
 
                     <div className={style.button}>
                         <button type="submit" disabled={submitting}>Create account</button>
@@ -63,7 +65,7 @@ class SignUpForm extends Component {
 SignUpForm = reduxForm ({
     form: 'signUp',
     asyncValidate: asyncValidationSignUpForm,
-    initialValues: {role: 'Buyer'}
+    initialValues: {role: ROLE.BUYER}
 })(SignUpForm);
 
 export default SignUpForm;

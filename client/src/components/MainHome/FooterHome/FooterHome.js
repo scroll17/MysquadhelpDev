@@ -1,7 +1,6 @@
 import React  from 'react';
 import style from './FooterHome.module.sass';
 
-import {Link} from "react-router-dom";
 
 function FooterHome(){
 

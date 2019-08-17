@@ -1,6 +1,8 @@
 import React, { useState, useEffect }  from 'react';
 import style from './BannerHome.module.sass';
 
+import { URL } from '../../../api/baseURL'
+
 import ButtonsHomePage from '../../Buttons/ButtonsHomePage/ButtonsHomePage'
 
 function BannerHome(){
@@ -49,7 +51,7 @@ function BannerHome(){
 
                                 <ul>
                                     <li className={style.startContest}>
-                                        <ButtonsHomePage link={"/contesttype"}>start a contest</ButtonsHomePage>
+                                        <ButtonsHomePage link={URL.CONTEST_TYPE}>start a contest</ButtonsHomePage>
                                     </li>
                                     <li className={style.liOr}>Or</li>
                                     <li className={style.exploreNames}>

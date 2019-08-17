@@ -1,12 +1,12 @@
 import React  from 'react';
 import style from './MarketplaceDomainsHome.module.sass';
 
-import { textAndLinksForMarketplaceDomainsHome } from '../../../utils/textAndLinksForPages'
+import { marketplaceDomainsHome } from '../../../utils/textAndLinksForPages'
 
 function MarketplaceDomainsHome(){
 
-        const MarketplaceDomains = ( obj ) => {
-            return obj.map( content => {
+        const MarketplaceDomains = ( arrayOfData ) => {
+            return arrayOfData.map( content => {
                 const img = {backgroundImage: `url(${content.src})`};
                 return(
                     <div className={style.heroHighlightContainer} key={content.title}>
@@ -29,7 +29,7 @@ function MarketplaceDomainsHome(){
                     </div>
 
                     <div className={style.container}>
-                        {MarketplaceDomains(textAndLinksForMarketplaceDomainsHome)}
+                        {MarketplaceDomains(marketplaceDomainsHome)}
                     </div>
 
                 </div>

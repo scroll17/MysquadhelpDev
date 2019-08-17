@@ -1,4 +1,4 @@
-const {jwtSignAccess, jwtSignRefresh } = require('../utils/jwtTokenVerify');
+const {jwtSignAccess, jwtSignRefresh } = require('../utils/checkJwtTokens');
 const { RefreshToken } = require('../models/index');
 
 module.exports = async (req, res, next) => {

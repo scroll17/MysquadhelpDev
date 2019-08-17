@@ -2,17 +2,18 @@ import ACTION from "../actions/actiontsTypes";
 import { call, put } from 'redux-saga/effects';
 import history from '../boot/browserHistory';
 
-import { setAuthRequest } from '../api/axios/config';
+import { URL } from '../api/baseURL';
+import { TOKEN } from '../utils/consts'
+
 
 export function* saveTokenSaga({tokens}) {
     if(tokens.accessToken.length > 0){
-        localStorage.setItem("accessToken", tokens.accessToken);
-        localStorage.setItem("refreshToken", tokens.refreshToken);
+        localStorage.setItem(TOKEN.ACCESS_TOKEN, tokens.accessToken);
+        localStorage.setItem(TOKEN.REFRESH_TOKEN, tokens.refreshToken);
     }
-    yield call( setAuthRequest , tokens.accessToken);
 }
 
 export function* tokenErrorSaga() {
     yield put({type: ACTION.USER_LOGOUT});
-    yield call(history.push, "/login");
+    yield call(history.push, URL.LOGIN);
 }

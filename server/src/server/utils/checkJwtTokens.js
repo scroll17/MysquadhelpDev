@@ -1,14 +1,14 @@
-const { ACSSES_SECRET, REFRESH_SECRET, EXPIRES_IN_ACSSES, EXPIRES_IN_REFRESH } = require("./consts");
-const jwtTokenVerify = require('jsonwebtoken');
+const { ACCESS_SECRET, REFRESH_SECRET, EXPIRES_IN_ACCESS, EXPIRES_IN_REFRESH } = require("./consts");
+const checkJwtTokens = require('jsonwebtoken');
 const util = require('util');
 
 
-const singToken = util.promisify(jwtTokenVerify.sign);
-const verifyToken = util.promisify(jwtTokenVerify.verify);
+const singToken = util.promisify(checkJwtTokens.sign);
+const verifyToken = util.promisify(checkJwtTokens.verify);
 
 module.exports.jwtSignAccess = (email, name, role, id) => {
     try{
-        return singToken({email: email, name: name, role: role, id: id }, ACSSES_SECRET, {expiresIn: EXPIRES_IN_ACSSES});
+        return singToken({email: email, name: name, role: role, id: id }, ACCESS_SECRET, {expiresIn: EXPIRES_IN_ACCESS});
     }catch (err) {
         return next(err)
     }
@@ -23,7 +23,7 @@ module.exports.jwtSignRefresh = (userId, role) => {
 };
 
 module.exports.verifyToken = (token, type) => {
-    const secret = type === 'R' ? REFRESH_SECRET : ACSSES_SECRET;
+    const secret = type === 'R' ? REFRESH_SECRET : ACCESS_SECRET;
     return verifyToken(token, secret);
 };
 

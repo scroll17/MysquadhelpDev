@@ -27,7 +27,7 @@ export const textForStartContestSteps = [
 ];
 
 
-export const textAndLinksForMarketplaceDomainsHome = [
+export const marketplaceDomainsHome = [
     {
         src: 'https://www.squadhelp.com/assets/nimages/home_images/more-benifits-world-icon.png',
         title: "Largest Naming Community",

@@ -3,7 +3,7 @@ import style from './StepsForHowDoNameContestsWork.module.sass';
 
 function StepsForHowDoNameContestsWork(props ){
 
-    const { dataForPage, bgColor, positionOfGif } = props;
+    const { dataForComponent, bgColor, positionOfGif } = props;
 
     let backgroundColor;
     let textPositionNearTheGif = positionOfGif ?
@@ -30,12 +30,12 @@ function StepsForHowDoNameContestsWork(props ){
                     <div className={style.title}>{props.children}</div>
                     <div className={textPositionNearTheGif}>
                         <div className={style.box}>
-                            <h4>{dataForPage.title}</h4>
+                            <h4>{dataForComponent.title}</h4>
                             <ul>
-                                {liItems(dataForPage.steps)}
+                                {liItems(dataForComponent.steps)}
                             </ul>
                         </div>
-                        <img className={style.gif} src={dataForPage.src} alt={''}/>
+                        <img className={style.gif} src={dataForComponent.src} alt={''}/>
                     </div>
                 </div>
             </div>

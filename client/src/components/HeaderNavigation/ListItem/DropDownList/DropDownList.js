@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 
 
 function DropDownList(props){
-    const visible = props.visible ? {display: "block"} : {display: "none"};
+    const visibleBlock = props.displayStyle ? {display: "block"} : {display: "none"};
         return (
-            <ul className={style.dropMenu} style={visible}>
+            <ul className={style.dropMenu} style={visibleBlock}>
                 {props.elements.map( item => {
                     const { children, id} = item.props;
                     const key = children === undefined ? id : children;

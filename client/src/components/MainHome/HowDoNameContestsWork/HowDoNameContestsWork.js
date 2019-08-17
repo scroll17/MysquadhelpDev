@@ -9,17 +9,17 @@ function HowDoNameContestsWork(){
         <>
             <StepsForHowDoNameContestsWork
                 bgColor={'white'}
-                dataForPage={textAndLinksForHowDoNameContestsWork[0]}>
+                dataForComponent={textAndLinksForHowDoNameContestsWork[0]}>
                 <h2>How Do Name Contests Work?</h2>
             </StepsForHowDoNameContestsWork>
             <StepsForHowDoNameContestsWork
                 bgColor={'#28d2d0'}
                 positionOfGif={'right'}
-                dataForPage={textAndLinksForHowDoNameContestsWork[1]}>
+                dataForComponent={textAndLinksForHowDoNameContestsWork[1]}>
             </StepsForHowDoNameContestsWork>
             <StepsForHowDoNameContestsWork
                 bgColor={'#f9f9f9'}
-                dataForPage={textAndLinksForHowDoNameContestsWork[2]}>
+                dataForComponent={textAndLinksForHowDoNameContestsWork[2]}>
             </StepsForHowDoNameContestsWork>
         </>
     )

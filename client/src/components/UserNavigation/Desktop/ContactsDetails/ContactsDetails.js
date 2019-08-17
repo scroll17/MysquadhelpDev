@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './ContactsDetails.module.sass';
 
-function ContactsDetails(props){
+function ContactsDetails(){
     return (
         <div className={style.contactsDetails}>
             <div className={style.contacts}>

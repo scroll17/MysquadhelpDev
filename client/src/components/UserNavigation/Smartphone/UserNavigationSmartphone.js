@@ -2,13 +2,18 @@ import React , { useState } from 'react';
 import style from './UserNavigationSmartphone.module.sass';
 
 import { Link } from "react-router-dom";
+import { URL } from '../../../api/baseURL'
 
-function UserNavigationSmartphone() {
-    const [display, setDisplay] = useState('none');
+import UserMenu from '../UserMenu/UserMenu'
+
+import connect from "react-redux/es/connect/connect";
+
+function UserNavigationSmartphone(props) {
+    const [displayStyle, setDisplayStyle] = useState('none');
 
     const toOpenMenu = () => {
-        const status = display === "none" ? "block" : "none";
-        setDisplay(status);
+        const nextDisplayStyle = displayStyle === "none" ? "block" : "none";
+        setDisplayStyle(nextDisplayStyle);
     };
 
     return (
@@ -21,11 +26,17 @@ function UserNavigationSmartphone() {
                             <img src={'https://www.squadhelp.com/images/squadhelp-logo-color.jpg'} alt={''} />
                         </Link>
 
-                        <div className={style.navBarToggleCollapsed} onClick={toOpenMenu} onMouseDown={(e) => {e.preventDefault()}}>
-                            <i className="fas fa-bars" />
+                        <div className={style.navBarToggle}>
+                            {props.user && <UserMenu />}
+
+                            <div className={style.navBarToggleCollapsed} onClick={toOpenMenu} onMouseDown={(e) => {e.preventDefault()}}>
+                                <i className="fas fa-bars" />
+                            </div>
+
                         </div>
 
-                        {display === "block" &&
+
+                        {displayStyle === "block" &&
                             <ul className={style.dropdownMenu} >
 
                                 <li>
@@ -33,9 +44,11 @@ function UserNavigationSmartphone() {
                                     <Link to={"tel:(877)355-3585"}>(877) 355-3585</Link>
                                 </li>
 
-                                <li>
-                                    <Link to={"/login"}>Login</Link> / <Link to={"/signup"}>Sign Up</Link>
-                                </li>
+                                {props.user ? null :
+                                    <li>
+                                        <Link to={URL.LOGIN}>Login</Link> / <Link to={URL.SIGN_UP}>Sign Up</Link>
+                                    </li>
+                                }
 
                                 <li><Link to={"/"}>Name ideas</Link></li>
                                 <li><Link to={"/"}>Contest</Link></li>
@@ -54,4 +67,8 @@ function UserNavigationSmartphone() {
     )
 }
 
-export default UserNavigationSmartphone;
+const mapStateToProps = (state) => ({
+    user: state.userReducers.user
+});
+export default connect(mapStateToProps)(UserNavigationSmartphone);
+

@@ -10,16 +10,16 @@ import { createUser } from "../../actions/actionCreator";
 
 
 class SignUpPage extends Component{
-    onSignUpSubmit = values => {
-        const dataSend = {
-            firstName:values.firstName,
-            lastName:values.lastName,
-            displayName:values.displayName,
+    toSignUpUser = values => {
+        const dataToSend = {
+            firstName: values.firstName,
+            lastName: values.lastName,
+            displayName: values.displayName,
             email: values.email,
             role: values.role,
             password: values.password,
         };
-        this.props.onSignUpSubmit(dataSend)
+        this.props.toSignUpUser(dataToSend)
     };
 
     render(){
@@ -27,7 +27,7 @@ class SignUpPage extends Component{
             <main className={style.userSignUpFlow}>
                 <div className={style.container}>
                     <HeaderLoginAndSignUp>Login</HeaderLoginAndSignUp>
-                    <SignUpForm onSubmit={this.onSignUpSubmit}/>
+                    <SignUpForm onSubmit={this.toSignUpUser}/>
                 </div>
             </main>
         );
@@ -40,7 +40,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    onSignUpSubmit: user => dispatch(createUser(user)),
+    toSignUpUser: user => dispatch(createUser(user)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUpPage);

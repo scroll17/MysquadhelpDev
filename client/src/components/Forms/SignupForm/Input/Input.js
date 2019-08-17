@@ -16,7 +16,7 @@ function Input(props) {
         }
     };
 
-    const renderErrorMessage = (setTouchedFields, setErrorFields) => {
+    const showErrorMessage = (setTouchedFields, setErrorFields) => {
         let errorMessage;
 
         if(setTouchedFields(0) && setErrorFields(0)){
@@ -53,7 +53,7 @@ function Input(props) {
                     />
                 </div>
             </div>
-            {renderErrorMessage(setTouchedFields, setErrorFields) }
+            {showErrorMessage(setTouchedFields, setErrorFields) }
         </div>
     )
 }

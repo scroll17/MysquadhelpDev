@@ -2,14 +2,19 @@ const error = require("../errors/errors");
 const { User } = require('../models/index');
 
 const bcrypt = require('bcrypt');
-const { SALT_RONDS } = require("../utils/consts");
+const { SALT_ROUNDS } = require("../utils/consts");
 
-const { verifyToken } = require('../utils/jwtTokenVerify');
+const { verifyToken } = require('../utils/checkJwtTokens');
+
+const { AuthenticationTimeout, InvalidCredentials, NotFound } = require("../errors/errors");
+
+
+                                        // ---------- User ----------
 
 module.exports.createUser = async (req, res, next) => {
     const body = Object.assign({},req.body);
     try{
-        const hash = await bcrypt.hash(body.password, SALT_RONDS);
+        const hash = await bcrypt.hash(body.password, SALT_ROUNDS);
         const [user, created] = await User.findOrCreate({
             where: {email: body.email},
             defaults: {
@@ -20,9 +25,6 @@ module.exports.createUser = async (req, res, next) => {
                 role: body.role,
                 password: hash
             },
-            attributes: {
-                exclude: ['password', 'updatedAt', 'createdAt']
-            }
         });
         if (!created) return next(new error.InvalidCredentials());
 
@@ -68,5 +70,62 @@ module.exports.refreshUser = async (req,res,next) => {
     }catch (err) {
         if(err.name === 'TokenExpiredError') return next(new InvalidCredentials(err.name));
         next(err)
+    }
+};
+
+module.exports.giveAccessUser = async (req,res,next) => {
+    const accessToken = req.token;
+    try{
+        const decoded = await verifyToken(accessToken, 'A');
+        const user = await User.findOne({
+            where: {email: decoded.email},
+            attributes: {
+                exclude: ['password','updatedAt', 'createdAt']
+            }
+        });
+        return res.send(user);
+    }catch (err) {
+        if(err.name === 'TokenExpiredError') return next(new AuthenticationTimeout(err.name));
+        next(err)
+    }
+};
+
+
+                                        // ---------- Admin ----------
+
+module.exports.getAllUsers = async (req, res, next) => {
+    try{
+        const users = await User.findAll({
+            raw: true,
+            rejectOnEmpty: true,
+            attributes: {
+                exclude: ['password','updatedAt', 'createdAt']
+            },
+            order: [['email', 'ASC'], ['id', 'ASC']]
+        });
+        res.send(users);
+    }catch (err) {
+        return next(new NotFound(err.name))
+    }
+};
+
+module.exports.updateUserById = async (req, res, next) => {
+    const { id } = req.params;
+    const { isBanned } = req.body;
+    try {
+        const [numberOfUpdatedRows, user] = await User.update({ isBanned }, {
+            where: { id },
+            fields: ['isBanned'],
+            returning: true,
+            plain: true,
+        });
+
+        if(numberOfUpdatedRows <= 0){
+            return next(new error.NotFound());
+        }
+
+        return res.send(user);
+    } catch (err) {
+        next(err);
     }
 };

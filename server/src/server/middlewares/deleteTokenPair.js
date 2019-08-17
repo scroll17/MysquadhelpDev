@@ -1,5 +1,5 @@
 const { RefreshToken } = require('../models/index');
-const { verifyToken } = require('../utils/jwtTokenVerify');
+const { verifyToken } = require('../utils/checkJwtTokens');
 
 module.exports = async (req, res, next) => {
     const {refreshToken} = req.body;

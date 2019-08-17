@@ -3,6 +3,8 @@ import style from './HeaderNavigation.module.sass';
 
 import { Link } from "react-router-dom";
 
+import { URL } from '../../api/baseURL'
+
 import ListItem from './ListItem/ListItem'
 import ButtonsHomePage from '../Buttons/ButtonsHomePage/ButtonsHomePage'
 
@@ -75,7 +77,7 @@ function HeaderNavigation(){
                             </ul>
                         </div>
 
-                        <ButtonsHomePage link={"/contesttype"}>start contest</ButtonsHomePage>
+                        <ButtonsHomePage link={URL.CONTEST_TYPE}>start contest</ButtonsHomePage>
 
                     </div>
                 </div>

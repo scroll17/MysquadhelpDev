@@ -1,7 +1,7 @@
 import ACTION from '../actions/actiontsTypes';
 
 const initialState = {
-  isFetching: false,
+  isFetching: null,
   error: null,
   user: null,
   users: [],

@@ -1,12 +1,12 @@
 import axios from 'axios';
 import ACTION from '../../actions/actiontsTypes';
 import {restURL} from '../baseURL';
-import { store } from '../../boot/store';
+import { STORE } from '../../utils/consts';
 
 import history from "../../boot/browserHistory";
 
 axios.interceptors.request.use(  config => {
-    store.dispatch({type: ACTION.USERS_REQUEST});
+    STORE.dispatch({type: ACTION.USERS_REQUEST});
 
     config.headers.common['Authorization'] = "Bearer " + localStorage.getItem("accessToken");
     return config;
@@ -46,10 +46,4 @@ axios.interceptors.request.use(  config => {
     }
 );*/
 
-export const setAuthRequest = (accessToken) => {
-    axios.defaults.headers.common['Authorization'] = "Bearer " + accessToken;
-};
-export const getAuthRequest = () => {
-    axios.defaults.headers.common['Authorization'] = "Bearer " + localStorage.getItem("accessToken");
-};
 export default axios;
