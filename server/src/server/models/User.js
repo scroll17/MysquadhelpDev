@@ -1,4 +1,4 @@
-const { ROLE } = require('../utils/consts');
+const { ROLES } = require('../utils/consts');
 
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
@@ -49,7 +49,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: "buyer",
       validate: {
-        isIn: [[...ROLE]],
+        isIn: [[...ROLES]],
       },
     },
     isActive: {

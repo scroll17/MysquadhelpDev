@@ -1,5 +1,5 @@
 import axios from '../axios/config';
-import { restURL, URL } from '../baseURL';
+import { restURL, URL  } from '../baseURL';
 
 //----- USER -----
 export const loginUser = ( user ) => axios.post(`${restURL}${URL.LOGIN}`,  user );

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import { Link } from "react-router-dom";
 import style from './AdminList.module.sass';
 
 import connect from "react-redux/es/connect/connect";
@@ -11,6 +10,8 @@ import { getAllUser, banUserById } from "../../actions/actionCreator";
 import ListTo from './ListTo/ListTo';
 import ListItem from './ListItem/ListItem';
 
+
+import { isEmpty } from 'lodash';
 
 class AdminList extends Component {
     clickToBan = (userId, isBanned) => {
@@ -39,10 +40,11 @@ class AdminList extends Component {
 
     render() {
         const { users } = this.props;
+
         return (
             <>
                 <div className={style.list} onMouseDown={(e) => {e.preventDefault()}}>
-                    <ListTo active={this.bannedUsers(users)} clickToItem={this.clickToBan}/>
+                    <ListTo bannedUsers={this.bannedUsers(users)} clickToItem={this.clickToBan}/>
                     {this.userParser(users)}
                 </div>
             </>
@@ -50,16 +52,18 @@ class AdminList extends Component {
     }
 
     componentDidMount() {
-        const { users, user, error} = this.props;
+        const { users, user} = this.props;
+        if(user && isEmpty(users)){
+            this.props.getAllUser();
+        }
+    }
 
-        if(this.props.error !== null){
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        const { error } = this.props;
+        if(error){
             toast.error(error.response.data.statusText, {
                 position: toast.POSITION.TOP_RIGHT
             });
-        }
-
-        if(!!user && users.length <= 0){
-            this.props.getAllUser();
         }
     }
 }

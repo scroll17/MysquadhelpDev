@@ -29,7 +29,6 @@ export default function (state = initialState, action) {
         ...state,
         isFetching: false,
         error: action.error,
-        users: []
       }
     }
     default: {

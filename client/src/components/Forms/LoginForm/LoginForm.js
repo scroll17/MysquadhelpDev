@@ -10,9 +10,8 @@ import { ERROR } from "../../../utils/consts";
 
 import { getUserResponse } from "../../../actions/actionCreator";
 
-import { isUndefined } from 'lodash';
 
-function LoginForm(props){
+let LoginForm = (props) => {
 
     const [notFoundError, setNotFoundError] = useState(false);
 
@@ -25,10 +24,6 @@ function LoginForm(props){
                 toast.error(response.statusText, {
                     position: toast.POSITION.TOP_RIGHT
                 });
-            }
-
-            if(isUndefined(response)){ // TODO toast form smartphone
-                alert('Error...');
             }
         }
         return () => {
@@ -91,7 +86,7 @@ function LoginForm(props){
 
         );
 
-}
+};
 
 LoginForm = reduxForm ({
     form: 'login',

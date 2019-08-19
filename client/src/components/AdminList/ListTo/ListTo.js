@@ -6,13 +6,8 @@ import { Link } from "react-router-dom";
 import * as _ from 'lodash';
 
 function ListTo(props){
-    const { active, clickToItem, } = props;
+    const { clickToItem, bannedUsers} = props;
 
-    const bannedUsers = active.map((user) => {
-        if(user.isBanned){
-            return user;
-        }
-    });
 
     const renderNames = () => {
         if(_.size(bannedUsers) > 0) {

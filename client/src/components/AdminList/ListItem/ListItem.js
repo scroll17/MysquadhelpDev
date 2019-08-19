@@ -11,7 +11,7 @@ function ListItem(props){
                     <div className={style.avatar} />
                     <div className={style.name}>
                         <div className={style.listItemName}>
-                            {name}
+                            {name + " -- id:" + id}
                         </div>
                     </div>
                 </div>

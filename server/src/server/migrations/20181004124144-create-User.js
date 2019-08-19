@@ -1,5 +1,5 @@
 'use strict';
-const { ROLE } = require('../utils/consts');
+const { ROLES } = require('../utils/consts');
 
 module.exports = {
     up: (queryInterface, Sequelize) => {
@@ -43,7 +43,7 @@ module.exports = {
                 defaultValue: "buyer",
                 validate: {
                     allowNull: false,
-                    isIn: [[...ROLE]],
+                    isIn: [[...ROLES]],
                 }
             },
             isActive: {

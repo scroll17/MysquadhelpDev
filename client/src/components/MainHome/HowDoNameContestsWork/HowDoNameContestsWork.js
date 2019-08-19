@@ -1,5 +1,5 @@
 import React  from 'react';
-import style from './HowDoNameContestsWork.module.sass';
+//import style from './HowDoNameContestsWork.module.sass';
 
 import { textAndLinksForHowDoNameContestsWork } from '../../../utils/textAndLinksForPages'
 import StepsForHowDoNameContestsWork from './StepsForHowDoNameContestsWork/StepsForHowDoNameContestsWork'

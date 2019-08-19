@@ -8,11 +8,12 @@ import { URL } from '../../api/baseURL'
 import { getUser } from "../../actions/actionCreator";
 import connect from "react-redux/es/connect/connect";
 
+import { isEmpty } from 'lodash';
 
 class PrivateRoute extends Component{
     renderPage(){
         const { user, isFetching, requireRole, path, component} = this.props;
-        if ((!user || user.role !== requireRole) && isFetching === false){
+        if ((user.role !== requireRole) && isFetching === false){
             return <Redirect to={URL.NOT_FOUND} />;
         }
         return( <Route path={path}  component={component}/> )
@@ -24,6 +25,7 @@ class PrivateRoute extends Component{
         return(
             <>
                 { user && this.renderPage() }
+                { isEmpty(localStorage) && <Redirect to={URL.NOT_FOUND} /> }
             </>
         )
     }

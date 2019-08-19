@@ -6,7 +6,7 @@ import { URL } from '../api/baseURL';
 import { TOKEN } from '../utils/consts'
 
 
-export function* saveTokenSaga({tokens}) {
+export function saveTokenSaga({tokens}) {
     if(tokens.accessToken.length > 0){
         localStorage.setItem(TOKEN.ACCESS_TOKEN, tokens.accessToken);
         localStorage.setItem(TOKEN.REFRESH_TOKEN, tokens.refreshToken);

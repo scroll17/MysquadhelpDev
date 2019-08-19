@@ -1,4 +1,4 @@
-const { ACCESS_SECRET, REFRESH_SECRET, EXPIRES_IN_ACCESS, EXPIRES_IN_REFRESH } = require("./consts");
+const { ACCESS_SECRET, REFRESH_SECRET, EXPIRES_IN_ACCESS, EXPIRES_IN_REFRESH, TOKEN } = require("./consts");
 const checkJwtTokens = require('jsonwebtoken');
 const util = require('util');
 
@@ -23,7 +23,7 @@ module.exports.jwtSignRefresh = (userId, role) => {
 };
 
 module.exports.verifyToken = (token, type) => {
-    const secret = type === 'R' ? REFRESH_SECRET : ACCESS_SECRET;
+    const secret = type === TOKEN.REFRESH ? REFRESH_SECRET : ACCESS_SECRET;
     return verifyToken(token, secret);
 };
 
