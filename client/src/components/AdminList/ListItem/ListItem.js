@@ -9,7 +9,7 @@ function ListItem(props){
             <div className={style.listItem} onClick={() => clickToItem(id, status)}>
                 <div className={style.avatarAndData}>
                     <div className={style.avatar} />
-                    <div className={style.nameAndLevel}>
+                    <div className={style.name}>
                         <div className={style.listItemName}>
                             {name}
                         </div>
