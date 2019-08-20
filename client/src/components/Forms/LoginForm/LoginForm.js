@@ -19,7 +19,9 @@ let LoginForm = (props) => {
         if(props.err){
             const response = props.err.response;
 
-            if(response.status === ERROR.NotFound) setNotFoundError(true);
+            if(response.status === ERROR.NotFound){
+                setNotFoundError(true);
+            }
             if(response.status === ERROR.Forbidden) {
                 toast.error(response.statusText, {
                     position: toast.POSITION.TOP_RIGHT

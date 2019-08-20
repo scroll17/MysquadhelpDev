@@ -5,12 +5,7 @@ const bcrypt = require('bcrypt');
 const { SALT_ROUNDS, TOKEN, ABILITY: {SUBJECT, ACTIONS} } = require("../utils/consts");
 
 const { verifyToken } = require('../utils/checkJwtTokens');
-
-const { AuthenticationTimeout, InvalidCredentials, NotFound } = require("../errors/errors");
-
 const {jwtSignAccess, jwtSignRefresh } = require('../utils/checkJwtTokens');
-
-
 
 
 // ------------------------ User ------------------------
@@ -32,12 +27,11 @@ module.exports.createUser = async (req, res, next) => {
                 password: hash
             },
         });
-        if (!created) return next(new error.InvalidCredentials());
+        if (!created) return next(new error.BadRequest());
 
         req.body.user = user.get({plain:true});
         next();
     }catch (err){
-
         next(err)
     }
 };
@@ -93,16 +87,14 @@ module.exports.checkAndUpdateRefreshToken = async (req,res,next) => {
             tokenPair,
         });
     }catch (err) {
-        if(err.name === 'TokenExpiredError'){
-            return next(new InvalidCredentials(err.name));
-        }
         next(err)
     }
 };
 
 module.exports.giveAccessUser = async (req,res,next) => {
     try{
-        const decoded = req.accessToken;
+        const decoded = await verifyToken(req.token, TOKEN.ACCESS);
+        //const decoded = req.accessToken;
         const user = await User.findOne({
             where: {email: decoded.email},
             attributes: {
@@ -111,16 +103,13 @@ module.exports.giveAccessUser = async (req,res,next) => {
         });
 
 
-        if(req.ability.cannot(ACTIONS.READ, user)){
+        /*if(req.ability.cannot(ACTIONS.READ, user)){
             return next(new error.Forbidden());
-        }
+        }*/
         //req.ability.throwUnlessCan('read', user);
 
         return res.send(user);
     }catch (err) {
-        if(err.name === 'TokenExpiredError'){
-            return next(new AuthenticationTimeout(err.name));
-        }
         next(err)
     }
 };
@@ -142,7 +131,7 @@ module.exports.getAllUsers = async (req, res, next) => {
         });
         res.send(users);
     }catch (err) {
-        next(new NotFound(err.name))
+        next(new error.NotFound(err.name))
     }
 };
 

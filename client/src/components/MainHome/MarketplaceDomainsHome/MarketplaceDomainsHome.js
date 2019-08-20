@@ -1,7 +1,7 @@
 import React  from 'react';
 import style from './MarketplaceDomainsHome.module.sass';
 
-import { marketplaceDomainsHome } from '../../../utils/textAndLinksForPages'
+import { textForMarketplaceDomainsHome } from '../../../utils/textAndLinksForPages'
 
 function MarketplaceDomainsHome(){
 
@@ -29,7 +29,7 @@ function MarketplaceDomainsHome(){
                     </div>
 
                     <div className={style.container}>
-                        {MarketplaceDomains(marketplaceDomainsHome)}
+                        {MarketplaceDomains(textForMarketplaceDomainsHome)}
                     </div>
 
                 </div>

@@ -6,6 +6,8 @@ export const ROLES = ['admin','buyer','creative'];
 export const ERROR = {
     Forbidden: 403,
     NotFound: 404,
+    Unauthorized: 401,
+    AuthenticationTimeout: 419
 };
 
 export const ROLE = {

@@ -48,7 +48,6 @@ export function* userLogoutSaga({refreshToken}) {
         yield call(userLogout, refreshToken);
 
         localStorage.clear();
-        yield put({type: ACTION.SAVE_TOKENS_LOCALLY, tokens: {accessToken: "", refreshToken: ""}});
         yield put({type: ACTION.USERS_RESPONSE, user: null});
     } catch (e) {
         yield put({type: ACTION.USERS_ERROR, error: e})

@@ -10,7 +10,7 @@ import {
     banUserByIdSaga,
 } from './userSaga';
 
-import { saveTokenSaga, /*tokenErrorSaga*/ } from './tokenSaga'
+import { saveTokenSaga, tokenErrorSaga } from './tokenSaga'
 
 function* rootSaga() {
     yield takeLatest(ACTION.LOGIN_USER, loginUserSaga);
@@ -22,6 +22,7 @@ function* rootSaga() {
     yield takeLatest(ACTION.BAN_USER_BY_ID, banUserByIdSaga);
 
     yield takeLatest(ACTION.SAVE_TOKENS_LOCALLY, saveTokenSaga);
+    yield takeLatest(ACTION.TOKENS_ERROR, tokenErrorSaga);
 }
 
 export default rootSaga;

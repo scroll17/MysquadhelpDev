@@ -59,7 +59,6 @@ function UserNavigationSmartphone(props) {
                         }
 
 
-
                     </div>
                 </div>
             </nav>

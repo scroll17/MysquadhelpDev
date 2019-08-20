@@ -13,5 +13,5 @@ export default {
 
 
   SAVE_TOKENS_LOCALLY: "SAVE_TOKENS_LOCALLY",
-
+  TOKENS_ERROR: "TOKENS_ERROR",
 };

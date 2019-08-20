@@ -31,3 +31,4 @@ export const banUserById = (userId, isBanned) => ({
   userId,
   isBanned,
 });
+

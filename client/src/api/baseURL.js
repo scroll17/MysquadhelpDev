@@ -8,6 +8,8 @@ export const URL = {
   USER: '/user',
   ALL_USER: "/alluser",
 
+  REFRESH: "/refresh",
+
   SIGN_UP: "/signup",
   NOT_FOUND: "/notfound",
   CONTEST_TYPE: "/contesttype",

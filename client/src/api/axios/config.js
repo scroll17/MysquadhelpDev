@@ -1,11 +1,10 @@
 import axios from 'axios';
 import ACTION from '../../actions/actiontsTypes';
-//import {restURL} from '../baseURL';
-import { STORE, TOKEN } from '../../utils/consts';
+import { STORE, TOKEN, ERROR } from '../../utils/consts';
 
-//import history from "../../boot/browserHistory";
+import { refreshToken } from '../rest/restContoller'
 
-axios.interceptors.request.use(  config => {
+const requestHandler = (config) => {
     STORE.dispatch({type: ACTION.USERS_REQUEST});
 
     const accessToken = localStorage.getItem(TOKEN.ACCESS_TOKEN);
@@ -13,40 +12,42 @@ axios.interceptors.request.use(  config => {
         config.headers.common['Authorization'] = "Bearer " + accessToken;
     }
     return config;
-}, error => {
-    return Promise.reject(error);
-});
+};
 
+const errorHandler = async (error) => {
+    try {
+        switch (error.response.status) {
+            case ERROR.Unauthorized:
+                STORE.dispatch({type: ACTION.TOKENS_ERROR});
+                return await Promise.reject(error);
 
-/*axios.interceptors.response.use(
-    response => response,
-    async (error) => {
-        const { response: {config} } = error;
+            case ERROR.AuthenticationTimeout:
+                localStorage.removeItem(TOKEN.ACCESS_TOKEN);
+                const {data: {tokenPair,  user}} = await refreshToken();
 
-        try {
-            switch (error.response.status) {
-                case 401:
-                    localStorage.clear();
-                    history.push('/login');
-                    return Promise.reject(error);
-                case 419:
+                STORE.dispatch({type: ACTION.SAVE_TOKENS_LOCALLY, tokens: tokenPair });
+                STORE.dispatch({type: ACTION.USERS_RESPONSE, user});
 
-                    const {data: {tokenPair,  user}} = await axios.post(`${restURL}/refresh`, {refreshToken: localStorage.getItem("refreshToken")});
-                    const tokens = tokenPair;
-
-                    store.dispatch({type: ACTION.TOKENS_ACTION_WITH_LOCAL, tokens });
-                    store.dispatch({type: ACTION.USERS_RESPONSE, user});
-                    return  Promise.reject(error);
-                default:
-                    console.log('default axios:',error.response.status);
-                    return  Promise.reject(error);
-            }
-        } catch (err) {
-            store.dispatch({type: ACTION.TOKENS_ERROR, error: err});
+                return axios.request();
+            default:
+                return await Promise.reject(error);
         }
-
-        return axios.request(config);
+    } catch (err) {
+        STORE.dispatch({type: ACTION.USERS_ERROR, error: err});
     }
-);*/
+    return await Promise.reject(error);
+};
+
+
+axios.interceptors.request.use(
+    config => requestHandler(config),
+    error => Promise.reject(error)
+);
+
+
+axios.interceptors.response.use(
+    response => response,
+    error => errorHandler(error)
+);
 
 export default axios;

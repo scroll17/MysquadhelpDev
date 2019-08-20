@@ -4,7 +4,7 @@ const SALT_ROUNDS = 8;
 const ACCESS_SECRET = "Keep it simple, stupid";
 const REFRESH_SECRET = "xzzzzzzzzz";
 
-const EXPIRES_IN_ACCESS = '200min'; //TODO
+const EXPIRES_IN_ACCESS = '30min'; //TODO
 const EXPIRES_IN_REFRESH = '15d';
 
 const ROLE = {

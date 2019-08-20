@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import style from './MainHomePage.module.sass'
+//import style from './MainHomePage.module.sass'
 
-import UserNavigationDesktop from '../../components/UserNavigation/Desktop/UserNavigationDesktop'
-import HeaderNavigation from '../../components/HeaderNavigation/HeaderNavigation'
-
-import UserNavigationSmartphone from '../../components/UserNavigation/Smartphone/UserNavigationSmartphone'
+import UserNavigation from '../../components/UserNavigation/UserNavigation'
 
 import BannerHome from '../../components/MainHome/BannerHome/BannerHome'
 //import HowItWorksHome from '../../components/MainHome/HowItWorksHome/HowItWorksHome'
@@ -17,14 +14,7 @@ class MainHomePage extends Component{
     render() {
         return (
             <>
-                <div className={style.desktop}>
-                    <UserNavigationDesktop />
-                    <HeaderNavigation />
-                </div>
-
-                <div className={style.smartphone}>
-                    <UserNavigationSmartphone />
-                </div>
+                <UserNavigation />
 
                 <div>
                     <BannerHome />

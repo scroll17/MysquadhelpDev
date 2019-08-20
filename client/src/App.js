@@ -10,6 +10,7 @@ import MainHomePage from './pages/MainHomePage/MainHomePage';
 import LoginPages from './pages/LoginPages/LoginPages';
 import SignUpPage from './pages/SignUpPage/SignUpPage';
 import AdminListPage from './pages/AdminListPage/AdminListPage';
+import ContestPage from './pages/ContestPage/ContestPage';
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 
 import UserLoader from './components/Route/UserLoader';
@@ -35,6 +36,7 @@ class App extends Component{
                         <Route exact path={"/"}  component={MainHomePage}/>
                         <Route path={URL.LOGIN} component={LoginPages}/>
                         <Route path={URL.SIGN_UP} component={SignUpPage}/>
+                        <Route path={URL.CONTEST_TYPE} component={ContestPage}/>
                         <PrivateRoute requireRole={ROLE.ADMIN} path={URL.ADMIN_PANEL} component={AdminListPage} />
                         <Route component={ NotFoundPage } />
                     </Switch>
