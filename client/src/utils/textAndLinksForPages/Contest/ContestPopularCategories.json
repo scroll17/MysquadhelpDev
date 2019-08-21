@@ -4,7 +4,7 @@
     "headerBoard":"Categories",
     "text":"Pick from our most popular categories, launch a contest and begin receiving submissions right away"
   },
-  "itemContestType":[
+  "itemsContestType":[
     {
       "src":["Company-Names"],
       "name":"Name",
@@ -22,12 +22,6 @@
       "name":"Tagline or Slogan",
       "text":"Connect deeply with your target audience with an on-target tagline ",
       "contestTo":["tagline"]
-    },
-    {
-      "src":["Packaging-Design"],
-      "href":"/startcontest",
-      "name":"Packaging Design",
-      "text":"Stand out with eye-catching and memorable packaging for your product or brand. "
     }
   ]
 }

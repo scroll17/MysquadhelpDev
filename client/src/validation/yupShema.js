@@ -7,7 +7,7 @@ const schema = yup.object().shape({
         .required(),
     lastName : yup
         .string()
-        .min(1)
+        .min(3)
         .required(),
     displayName : yup
         .string()
@@ -26,6 +26,7 @@ const schema = yup.object().shape({
         .string()
         .required(),
 });
+
 
 export default schema;
 

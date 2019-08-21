@@ -1,5 +1,5 @@
-import React from 'react';
-import style from './ContestForm.module.sass';
+import React, {useEffect} from 'react';
+import style from './ContestForms.module.sass';
 
 import connect from "react-redux/es/connect/connect";
 
@@ -7,11 +7,21 @@ import NameForm from './NameForm/NameForm'
 
 import RemoteSubmitButton from '../RemoteSubmitButton/RemoteSubmitButton'
 
-import {createContest, prevContestStage} from "../../../actions/actionCreator";
+import {createContest, prevContestStage, nextContestStage} from "../../../actions/actionCreator";
 
-function ContestForm(props){
+import { CONTEST } from "../../../utils/consts";
+import { last, isEmpty } from 'lodash';
 
-    const nowFormContest = props.contest[props.contest.length-1];
+function ContestForms(props){
+    const { contestNow, contestQueue} = props;
+
+
+    useEffect(() => {
+           sessionStorage.setItem('contestNow', JSON.stringify(contestNow));
+           sessionStorage.setItem('contestQueue', JSON.stringify(contestQueue));
+    });
+
+    const nowFormContest = last(props.contestNow);
 
 
     const createNewContest = (values) => {
@@ -29,7 +39,8 @@ function ContestForm(props){
                         <div className={style.blockFields}>
 
 
-                          {nowFormContest === "name" && ( <NameForm onSubmit={createNewContest}/>  )}
+                          {nowFormContest === CONTEST.NAME && ( <NameForm onSubmit={createNewContest}/>  )}
+                          {nowFormContest === CONTEST.BANKS && ( <NameForm onSubmit={createNewContest}/>  )}
 
                         </div>
 
@@ -37,7 +48,7 @@ function ContestForm(props){
                 </div>
 
 
-                {nowFormContest !== "select" && (
+                {nowFormContest !== CONTEST.SELECT && (
                     <div className={style.nextSteps}>
                         <div className={style.containerSteps}>
 
@@ -47,7 +58,13 @@ function ContestForm(props){
 
                             <div className={style.stepsNavigation}>
                                 <div onClick={backToPrevStage}>Back</div>
-                                <RemoteSubmitButton />
+                                {isEmpty(props.contestQueue) ?
+                                    <RemoteSubmitButton />
+                                    :
+                                    <button  onClick={() => props.nextContestForm()}>
+                                        next
+                                    </button>
+                                }
                             </div>
 
                         </div>
@@ -60,11 +77,13 @@ function ContestForm(props){
 }
 
 const mapStateToProps = (state) => ({
-    contest: state.userReducers.contest
+    contestNow: state.contestReducers.contestNow,
+    contestQueue: state.contestReducers.contestQueue,
 });
 const mapDispatchToProps = dispatch => ({
     createNewContest: contest => dispatch(createContest(contest)),
     backToPrevStage: () => dispatch(prevContestStage()),
+    nextContestForm: () => dispatch(nextContestStage())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContestForm);
+export default connect(mapStateToProps, mapDispatchToProps)(ContestForms);

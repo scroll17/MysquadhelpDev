@@ -1,8 +1,8 @@
 import React  from 'react';
-import style from './FooterHome.module.sass';
+import style from './Footer.module.sass';
 
 
-function FooterHome(){
+function Footer(){
 
         return (
             <div className={style.footerHome}>
@@ -27,4 +27,4 @@ function FooterHome(){
 
 }
 
-export default FooterHome;
+export default Footer;

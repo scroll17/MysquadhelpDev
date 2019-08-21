@@ -13,3 +13,8 @@ export const refreshToken = () =>  axios.post(`${restURL}${URL.REFRESH}`, {refre
 // ----- ADMIN -----
 export const getAllUser = () =>  axios.get(`${restURL}${URL.ALL_USER}`);
 export const banUserById = (userId, isBanned) => axios.put(`${restURL}${URL.USER}/${userId}`, { isBanned });
+
+
+
+//----- CONTEST -----
+export const createContest = ( contest ) => axios.post(`${restURL}${URL.CONTEST}`,  contest );

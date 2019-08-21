@@ -12,6 +12,13 @@ import {
 
 import { saveTokenSaga, tokenErrorSaga } from './tokenSaga'
 
+import {
+    createContestSaga,
+    nextContestStageSaga,
+    prevContestStageSaga,
+    toContestQueueSaga,
+} from './contestSaga'
+
 function* rootSaga() {
     yield takeLatest(ACTION.LOGIN_USER, loginUserSaga);
     yield takeLatest(ACTION.CREATE_USER, createUserSaga);
@@ -23,6 +30,11 @@ function* rootSaga() {
 
     yield takeLatest(ACTION.SAVE_TOKENS_LOCALLY, saveTokenSaga);
     yield takeLatest(ACTION.TOKENS_ERROR, tokenErrorSaga);
+
+    yield takeLatest(ACTION.CREATE_CONTEST_ACTION, createContestSaga);
+    yield takeLatest(ACTION.PREV_STAGE_CONTEST, prevContestStageSaga);
+    yield takeLatest(ACTION.NEXT_STAGE_CONTEST, nextContestStageSaga);
+    yield takeLatest(ACTION.ADD_TO_CONTEST_QUEUE, toContestQueueSaga);
 }
 
 export default rootSaga;

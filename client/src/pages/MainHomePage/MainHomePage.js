@@ -8,7 +8,7 @@ import BannerHome from '../../components/MainHome/BannerHome/BannerHome'
 import MarketplaceDomainsHome from '../../components/MainHome/MarketplaceDomainsHome/MarketplaceDomainsHome'
 import GrowBusinessHome from '../../components/MainHome/GrowBusinessHome/GrowBusinessHome'
 import HowDoNameContestsWork from "../../components/MainHome/HowDoNameContestsWork/HowDoNameContestsWork";
-import FooterHome from "../../components/MainHome/FooterHome/FooterHome";
+import Footer from "../../components/Footer/Footer";
 
 class MainHomePage extends Component{
     render() {
@@ -25,7 +25,7 @@ class MainHomePage extends Component{
                 </div>
 
                 <footer>
-                    <FooterHome />
+                    <Footer />
                 </footer>
             </>
         )

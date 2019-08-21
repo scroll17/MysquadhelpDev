@@ -1,10 +1,13 @@
 import { combineReducers } from 'redux';
+
 import userReducers from './userReducers';
+import contestReducers from './contestReducers';
 
 import { reducer as formReducer } from 'redux-form';
 
 const appReducer = combineReducers({
   userReducers,
+  contestReducers,
   form: formReducer
 });
 

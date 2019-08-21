@@ -10,8 +10,12 @@ export const URL = {
 
   REFRESH: "/refresh",
 
+  //
   SIGN_UP: "/signup",
   NOT_FOUND: "/notfound",
-  CONTEST_TYPE: "/contesttype",
   ADMIN_PANEL: "/adminpanel",
+
+  // API CONTEST
+  CONTEST: "/contest",
+  CONTEST_TYPE: "/contesttype",
 };

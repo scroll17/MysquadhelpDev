@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import connect from "react-redux/es/connect/connect";
 
-import style from "./ContestPage.module.sass";
-
 
 import ContestSteps from '../../components/Contest/ContestSteps'
-//import ContestsForm from '../../components/Forms/ContestForm/ContestForm'
+import ContestsForm from '../../components/Forms/ContestForms/ContestForms'
 //import StartContestSteps from "../../components/Contest/StartContestSteps/StartContestSteps";
 
 import UserNavigation from "../../components/UserNavigation/UserNavigation";
+import Footer from '../../components/Footer/Footer'
 
-
-//import { nextContestStage } from "../../actions/actionCreator";
+import { last } from 'lodash';
+import { CONTEST } from "../../utils/consts";
 
 class ContestPage extends Component{
 
@@ -21,8 +20,13 @@ class ContestPage extends Component{
 
                 <UserNavigation />
 
+                {last(this.props.contestNow) === CONTEST.SELECT ?
+                    <ContestSteps />
+                    :
+                    <ContestsForm />
+                }
 
-                <ContestSteps />
+                <Footer />
             </>
         )
     }
@@ -31,10 +35,7 @@ class ContestPage extends Component{
 
 
 const mapStateToProps = (state) => ({
-    //contest: state.userReducers.contest,
-});
-const mapDispatchToProps = dispatch => ({
-    //nextContestStage: () => dispatch(nextContestStage()),
+    contestNow: state.contestReducers.contestNow,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContestPage);
+export default connect(mapStateToProps)(ContestPage);

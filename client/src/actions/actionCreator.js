@@ -32,3 +32,19 @@ export const banUserById = (userId, isBanned) => ({
   isBanned,
 });
 
+
+// ----- CONTEST -----
+export const nextContestStage = () => ({
+  type: ACTION.NEXT_STAGE_CONTEST,
+});
+export const prevContestStage = () => ({
+  type: ACTION.PREV_STAGE_CONTEST,
+});
+export const addToContestQueue = stage => ({
+  type: ACTION.ADD_TO_CONTEST_QUEUE,
+  stage
+});
+export const createContest = contest => ({
+  type: ACTION.CREATE_CONTEST_ACTION,
+  contest
+});

@@ -12,7 +12,7 @@ function Heading(props){
                 <p>
                     {props.children}
                 </p>
-                <hr/>
+                <hr style={{borderColor: props.borderColor}}/>
             </div>
         </div>
     )

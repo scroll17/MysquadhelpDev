@@ -1,6 +1,8 @@
 
 import textForStartContestSteps from './textAndLinksForPages/Contest/textForStartContestSteps'
-import textForContestPopularCategories from './textAndLinksForPages/Contest/textForContestPopularCategories'
+import ContestPopularCategories from './textAndLinksForPages/Contest/ContestPopularCategories'
+import ContestOtherCategories from './textAndLinksForPages/Contest/ContestOtherCategories'
+import ContestBundlePackages from './textAndLinksForPages/Contest/ContestBundlePackages'
 
 import textForMarketplaceDomainsHome from './textAndLinksForPages/MainHome/textAndLinksForMarketplaceDomainsHome'
 import textAndLinksForHowDoNameContestsWork from './textAndLinksForPages/MainHome/textAndLinksForHowDoNameContestsWork'
@@ -15,6 +17,8 @@ export {
 
     textForForHeaderNavigation,
 
-    textForContestPopularCategories,
+    ContestPopularCategories,
+    ContestOtherCategories,
     textForStartContestSteps,
+    ContestBundlePackages,
 };

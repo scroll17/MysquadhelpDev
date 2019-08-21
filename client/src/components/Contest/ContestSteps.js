@@ -1,22 +1,30 @@
 import React from 'react';
-//import style from './ContestSteps.module.sass';
 
-import ContestPopularCategories from './ContestPopularCategories/ContestPopularCategories'
-import ContestBundlePackages from './ContestBundlePackages/ContestBundlePackages'
-import ContestOtherCategories from './ContestOtherCategories/ContestOtherCategories'
+import ContestTypes from './СontestTypes/СontestTypes'
+import { ContestPopularCategories, ContestOtherCategories, ContestBundlePackages }  from '../../utils/textAndLinksForPages'
 
 function ContestSteps(){
+        const style = {
+           headingColor: '#fff',
+           borderColor: '#fff',
+           bgColor: '#28d2d1',
+           itemBgColor: '#ffffff',
+        };
 
         return (
             <section>
-
-                <ContestPopularCategories />
-                <ContestBundlePackages />
-                <ContestOtherCategories />
-
+                <ContestTypes
+                    {...style}
+                    textAndLinks={ContestPopularCategories}
+                />
+                <ContestTypes
+                    textAndLinks={ContestBundlePackages}
+                />
+                <ContestTypes
+                    textAndLinks={ContestOtherCategories}
+                />
             </section>
         )
-
 }
 
 export default ContestSteps;
