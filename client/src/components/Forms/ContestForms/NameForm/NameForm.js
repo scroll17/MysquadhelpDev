@@ -2,7 +2,7 @@ import React from 'react';
 import style from '../StyleForms.module.sass';
 
 
-import ReduxFormSelect from '../../ReduxFormSelect/ReduxFormSelect'
+import ReduxFormSelect from '../../ReduxFieldSelect/ReduxFieldSelect'
 
 import { Field, reduxForm } from 'redux-form';
 
@@ -69,7 +69,7 @@ let NameForm = (props) => {
             </form>
         </div>
     )
-}
+};
 
 NameForm = reduxForm ({
     form: 'contest',

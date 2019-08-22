@@ -5,11 +5,16 @@ import connect from "react-redux/es/connect/connect";
 
 import NameForm from './NameForm/NameForm'
 
+import DrawContestForm from './DrawContestForm/DrawContestForm'
+
 import RemoteSubmitButton from '../RemoteSubmitButton/RemoteSubmitButton'
 
 import {createContest, prevContestStage, nextContestStage} from "../../../actions/actionCreator";
 
 import { CONTEST } from "../../../utils/consts";
+import { ContestNameForm } from '../../../utils/textAndLinksForPages'
+
+
 import { last, isEmpty } from 'lodash';
 
 function ContestForms(props){
@@ -40,10 +45,14 @@ function ContestForms(props){
 
 
                           {nowFormContest === CONTEST.NAME && ( <NameForm onSubmit={createNewContest}/>  )}
-                          {nowFormContest === CONTEST.BANKS && ( <NameForm onSubmit={createNewContest}/>  )}
+                          {nowFormContest === CONTEST.BANKS && (
+                              <DrawContestForm
+                                onSubmit={createNewContest}
+                                data={ContestNameForm['name']}
+                                dataSelect={ContestNameForm['select']}
+                              />)}
 
                         </div>
-
                     </div>
                 </div>
 
@@ -51,22 +60,21 @@ function ContestForms(props){
                 {nowFormContest !== CONTEST.SELECT && (
                     <div className={style.nextSteps}>
                         <div className={style.containerSteps}>
-
                             <div className={style.stepsText}>
                                 <p>You are almost finished. Select a pricing package in the next step</p>
                             </div>
 
                             <div className={style.stepsNavigation}>
-                                <div onClick={backToPrevStage}>Back</div>
+                                <div onClick={() => backToPrevStage()} className={style.divBack}>Back</div>
                                 {isEmpty(props.contestQueue) ?
                                     <RemoteSubmitButton />
                                     :
-                                    <button  onClick={() => props.nextContestForm()}>
+                                    <button
+                                        onClick={() => props.nextContestForm()}>
                                         next
                                     </button>
                                 }
                             </div>
-
                         </div>
                     </div>
                 )}

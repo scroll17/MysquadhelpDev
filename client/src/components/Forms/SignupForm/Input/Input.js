@@ -39,7 +39,7 @@ function Input(props) {
                 <div className={style.fieldContainer}>
                     <Field name={name.one}
                            component="input"
-                           type={type.one }
+                           type={type.one}
                            placeholder={placeholder.one}
                            style={setBorderStyleWithValidation(setTouchedFields(0), setErrorFields(0))}
                     />

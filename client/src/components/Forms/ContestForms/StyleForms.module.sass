@@ -1,19 +1,24 @@
 .clearFix
-  width: 66.66666667%
-  margin-left: 20vw
-
-  font-family: Arial, "sans-serif"
-
+  max-width: 740px
   display: flex
   flex-direction: column
-
+  font-family: Arial, "sans-serif"
 
   .formGroup
     margin: 15px 0 0 0
-    width: 100%
-
+    max-width: 800px
     display: flex
     flex-direction: column
+
+    .error
+      color: red
+      font-size: 16px
+
+    input
+      height: 35px
+
+    div
+      font-size: 16px
 
     span
       margin-bottom: 10px
@@ -27,7 +32,7 @@
       font-weight: 700
       margin-top: 12px
 
-      max-width: 100%
+      max-width: 800px
       margin-bottom: 5px
 
     textarea

@@ -10,6 +10,8 @@ import LinksForHowItWorksHome from './textAndLinksForPages/MainHome/LinksForHowI
 
 import textForForHeaderNavigation from './textAndLinksForPages/textForForHeaderNavigation'
 
+import ContestNameForm from './textAndLinksForPages/Contest/Forms/ContestNameForm.json'
+
 export {
     textForMarketplaceDomainsHome,
     textAndLinksForHowDoNameContestsWork,
@@ -21,4 +23,7 @@ export {
     ContestOtherCategories,
     textForStartContestSteps,
     ContestBundlePackages,
+
+    ContestNameForm,
+
 };
