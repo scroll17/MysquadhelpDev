@@ -10,7 +10,7 @@ const onBlurValidation = (input, validation) => {
     if(!input.value){
         validation(input.value)
     }
-    input.onBlur(input.value)
+    return input.onBlur()
 };
 let ContestFields = ({validation, dataSelect, input, meta, ...props}) => {
         let fieldInput;
@@ -23,6 +23,13 @@ let ContestFields = ({validation, dataSelect, input, meta, ...props}) => {
             />
         }else if(isEqual(props.type,"textarea")){
             fieldInput = <textarea
+                className={style.textarea}
+                placeholder={props.placeholder}
+                {...input}
+            />
+        }else if(isEqual(props.type,"input")){
+            fieldInput = <input
+                className={style.input}
                 placeholder={props.placeholder}
                 {...input}
             />
@@ -30,8 +37,12 @@ let ContestFields = ({validation, dataSelect, input, meta, ...props}) => {
 
         return (
             <div className={style.formGroup}>
-                <label>{props.label}</label>
-                <span>{props.hint}</span>
+                <label className={style.label}>
+                    {props.label}
+                </label>
+                <span className={style.span}>
+                    {props.hint}
+                </span>
                 {fieldInput}
 
                 {meta.touched && meta.error ?

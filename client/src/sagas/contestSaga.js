@@ -4,15 +4,48 @@ import { createContest } from "../api/rest/restContoller";
 import { put, call, select } from 'redux-saga/effects';
 import history from "../boot/browserHistory";
 
-import { first, size } from 'lodash';
+import { first, last, size } from 'lodash';
 
-export function* createContestSaga({contest}) {
+import {reset} from 'redux-form';
 
+import { CONTEST, FIELDS_TO_SEND } from "../utils/consts";
+
+import * as _ from 'lodash';
+
+export function* createContestSaga({formData}) {
     try {
+        yield put({type: ACTION.WRITE_FORM_DATA_TO_STORE, formData});
 
-        let {userReducers: { user }} = yield select();
+        let { contestReducers: { contestNow } } = yield select();
 
-        const contestSend = {
+
+/*        let contestSend;
+        _.keys(newContestFormData).forEach( form => {
+            console.log(form);
+            FIELDS_TO_SEND.forEach( field => {
+                contestSend[form] = newContestFormData[form] || null;
+            });
+
+            console.log('contestSend form', contestSend[form]);
+        });*/
+
+
+       /* const contestForms = _.keys(newContestFormData);
+
+        let contestSend;
+        contestForms.forEach( form => {
+            const  formFields = _.keys(form);
+            const  formFieldValues = _.values(newContestFormData[form]);
+
+            formFields.forEach( (field, id) => {
+                contestSend[form][field] = formFieldValues[id]
+            });
+        });
+
+        console.log(contestSend);*/
+
+
+/*        const contestSend = {
             type: contest.name || null,
             name: contest.type.value || null,
             typeOfVenture: contest.typeOfVenture.value || null,
@@ -23,14 +56,17 @@ export function* createContestSaga({contest}) {
             userId: user.id,
         };
 
-        const { data } = yield createContest(contestSend);
+        const { data } = yield createContest(contestSend);*/
 
-        console.log(data);
+        for (let formIndex = 1; formIndex < contestNow.length; formIndex++) {
+            yield put(reset(contestNow[formIndex]))
+        }
+        sessionStorage.clear();
 
+        yield put({type: ACTION.STAGE_CONTEST, contestNow: [CONTEST.SELECT], contestQueue:[]});
+        yield put({type: ACTION.WRITE_CONTEST_FORM_DATA, contestFormData: {}});
 
-        yield put({type: ACTION.STAGE_CONTEST, constest: ['select'], contestQueue:[]});
         yield put({type: ACTION.USERS_RESPONSE});
-
 
         yield call(history.push, '/');
     } catch (e) {
@@ -38,16 +74,17 @@ export function* createContestSaga({contest}) {
     }
 }
 
-export function* nextContestStageSaga() {
+export function* nextContestStageSaga({formData}) {
+
+
     try {
-        let {contestReducers: {contestNow: prevContest, contestQueue}} = yield select();
+        let {contestReducers: {contestNow, contestQueue }} = yield select();
 
+        yield put({type: ACTION.WRITE_FORM_DATA_TO_STORE, formData});
 
-        const contest = prevContest.slice();
-        const queue = contestQueue.slice();
-
+        const contest = _.clone(contestNow);
+        const queue = _.clone(contestQueue);
         contest.push(queue.shift());
-
 
         yield put({type: ACTION.STAGE_CONTEST, contestNow: [...contest], contestQueue:[...queue] } );
     } catch (e) {
@@ -58,14 +95,13 @@ export function* nextContestStageSaga() {
 export function* prevContestStageSaga() {
     try {
         let {contestReducers: {contestNow: prevContest, contestQueue}} = yield select();
-        const contest = prevContest.slice();
-        const queue = contestQueue.slice();
+        const contest = _.clone(prevContest);
+        const queue = _.clone(contestQueue);
 
+        const newContest = [..._.initial(contest)];
+        const newQueue = [..._.takeRight(contest, 1), ...queue];
 
-        const newQueue = [contest.pop(), ...queue];
-
-
-        yield put({type: ACTION.STAGE_CONTEST, contestNow: [...contest], contestQueue:[...newQueue]  } );
+        yield put({type: ACTION.STAGE_CONTEST, contestNow: [...newContest], contestQueue:[...newQueue]  } );
     } catch (e) {
         yield put({type: ACTION.USERS_ERROR, error: e})
     }
@@ -76,11 +112,13 @@ export function* toContestQueueSaga({stage}) {
     try {
         let {contestReducers: {contestNow: prevContest}} = yield select();
 
-        let contest = [...prevContest.slice(), first(stage)];
+        let contest = [..._.clone(prevContest), _.first(stage)];
 
-        let newQueue = ["banks"];
+        let newQueue;
         if(size(stage) > 1){
-            newQueue.unshift(stage.slice(1))
+            newQueue = [..._.tail(stage), CONTEST.BANKS]
+        }else{
+            newQueue = [CONTEST.BANKS];
         }
 
         yield put({type: ACTION.STAGE_CONTEST, contestNow: [...contest] ,contestQueue: [...newQueue] } );
@@ -89,20 +127,17 @@ export function* toContestQueueSaga({stage}) {
         yield put({type: ACTION.USERS_ERROR, error: e})
     }
 }
-/*
-export function* nextContestStageSaga({stage}) {
-    try {
-        let {userReducers: {contest: prevContest}} = yield select();
-        const contest = [...prevContest];
 
-        const contestIndex = contest.includes(stage[0]);
-        if (!contestIndex){
-            contest.push(stage[0]);
-            yield put({type: ACTION.STAGE_CONTEST, stage: [...contest] } );
-        }else{
-            yield put({type: ACTION.STAGE_CONTEST});
+export function* writeFormDataToStore({formData}) {
+    try {
+        let {contestReducers: {contestNow, contestFormData}} = yield select();
+
+        if(formData){
+            const newContestFormData = _.cloneDeep(contestFormData);
+            newContestFormData[last(contestNow)] = _.clone(formData);
+            yield put({type: ACTION.WRITE_CONTEST_FORM_DATA, contestFormData: newContestFormData } );
         }
     } catch (e) {
         yield put({type: ACTION.USERS_ERROR, error: e})
     }
-}*/
+}

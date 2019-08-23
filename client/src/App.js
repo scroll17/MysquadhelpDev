@@ -20,6 +20,10 @@ import { URL } from './api/baseURL'
 import { ROLE } from './utils/consts'
 
 
+history.listen(_ => {
+    window.scrollTo(0, 0)
+});
+
 class App extends Component{
     IfUserIsLoggedIn(component){
         if(this.props.user){
@@ -34,10 +38,17 @@ class App extends Component{
                 <Router history={history}>
                     <Switch>
                         <Route exact path={"/"}  component={MainHomePage}/>
-                        <Route path={URL.LOGIN} component={LoginPages}/>
-                        <Route path={URL.SIGN_UP} component={SignUpPage}/>
-                        <Route path={URL.CONTEST_TYPE} component={ContestPage}/>
+
+                        <Route path={URL.LOGIN}
+                               component={this.IfUserIsLoggedIn(LoginPages)}/>
+
+                        <Route path={URL.SIGN_UP} c
+                               omponent={this.IfUserIsLoggedIn(SignUpPage)}/>
+
+                        <Route path={URL.CONTEST_TYPE} component={ContestPage} />
+
                         <PrivateRoute requireRole={ROLE.ADMIN} path={URL.ADMIN_PANEL} component={AdminListPage} />
+
                         <Route component={ NotFoundPage } />
                     </Switch>
                 </Router>

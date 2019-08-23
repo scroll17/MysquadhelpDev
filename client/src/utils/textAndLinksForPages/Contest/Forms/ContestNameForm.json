@@ -7,20 +7,20 @@
       "dataType":"desiredType"
     },
     {
-      "name":"type_of_venture",
+      "name":"typeOfVenture",
       "label":"Select a category that best describes your businessAgency",
       "type":"select",
       "dataType":"typeOfVenture",
-      "isMulti": true
+      "isMulti":true
     },
     {
-      "name":"what_venture_does",
+      "name":"whatVentureDoes",
       "label":"What does your company / business do?",
       "type":"textarea",
       "placeholder":"e.g. We're an online lifestyle brand that provides stylish and high quality apparel to the expert eco-conscious shopper."
     },
     {
-      "name":"target_customers",
+      "name":"targetCustomers",
       "label":"Tell us about your customers",
       "hint":"Share any relevant information such as their demographics, interests, aspirations etc.",
       "type":"textarea",
@@ -41,6 +41,46 @@
       "placeholder":"Share any additional information or direction that might be useful to creatives"
     }
   ],
+  "logo":[
+    {
+      "name":"typea",
+      "label":"Title of your contest",
+      "type":"input",
+      "placeholder":"e.g. Need a name for Social Networking website"
+    },
+    {
+      "name":"typeb",
+      "label":"What does your company or business do?",
+      "type":"input",
+      "placeholder":"e.g. Marketing Platform for Small Businesses"
+    },
+    {
+      "name":"typec",
+      "label":"Name of the company / business?",
+      "type":"input",
+      "placeholder":"e.g. Marketing Platform for Small Businesses"
+    },
+    {
+      "name":"typev",
+      "label":"Your website url (if you have one)?",
+      "type":"input",
+      "placeholder":"e.g. http://www.google.com/"
+    },
+    {
+      "name":"typed",
+      "label":"Type of Industry",
+      "type":"select",
+      "dataType":"desiredType"
+    },
+    {
+      "name":"typef",
+      "label":"Who are your target customers?",
+      "type":"input",
+      "placeholder":"i.e. designers, developers"
+    }
+  ],
+  "tagline":[],
+
   "select":{
     "desiredType":[
       {"value":"Select Type of Name","label":"Select Type of Name"},

@@ -24,5 +24,18 @@ export const TOKEN = {
 export const CONTEST = {
     SELECT: "select",
     NAME: "name",
+    TAGLINE: "tagline",
+    LOGO: "logo",
     BANKS: "banks",
 };
+
+export const FIELDS_TO_SEND = [
+    "type",
+    "name",
+    "typeOfVenture",
+    "whatVentureDoes",
+    "targetCustomers",
+    "style",
+    "description",
+    "userId"
+];

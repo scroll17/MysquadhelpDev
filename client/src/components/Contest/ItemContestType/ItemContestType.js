@@ -1,13 +1,12 @@
 import React from 'react';
 import style from './ItemContestType.module.sass';
 
-import { addToContestQueue, nextContestStage } from "../../../actions/actionCreator";
+import { addToContestQueue } from "../../../actions/actionCreator";
 import connect from "react-redux/es/connect/connect";
 
-import { first } from 'lodash';
 
 function ItemContestType(props){
-    const { contestQueue, contestTo} = props;
+    const { contestTo } = props;
 
     const uploadImage = (img) => ({ backgroundImage: `url(https://www.squadhelp.com/story_images/contest_types/${img}_blue.png)`});
 
@@ -24,9 +23,6 @@ function ItemContestType(props){
             style={{background: props.bgColor}}
             className={style.container}
             onClick={() => {
-                if(contestTo.includes(first(contestQueue))){
-                    return props.nextContestForm()
-                }
                 return props.toNewContestQueue(contestTo)
             }}
         >
@@ -41,12 +37,10 @@ function ItemContestType(props){
     )
 }
 
-const mapStateToProps = (state) => ({
-    contestQueue: state.contestReducers.contestQueue
-});
 const mapDispatchToProps = dispatch => ({
     toNewContestQueue: stages => dispatch(addToContestQueue(stages)),
-    nextContestForm: () => dispatch(nextContestStage())
+});
+const mapStateToProps = (state) => ({
 });
 
 

@@ -17,6 +17,7 @@ import {
     nextContestStageSaga,
     prevContestStageSaga,
     toContestQueueSaga,
+    writeFormDataToStore
 } from './contestSaga'
 
 function* rootSaga() {
@@ -31,10 +32,12 @@ function* rootSaga() {
     yield takeLatest(ACTION.SAVE_TOKENS_LOCALLY, saveTokenSaga);
     yield takeLatest(ACTION.TOKENS_ERROR, tokenErrorSaga);
 
-    yield takeLatest(ACTION.CREATE_CONTEST_ACTION, createContestSaga);
+    yield takeLatest(ACTION.CREATE_CONTEST, createContestSaga);
     yield takeLatest(ACTION.PREV_STAGE_CONTEST, prevContestStageSaga);
     yield takeLatest(ACTION.NEXT_STAGE_CONTEST, nextContestStageSaga);
+
     yield takeLatest(ACTION.ADD_TO_CONTEST_QUEUE, toContestQueueSaga);
+    yield takeLatest(ACTION.WRITE_FORM_DATA_TO_STORE, writeFormDataToStore);
 }
 
 export default rootSaga;

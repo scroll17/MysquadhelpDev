@@ -13,25 +13,31 @@ import { CONTEST } from "../../../utils/consts";
 import { ContestNameForm } from '../../../utils/textAndLinksForPages'
 
 
-import { last, isEmpty, camelCase } from 'lodash';
+
+import { last, isEmpty } from 'lodash';
 
 function ContestForms(props){
-    const { contestNow, contestQueue} = props;
+    const { contestNow, contestQueue, contestFormData} = props;
 
 
     useEffect(() => {
            sessionStorage.setItem('contestNow', JSON.stringify(contestNow));
            sessionStorage.setItem('contestQueue', JSON.stringify(contestQueue));
+           sessionStorage.setItem('contestFormData', JSON.stringify(contestFormData));
     });
 
     const nowFormContest = last(props.contestNow);
 
 
     const createNewContest = (values) => {
-        Object.keys(values).forEach( item => {
+/*        Object.keys(values).forEach( item => {
             console.log(camelCase(item))
-        });
-        return props.createNewContest(values)
+        });*/
+        if(isEmpty(props.contestQueue)){
+            return props.createNewContest(values)
+        }else{
+            return props.nextContestForm(values)
+        }
     };
 
     const backToPrevStage = () => {
@@ -48,14 +54,24 @@ function ContestForms(props){
                           {nowFormContest === CONTEST.NAME && (
                               <DrawContestForm
                                 onSubmit={createNewContest}
-                                data={ContestNameForm['name']}
+                                form={CONTEST.NAME}
+                                data={ContestNameForm[CONTEST.NAME]}
                                 dataSelect={ContestNameForm['select']}
                               />)}
+
+                            {nowFormContest === CONTEST.LOGO && (
+                                <DrawContestForm
+                                    onSubmit={createNewContest}
+                                    form={CONTEST.LOGO}
+                                    data={ContestNameForm[CONTEST.LOGO]}
+                                    dataSelect={ContestNameForm['select']}
+                                />)}
 
                             {nowFormContest === CONTEST.BANKS && (
                                 <DrawContestForm
                                     onSubmit={createNewContest}
-                                    data={ContestNameForm['name']}
+                                    form={CONTEST.BANKS}
+                                    data={ContestNameForm[CONTEST.LOGO]}
                                     dataSelect={ContestNameForm['select']}
                                 />)}
 
@@ -73,14 +89,7 @@ function ContestForms(props){
 
                             <div className={style.stepsNavigation}>
                                 <div onClick={() => backToPrevStage()} className={style.divBack}>Back</div>
-                                {isEmpty(props.contestQueue) ?
-                                    <RemoteSubmitButton />
-                                    :
-                                    <button
-                                        onClick={() => props.nextContestForm()}>
-                                        next
-                                    </button>
-                                }
+                                <RemoteSubmitButton />
                             </div>
                         </div>
                     </div>
@@ -94,11 +103,12 @@ function ContestForms(props){
 const mapStateToProps = (state) => ({
     contestNow: state.contestReducers.contestNow,
     contestQueue: state.contestReducers.contestQueue,
+    contestFormData: state.contestReducers.contestFormData,
 });
 const mapDispatchToProps = dispatch => ({
     createNewContest: contest => dispatch(createContest(contest)),
     backToPrevStage: () => dispatch(prevContestStage()),
-    nextContestForm: () => dispatch(nextContestStage())
+    nextContestForm: (contest) => dispatch(nextContestStage(contest))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContestForms);

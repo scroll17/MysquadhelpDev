@@ -9,7 +9,7 @@
       "src": ["Company-Names","Logos"],
       "name":"Name + Logo",
       "text":"Get the essentials needed to establish your brand together and save",
-      "contestTo":["startcontest"]
+      "contestTo": ["name","logo"]
     },
     {
       "src":  ["Company-Names","Logos"],

@@ -60,7 +60,7 @@ class AdminList extends Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         const { error } = this.props;
-        if(error){
+        if(error && error.response){
             toast.error(error.response.data.statusText, {
                 position: toast.POSITION.TOP_RIGHT
             });
