@@ -4,7 +4,7 @@ import {submit} from 'redux-form'
 
 const SubmitButton = ({dispatch}) => (
     <button
-        type="button"
+        type="submit"
         onClick={() => dispatch(submit('contest'))}
     >
         submit

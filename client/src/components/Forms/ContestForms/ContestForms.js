@@ -3,10 +3,8 @@ import style from './ContestForms.module.sass';
 
 import connect from "react-redux/es/connect/connect";
 
-import NameForm from './NameForm/NameForm'
 
 import DrawContestForm from './DrawContestForm/DrawContestForm'
-
 import RemoteSubmitButton from '../RemoteSubmitButton/RemoteSubmitButton'
 
 import {createContest, prevContestStage, nextContestStage} from "../../../actions/actionCreator";
@@ -15,7 +13,7 @@ import { CONTEST } from "../../../utils/consts";
 import { ContestNameForm } from '../../../utils/textAndLinksForPages'
 
 
-import { last, isEmpty } from 'lodash';
+import { last, isEmpty, camelCase } from 'lodash';
 
 function ContestForms(props){
     const { contestNow, contestQueue} = props;
@@ -30,6 +28,9 @@ function ContestForms(props){
 
 
     const createNewContest = (values) => {
+        Object.keys(values).forEach( item => {
+            console.log(camelCase(item))
+        });
         return props.createNewContest(values)
     };
 
@@ -44,13 +45,19 @@ function ContestForms(props){
                         <div className={style.blockFields}>
 
 
-                          {nowFormContest === CONTEST.NAME && ( <NameForm onSubmit={createNewContest}/>  )}
-                          {nowFormContest === CONTEST.BANKS && (
+                          {nowFormContest === CONTEST.NAME && (
                               <DrawContestForm
                                 onSubmit={createNewContest}
                                 data={ContestNameForm['name']}
                                 dataSelect={ContestNameForm['select']}
                               />)}
+
+                            {nowFormContest === CONTEST.BANKS && (
+                                <DrawContestForm
+                                    onSubmit={createNewContest}
+                                    data={ContestNameForm['name']}
+                                    dataSelect={ContestNameForm['select']}
+                                />)}
 
                         </div>
                     </div>

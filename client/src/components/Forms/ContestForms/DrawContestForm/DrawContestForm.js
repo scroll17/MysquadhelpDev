@@ -1,11 +1,9 @@
 import React from 'react';
-import style from '../StyleForms.module.sass';
-
-import ReduxFormSelect from '../../ReduxFieldSelect/ReduxFieldSelect'
+import style from './DrawContestForm.module.sass';
 
 import {Field, reduxForm} from 'redux-form';
 
-import {isEqual} from 'lodash';
+import ContestFields from '../ContestFields/ContestFields'
 
 const validation = (value) => {
     if(!value){
@@ -13,48 +11,20 @@ const validation = (value) => {
     }
 };
 
+
+
 let NameForm = (props) => {
     const {data, dataSelect} = props;
 
     const {handleSubmit} = props;
 
-    const MyAwesomeInput = ({input, meta, ...props}) => {
-        let field;
-        if(isEqual(props.type,"select")){
-            field = <ReduxFormSelect
-                options={dataSelect[props.dataType]}
-                isMulti={props.isMulti}
-                {...input}
-            />
-        }else if(isEqual(props.type,"textarea")){
-            field = <textarea
-                placeholder={props.placeholder}
-                {...input}
-            />
-        }
-
-        return (
-            <div className={style.formGroup}>
-                <label>{props.label}</label>
-                <span>{props.hint}</span>
-
-                {field}
-
-                {meta.touched && meta.error ?
-                    <p className={style.error}>{meta.error}</p>
-                    :
-                    null
-                }
-            </div>
-        )
-    };
-
-
     const renderField = (fieldData) => {
         return <Field validate={validation}
                       {...fieldData}
                       key={fieldData.name}
-                      component={MyAwesomeInput}/>
+                      dataSelect={dataSelect}
+                      validation={validation}
+                      component={ContestFields}/>
     };
     const renderFields = () => {
         return data.map(fieldData => renderField(fieldData));
