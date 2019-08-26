@@ -1,18 +1,19 @@
 import React , { useState } from 'react';
-import style from './UserNavigationSmartphone.module.sass';
-
+import connect from "react-redux/es/connect/connect";
 import { Link } from "react-router-dom";
-import { URL } from '../../../api/baseURL'
+
+import style from './UserNavigationSmartphone.module.sass';
 
 import UserMenu from '../UserMenu/UserMenu'
 
-import connect from "react-redux/es/connect/connect";
+import { URL } from '../../../api/baseURL'
+import { DISPLAY } from '../../../utils/consts'
 
 function UserNavigationSmartphone(props) {
-    const [displayStyle, setDisplayStyle] = useState('none');
+    const [displayStyle, setDisplayStyle] = useState(DISPLAY.NONE);
 
     const toOpenMenu = () => {
-        const nextDisplayStyle = displayStyle === "none" ? "block" : "none";
+        const nextDisplayStyle = displayStyle === DISPLAY.NONE ? DISPLAY.BLOCK : DISPLAY.NONE;
         setDisplayStyle(nextDisplayStyle);
     };
 
@@ -29,14 +30,17 @@ function UserNavigationSmartphone(props) {
                         <div className={style.navBarToggle}>
                             {props.user && <UserMenu />}
 
-                            <div className={style.navBarToggleCollapsed} onClick={toOpenMenu} onMouseDown={(e) => {e.preventDefault()}}>
+                            <div className={style.navBarToggleCollapsed}
+                                 onClick={toOpenMenu}
+                                 onMouseDown={(e) => {e.preventDefault()}}
+                            >
                                 <i className="fas fa-bars" />
                             </div>
 
                         </div>
 
 
-                        {displayStyle === "block" &&
+                        {displayStyle === DISPLAY.BLOCK &&
                             <ul className={style.dropdownMenu} >
 
                                 <li>

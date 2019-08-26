@@ -22,5 +22,4 @@ class MainHomePage extends Component{
         )
     }
 }
-
 export default MainHomePage;

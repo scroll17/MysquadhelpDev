@@ -2,8 +2,9 @@ import React  from 'react';
 import style from './HowItWorksHome.module.sass';
 
 import ButtonsHomePage from '../../Buttons/ButtonsHomePage/ButtonsHomePage'
-
 import TemplateCarouselHome from '../TemplateCarouselHome/TemplateCarouselHome'
+
+import { URL } from '../../../api/baseURL';
 
 import { LinksForHowItWorksHome } from '../../../utils/textAndLinksForPages';
 
@@ -36,7 +37,7 @@ function HowItWorksHome(){
                         />
 
                         <div className={style.button}>
-                            <ButtonsHomePage link={"/Name-Ideas"}>More Name Examples</ButtonsHomePage>
+                            <ButtonsHomePage link={URL.NAME_IDEAS}>More Name Examples</ButtonsHomePage>
                         </div>
 
                     </div>

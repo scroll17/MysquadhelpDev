@@ -1,30 +1,35 @@
 import React  from 'react';
-//import style from './HowDoNameContestsWork.module.sass';
 
-import { textAndLinksForHowDoNameContestsWork } from '../../../utils/textAndLinksForPages'
 import StepsForHowDoNameContestsWork from './StepsForHowDoNameContestsWork/StepsForHowDoNameContestsWork'
 
+import { HEX_COLOR } from "../../../utils/consts";
+
+import { textAndLinksForHowDoNameContestsWork } from '../../../utils/textAndLinksForPages'
 
 function HowDoNameContestsWork(){
     return (
         <>
             <StepsForHowDoNameContestsWork
-                bgColor={'white'}
-                dataForComponent={textAndLinksForHowDoNameContestsWork[0]}>
+                bgColor={HEX_COLOR.WHITE}
+                dataForComponent={
+                    textAndLinksForHowDoNameContestsWork["step1"]
+                }>
                 <h2>How Do Name Contests Work?</h2>
             </StepsForHowDoNameContestsWork>
             <StepsForHowDoNameContestsWork
-                bgColor={'#28d2d0'}
+                bgColor={HEX_COLOR.BLUE}
                 positionOfGif={'right'}
-                dataForComponent={textAndLinksForHowDoNameContestsWork[1]}>
+                dataForComponent={
+                    textAndLinksForHowDoNameContestsWork["step2"]
+                }>
             </StepsForHowDoNameContestsWork>
             <StepsForHowDoNameContestsWork
-                bgColor={'#f9f9f9'}
-                dataForComponent={textAndLinksForHowDoNameContestsWork[2]}>
+                bgColor={HEX_COLOR.WHITE}
+                dataForComponent={
+                    textAndLinksForHowDoNameContestsWork["step3"]
+                }>
             </StepsForHowDoNameContestsWork>
         </>
     )
-
 }
-
 export default HowDoNameContestsWork;

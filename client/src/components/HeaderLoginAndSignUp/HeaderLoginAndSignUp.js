@@ -11,7 +11,9 @@ function HeaderLoginAndSignUp(props) {
                 <div className={style.logo} />
             </Link>
             <div className={style.loginBottom}>
-                <Link to={`/${link.toLowerCase()}`}>{link}</Link>
+                <Link to={`/${link.toLowerCase()}`}>
+                    {link}
+                </Link>
             </div>
         </div>
     )

@@ -1,7 +1,7 @@
 import React from 'react';
-import style from './ListTo.module.sass';
-
 import { Link } from "react-router-dom";
+
+import style from './ListTo.module.sass';
 
 import * as _ from 'lodash';
 
@@ -10,7 +10,7 @@ function ListTo(props){
 
 
     const renderNames = () => {
-        if(_.size(bannedUsers) > 0) {
+        if( _.size(bannedUsers) > 0 ) {
             return bannedUsers.map( user => {
                 const comma = (user === _.last(bannedUsers)) ? " " : ", ";
                 return (
@@ -42,5 +42,4 @@ function ListTo(props){
         </div>
     );
 }
-
 export default ListTo;

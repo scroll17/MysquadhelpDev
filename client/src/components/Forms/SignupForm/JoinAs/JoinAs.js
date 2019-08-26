@@ -1,8 +1,7 @@
 import React from 'react';
-import style from './JoinAs.module.sass';
-
 import { Field } from 'redux-form';
 
+import style from './JoinAs.module.sass';
 
 function JoinAs(props) {
     const { roles } = props;

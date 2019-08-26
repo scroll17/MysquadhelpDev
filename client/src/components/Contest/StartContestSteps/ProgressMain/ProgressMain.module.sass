@@ -1,5 +1,27 @@
+%circle
+  border: 1px solid #d5d5da
+  background: #fff
+  z-index: 1
+
+  width: 36px
+  height: 36px
+  border-radius: 40px
+  box-sizing: border-box
+
+%label
+  color: #b5b5ba
+  text-align: center
+  width: 20px
+  height: 20px
+  margin-left: 6px
+  margin-right: 6px
+  line-height: 32px
+  border-radius: 32px
+  margin-top: 6px
+  font-size: 17px
+  float: right
+
 .progressMain
-  max-width: 58.3%
   margin-top: 40px
   padding-right: 15px
   padding-left: 15px
@@ -13,7 +35,7 @@
 
     .bar
       position: relative
-      width: 5vw
+      width: 7vw
       height: 5px
       margin: 15px -5px 0 -5px
       border-radius: 0
@@ -27,10 +49,11 @@
     .tooltip
       opacity: 1
       margin-top: -50px
-      margin-left: -120px
+      margin-left: -90px
       padding: 5px 0
 
-      display: block
+      position: absolute
+
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
       font-size: 12px
       font-weight: 400
@@ -59,34 +82,19 @@
         border-radius: 4px
 
     .circle
-      border: 1px solid #d5d5da
-      background: #fff
-      z-index: 1
-
-      width: 36px
-      height: 36px
-      border-radius: 40px
-      box-sizing: border-box
+      @extend %circle
       &:hover
         border: 2px solid #28d2d0
 
       .label
-        color: #b5b5ba
-        text-align: center
-        width: 20px
-        height: 20px
-        margin-left: 6px
-        margin-right: 6px
-        line-height: 32px
-        border-radius: 32px
-        margin-top: 6px
-        font-size: 17px
-        float: right
+        @extend %label
 
 
     .complete
+      @extend %circle
       border: 2px solid #8ACA6B
       .label
+        @extend %label
         margin: 0
         float: end
         width: 100%
@@ -95,8 +103,14 @@
         background: #8ACA6B
 
     .done
+      @extend %circle
       border: 2px solid #28d2d0
       .label
+        @extend %label
         color: #FFF
         background: #28d2d0
 
+
+@media only screen and (max-width: 800px)
+  .progressMain
+    display: none

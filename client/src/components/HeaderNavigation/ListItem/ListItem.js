@@ -1,18 +1,24 @@
 import React , { useState } from 'react';
+import { Link } from "react-router-dom";
+
 import style from './ListItem.module.sass';
 
-import { Link } from "react-router-dom";
+import { URL } from "../../../api/baseURL";
+import { DISPLAY } from "../../../utils/consts";
+
 import { isEqual } from 'lodash';
 
 function ListItem(props){
     const {header, item} = props.list;
-    const [drop, setDrop] = useState("none");
+    const [drop, setDrop] = useState(DISPLAY.NONE);
 
     const DropDownList = (items) => {
         return (
             <ul className={style.dropMenu} style={{display: drop}}>
                 {items.map( (item, id) => {
-                    if(isEqual(item.tag, "hr")) return <hr key={id}/>;
+                    if(isEqual(item.tag, "hr")){
+                        return <hr key={id}/>;
+                    }
                     return (
                         <Link to={"/"} key={item}>
                             <li>{item}</li>
@@ -24,9 +30,11 @@ function ListItem(props){
     };
 
     return (
-        <div className={style.blockForList} onMouseOver={() => setDrop("block")} onMouseOut={() => setDrop("none")}>
+        <div className={style.blockForList}
+             onMouseOver={() => setDrop(DISPLAY.BLOCK)}
+             onMouseOut={() => setDrop(DISPLAY.NONE)}>
             <li className={style.item}  >
-                <Link to={"/Name-Ideas"} >
+                <Link to={URL.NAME_IDEAS} >
                     {header}
                     <i className="fa fa-angle-down" />
                 </Link>
@@ -35,6 +43,5 @@ function ListItem(props){
         </div>
     )
 }
-
 export default ListItem;
 

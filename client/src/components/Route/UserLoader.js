@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
+import connect from "react-redux/es/connect/connect";
 
 import { getUser } from "../../actions/actionCreator";
 
 import { TOKEN } from '../../utils/consts'
-
-import connect from "react-redux/es/connect/connect";
 
 class UserLoader extends Component{
     componentDidMount() {

@@ -18,4 +18,11 @@ export const URL = {
   // API CONTEST
   CONTEST: "/contest",
   CONTEST_TYPE: "/contesttype",
+  NAME_IDEAS: "/Name-Ideas",
+
+  //API USER
+  DASHBOARD: "/dashboard",
+  MY_ACCOUNT: "/myaccount",
+  MESSAGE: "/messages",
+  AFFILIATE_DASHBOARD: "/affiliate-dashboard"
 };

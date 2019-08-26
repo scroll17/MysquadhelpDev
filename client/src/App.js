@@ -42,8 +42,8 @@ class App extends Component{
                         <Route path={URL.LOGIN}
                                component={this.IfUserIsLoggedIn(LoginPages)}/>
 
-                        <Route path={URL.SIGN_UP} c
-                               omponent={this.IfUserIsLoggedIn(SignUpPage)}/>
+                        <Route path={URL.SIGN_UP}
+                               component={this.IfUserIsLoggedIn(SignUpPage)}/>
 
                         <Route path={URL.CONTEST_TYPE} component={ContestPage} />
 

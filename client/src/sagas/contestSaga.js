@@ -1,22 +1,25 @@
 import ACTION from "../actions/actiontsTypes";
-import { createContest } from "../api/rest/restContoller";
+//import { createContest } from "../api/rest/restContoller";
 
 import { put, call, select } from 'redux-saga/effects';
 import history from "../boot/browserHistory";
 
-import { first, last, size } from 'lodash';
+import { last, size } from 'lodash';
 
 import {reset} from 'redux-form';
 
-import { CONTEST, FIELDS_TO_SEND } from "../utils/consts";
+import { CONTEST } from "../utils/consts";
 
 import * as _ from 'lodash';
 
 export function* createContestSaga({formData}) {
+    console.log('formData', formData);
     try {
         yield put({type: ACTION.WRITE_FORM_DATA_TO_STORE, formData});
 
-        let { contestReducers: { contestNow } } = yield select();
+        const { contestReducers: { contestNow, contestFormData } } = yield select();
+
+        console.log('contestFormData', contestFormData);
 
 
 /*        let contestSend;
@@ -129,6 +132,7 @@ export function* toContestQueueSaga({stage}) {
 }
 
 export function* writeFormDataToStore({formData}) {
+
     try {
         let {contestReducers: {contestNow, contestFormData}} = yield select();
 

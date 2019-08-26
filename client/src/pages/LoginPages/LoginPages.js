@@ -1,21 +1,20 @@
 import React  from 'react';
 import connect from "react-redux/es/connect/connect";
-import style from "./LoginPages.module.sass";
-
-import { loginUser } from "../../actions/actionCreator";
-
-import HeaderLoginAndSignUp from "../../components/HeaderLoginAndSignUp/HeaderLoginAndSignUp";
-import LoginForm from "../../components/Forms/LoginForm/LoginForm";
-
 import { SubmissionError } from 'redux-form';
+
+import style from "./LoginPages.module.sass";
 
 import * as yup from 'yup';
 import schema from '../../validation/yupShema';
 
+import HeaderLoginAndSignUp from "../../components/HeaderLoginAndSignUp/HeaderLoginAndSignUp";
+import LoginForm from "../../components/Forms/LoginForm/LoginForm";
+
+import { loginUser } from "../../actions/actionCreator";
+
 function LoginPage(props){
 
     const toLoginUser = async (values) => {
-
         const email = await yup.reach(schema, 'email').isValid(values.email);
 
         if (!values.email) {
@@ -55,5 +54,4 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => ({
     toLoginUser: user => dispatch(loginUser(user)),
 });
-
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

@@ -13,6 +13,7 @@ import {
     getAllUser,
     banUserById,
 } from '../api/rest/restContoller';
+import {TOKEN} from "../utils/consts";
 
 
 //----- USER -----
@@ -43,8 +44,9 @@ export function* createUserSaga({user}) {
     }
 }
 
-export function* userLogoutSaga({refreshToken}) {
+export function* userLogoutSaga() {
     try {
+        const refreshToken = localStorage.getItem(TOKEN.REFRESH_TOKEN);
         yield call(userLogout, refreshToken);
 
         localStorage.clear();

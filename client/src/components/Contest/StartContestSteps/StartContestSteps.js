@@ -1,20 +1,19 @@
 import React from 'react';
-import style from './StartContestSteps.module.sass';
+import connect from "react-redux/es/connect/connect";
 
+import style from './StartContestSteps.module.sass';
 
 import ProgressMain from './ProgressMain/ProgressMain'
 
-import connect from "react-redux/es/connect/connect";
 import { textForStartContestSteps  } from '../../../utils/textAndLinksForPages'
 
+import { last } from 'lodash';
+
 function StartContestSteps(props){
+    const { contestNow } = props;
 
-    const numberOfStages = props.contest.length;
-
-    const nowStage = props.contest[numberOfStages-1];
-
+    const nowStage = last(contestNow);
     const textForStage = textForStartContestSteps.find( item => item.page === nowStage);
-
 
     return (
         <div className={style.startContestSteps}>
@@ -30,7 +29,7 @@ function StartContestSteps(props){
 
                     <ProgressMain
                         caption={textForStage.caption}
-                        numberOfStages={props.contest}
+                        numberOfStages={contestNow}
                     />
 
                 </div>
@@ -41,12 +40,8 @@ function StartContestSteps(props){
 }
 
 const mapStateToProps = (state) => ({
-    contest: state.userReducers.contest
+    contestNow: state.contestReducers.contestNow,
 });
-const mapDispatchToProps = dispatch => ({
-
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(StartContestSteps);
+export default connect(mapStateToProps)(StartContestSteps);
 
 

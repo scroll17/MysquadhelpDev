@@ -1,38 +1,32 @@
 import React, {useEffect} from 'react';
-import style from './ContestForms.module.sass';
-
 import connect from "react-redux/es/connect/connect";
 
+import style from './ContestForms.module.sass';
 
 import DrawContestForm from './DrawContestForm/DrawContestForm'
-import RemoteSubmitButton from '../RemoteSubmitButton/RemoteSubmitButton'
+import RemoteSubmitButton from '../../Buttons/RemoteSubmitButton/RemoteSubmitButton'
+import BankForm from '../BankForm/BankForm'
 
 import {createContest, prevContestStage, nextContestStage} from "../../../actions/actionCreator";
+import { last, isEmpty } from 'lodash';
 
 import { CONTEST } from "../../../utils/consts";
-import { ContestNameForm } from '../../../utils/textAndLinksForPages'
-
-
-
-import { last, isEmpty } from 'lodash';
+import { DataForTheContestForm } from '../../../utils/textAndLinksForPages'
 
 function ContestForms(props){
     const { contestNow, contestQueue, contestFormData} = props;
 
 
     useEffect(() => {
-           sessionStorage.setItem('contestNow', JSON.stringify(contestNow));
-           sessionStorage.setItem('contestQueue', JSON.stringify(contestQueue));
-           sessionStorage.setItem('contestFormData', JSON.stringify(contestFormData));
+        sessionStorage.setItem('contestNow', JSON.stringify(contestNow));
+        sessionStorage.setItem('contestQueue', JSON.stringify(contestQueue));
+        sessionStorage.setItem('contestFormData', JSON.stringify(contestFormData));
     });
 
     const nowFormContest = last(props.contestNow);
-
+    const styleForBankFor = nowFormContest === CONTEST.BANKS ? {margin: "0 auto", width: "100%"} : {};
 
     const createNewContest = (values) => {
-/*        Object.keys(values).forEach( item => {
-            console.log(camelCase(item))
-        });*/
         if(isEmpty(props.contestQueue)){
             return props.createNewContest(values)
         }else{
@@ -46,33 +40,29 @@ function ContestForms(props){
 
         return (
             <div className={style.stepsForm}>
-                <div className={style.container}>
+                <div className={style.container} style={styleForBankFor}>
                     <div className={style.row}>
-                        <div className={style.blockFields}>
+                        <div className={style.blockFields} style={styleForBankFor}>
 
 
                           {nowFormContest === CONTEST.NAME && (
                               <DrawContestForm
                                 onSubmit={createNewContest}
                                 form={CONTEST.NAME}
-                                data={ContestNameForm[CONTEST.NAME]}
-                                dataSelect={ContestNameForm['select']}
+                                data={DataForTheContestForm[CONTEST.NAME]}
                               />)}
 
                             {nowFormContest === CONTEST.LOGO && (
                                 <DrawContestForm
                                     onSubmit={createNewContest}
                                     form={CONTEST.LOGO}
-                                    data={ContestNameForm[CONTEST.LOGO]}
-                                    dataSelect={ContestNameForm['select']}
+                                    data={DataForTheContestForm[CONTEST.LOGO]}
                                 />)}
 
                             {nowFormContest === CONTEST.BANKS && (
-                                <DrawContestForm
+                                <BankForm
                                     onSubmit={createNewContest}
                                     form={CONTEST.BANKS}
-                                    data={ContestNameForm[CONTEST.LOGO]}
-                                    dataSelect={ContestNameForm['select']}
                                 />)}
 
                         </div>
@@ -97,7 +87,6 @@ function ContestForms(props){
 
             </div>
         );
-
 }
 
 const mapStateToProps = (state) => ({
@@ -110,5 +99,4 @@ const mapDispatchToProps = dispatch => ({
     backToPrevStage: () => dispatch(prevContestStage()),
     nextContestForm: (contest) => dispatch(nextContestStage(contest))
 });
-
 export default connect(mapStateToProps, mapDispatchToProps)(ContestForms);

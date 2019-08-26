@@ -1,12 +1,14 @@
 import React from 'react';
-import style from './DrawContestForm.module.sass';
-
 import {Field, reduxForm} from 'redux-form';
+import connect from "react-redux/es/connect/connect";
+
+import style from './DrawContestForm.module.sass';
 
 import ContestFields from '../ContestFields/ContestFields'
 
-import connect from "react-redux/es/connect/connect";
+import { DataForTheContestForm } from '../../../../utils/textAndLinksForPages'
 
+import { TYPE_FIELD } from "../../../../utils/consts";
 
 import { last } from 'lodash'
 
@@ -16,9 +18,8 @@ const validation = (value) => {
     }
 };
 
-
 let NameForm = (props) => {
-    const { data, dataSelect} = props;
+    const { data } = props;
 
     const {handleSubmit} = props;
 
@@ -26,7 +27,7 @@ let NameForm = (props) => {
         return <Field validate={validation}
                       {...fieldData}
                       key={fieldData.name}
-                      dataSelect={dataSelect}
+                      dataSelect={DataForTheContestForm[TYPE_FIELD.SELECT]}
                       validation={validation}
                       component={ContestFields}/>
     };

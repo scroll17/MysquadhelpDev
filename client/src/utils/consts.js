@@ -19,6 +19,8 @@ export const ROLE = {
 export const TOKEN = {
     ACCESS_TOKEN: "accessToken",
     REFRESH_TOKEN: "refreshToken",
+    AUTHORIZATION: "Authorization",
+    BEARER: "Bearer ",
 };
 
 export const CONTEST = {
@@ -27,6 +29,34 @@ export const CONTEST = {
     TAGLINE: "tagline",
     LOGO: "logo",
     BANKS: "banks",
+};
+
+export const VIEW = {
+    DESKTOP: "desktop",
+    SMARTPHONE: "smartphone"
+};
+
+export const DISPLAY = {
+  BLOCK: "block",
+  NONE: "none"
+};
+
+export const HEX_COLOR = {
+  WHITE: "#f9f9f9",
+  BLUE: "#28d2d0",
+  GRAY_20: '#333333',
+  WHITE_SMOKE: "#f5f5f5",
+};
+
+export const FORM = {
+  SIGN_UP: 'signUp',
+  LOGIN: 'login'
+};
+
+export const TYPE_FIELD = {
+    SELECT: "select",
+    TEXTAREA: "textarea",
+    INPUT: "input"
 };
 
 export const FIELDS_TO_SEND = [

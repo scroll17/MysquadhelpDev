@@ -1,15 +1,13 @@
 import React, {Component} from 'react';
-import style from './SignupForm.module.sass';
-
-import { ROLE } from '../../../utils/consts'
-
 import { Link } from "react-router-dom";
-
 import { reduxForm, Fields } from 'redux-form';
+
+import style from './SignupForm.module.sass';
 
 import Input from './Input/Input'
 import JoinAs from './JoinAs/JoinAs'
 
+import { ROLE, FORM } from '../../../utils/consts'
 
 import { asyncValidationSignUpForm } from '../../../validation/asyncValidationSignUpForm'
 
@@ -32,8 +30,8 @@ class SignUpForm extends Component {
 
     render () {
         const { handleSubmit, submitting } = this.props;
-        return (
 
+        return (
             <div className={style.signUpForm}>
                 <div className={style.signUpText}>
                     <h2>CREATE AN ACCOUNT</h2>
@@ -53,17 +51,18 @@ class SignUpForm extends Component {
                     </div>
 
                     <div className={style.finePrint}>
-                        <p>By clicking this button, you agree to our <Link to={"/Terms&Conditions"}>Terms of Service.</Link></p>
+                        <p>By clicking this button, you agree to our
+                            <Link to={"/Terms&Conditions"}>Terms of Service.</Link>
+                        </p>
                     </div>
                 </form>
             </div>
-
         );
     }
 }
 
 SignUpForm = reduxForm ({
-    form: 'signUp',
+    form: FORM.SIGN_UP,
     asyncValidate: asyncValidationSignUpForm,
     initialValues: {role: ROLE.BUYER}
 })(SignUpForm);

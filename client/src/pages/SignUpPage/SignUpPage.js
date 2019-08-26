@@ -8,17 +8,12 @@ import SignUpForm from "../../components/Forms/SignupForm/SignupForm";
 
 import { createUser } from "../../actions/actionCreator";
 
-
 class SignUpPage extends Component{
     toSignUpUser = values => {
-        const dataToSend = {
-            firstName: values.firstName,
-            lastName: values.lastName,
-            displayName: values.displayName,
-            email: values.email,
-            role: values.role,
-            password: values.password,
-        };
+        const dataToSend = {};
+        Object.keys(values).forEach( field => {
+            dataToSend[field] = values[field]
+        });
         this.props.toSignUpUser(dataToSend)
     };
 
@@ -38,9 +33,7 @@ class SignUpPage extends Component{
 const mapStateToProps = (state) => ({
     user: state.userReducers.user
 });
-
 const mapDispatchToProps = dispatch => ({
     toSignUpUser: user => dispatch(createUser(user)),
 });
-
 export default connect(mapStateToProps, mapDispatchToProps)(SignUpPage);

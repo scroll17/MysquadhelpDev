@@ -31,12 +31,10 @@ function MarketplaceDomainsHome(){
                     <div className={style.container}>
                         {MarketplaceDomains(textForMarketplaceDomainsHome)}
                     </div>
-
                 </div>
             </div>
         )
 
 }
-
 export default MarketplaceDomainsHome;
 

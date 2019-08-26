@@ -1,6 +1,8 @@
 import React  from 'react';
 import style from './StepsForHowDoNameContestsWork.module.sass';
 
+import { HEX_COLOR } from "../../../../utils/consts";
+
 function StepsForHowDoNameContestsWork(props ){
 
     const { dataForComponent, bgColor, positionOfGif } = props;
@@ -11,7 +13,7 @@ function StepsForHowDoNameContestsWork(props ){
         : style.blockWithInformation;
 
     if(positionOfGif === "right"){
-        backgroundColor = {backgroundColor: bgColor, color: "white"};
+        backgroundColor = {backgroundColor: bgColor, color: HEX_COLOR.WHITE};
     }else{
         backgroundColor = {backgroundColor: bgColor};
     }

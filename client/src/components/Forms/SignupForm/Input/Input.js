@@ -3,7 +3,6 @@ import style from './Input.module.sass';
 
 import { Field } from 'redux-form';
 
-
 function Input(props) {
     const {name, placeholder, names, type} = props;
 
@@ -26,6 +25,7 @@ function Input(props) {
         }else{
             return null
         }
+
         return(
             <div className={style.errorContainer}>
                 <p className={style.textError}>{errorMessage}</p>

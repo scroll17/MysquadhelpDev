@@ -1,8 +1,7 @@
 import React  from 'react';
-import style from './ButtonsHomePage.module.sass';
-
 import { Link } from "react-router-dom";
 
+import style from './ButtonsHomePage.module.sass';
 
 function ButtonsHomePage(props){
     return (
@@ -11,5 +10,4 @@ function ButtonsHomePage(props){
         </div>
     )
 }
-
 export default ButtonsHomePage;

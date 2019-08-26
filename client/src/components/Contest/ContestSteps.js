@@ -1,14 +1,20 @@
 import React from 'react';
 
 import ContestTypes from './СontestTypes/СontestTypes'
-import { ContestPopularCategories, ContestOtherCategories, ContestBundlePackages }  from '../../utils/textAndLinksForPages'
+
+import {
+    ContestPopularCategories,
+    ContestOtherCategories,
+    ContestBundlePackages }  from '../../utils/textAndLinksForPages'
+
+import { HEX_COLOR } from "../../utils/consts";
 
 function ContestSteps(){
         const style = {
-           headingColor: '#fff',
-           borderColor: '#fff',
-           bgColor: '#28d2d1',
-           itemBgColor: '#ffffff',
+           headingColor: HEX_COLOR.WHITE,
+           borderColor: HEX_COLOR.WHITE,
+           bgColor: HEX_COLOR.BLUE,
+           itemBgColor: HEX_COLOR.WHITE,
         };
 
         return (
@@ -26,6 +32,5 @@ function ContestSteps(){
             </section>
         )
 }
-
 export default ContestSteps;
 

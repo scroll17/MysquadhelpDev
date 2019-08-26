@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
-import style from './AdminList.module.sass';
-
 import connect from "react-redux/es/connect/connect";
+
+import style from './AdminList.module.sass';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { getAllUser, banUserById } from "../../actions/actionCreator";
 import ListTo from './ListTo/ListTo';
 import ListItem from './ListItem/ListItem';
 
+import { getAllUser, banUserById } from "../../actions/actionCreator";
 
 import { isEmpty } from 'lodash';
 
@@ -30,6 +30,7 @@ class AdminList extends Component {
                 <ListItem
                     name={`${user.firstName} ${user.lastName}`}
                     status={user.isBanned}
+                    role={user.role}
                     id={user.id}
                     clickToItem={this.clickToBan}
                     key={user.email}
@@ -73,10 +74,8 @@ const mapStateToProps = (state) => ({
     users: state.userReducers.users,
     error: state.userReducers.error
 });
-
 const mapDispatchToProps = dispatch => ({
     getAllUser: () => dispatch(getAllUser()),
     banUserById: (userId, isBanned) => dispatch(banUserById(userId, isBanned)),
 });
-
 export default connect(mapStateToProps, mapDispatchToProps)(AdminList);

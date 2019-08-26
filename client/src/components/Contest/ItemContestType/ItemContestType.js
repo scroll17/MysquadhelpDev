@@ -1,9 +1,11 @@
 import React from 'react';
+import connect from "react-redux/es/connect/connect";
+
 import style from './ItemContestType.module.sass';
 
 import { addToContestQueue } from "../../../actions/actionCreator";
-import connect from "react-redux/es/connect/connect";
 
+import { HEX_COLOR } from "../../../utils/consts";
 
 function ItemContestType(props){
     const { contestTo } = props;
@@ -22,9 +24,7 @@ function ItemContestType(props){
         <span
             style={{background: props.bgColor}}
             className={style.container}
-            onClick={() => {
-                return props.toNewContestQueue(contestTo)
-            }}
+            onClick={() => props.toNewContestQueue(contestTo)}
         >
             <div className={style.images}>
                 {showBlockImage(props.src)}
@@ -36,17 +36,13 @@ function ItemContestType(props){
         </span>
     )
 }
-
+ItemContestType.defaultProps = {
+    bgColor: HEX_COLOR.WHITE_SMOKE,
+};
 const mapDispatchToProps = dispatch => ({
     toNewContestQueue: stages => dispatch(addToContestQueue(stages)),
 });
 const mapStateToProps = (state) => ({
 });
-
-
-ItemContestType.defaultProps = {
-    bgColor: "#f5f5f5",
-};
-
 export default connect(mapStateToProps, mapDispatchToProps)(ItemContestType);
 

@@ -2,9 +2,9 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import App from '../App';
 
-import { STORE } from '../utils/consts';
-
 import { toast } from 'react-toastify';
+
+import { STORE } from '../utils/consts';
 
 toast.configure({
     autoClose: 2000,
@@ -18,5 +18,4 @@ function Store(){
       </Provider>
   );
 }
-
 export default Store;

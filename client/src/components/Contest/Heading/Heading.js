@@ -17,6 +17,5 @@ function Heading(props){
         </div>
     )
 }
-
 export default Heading;
 

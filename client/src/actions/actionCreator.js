@@ -9,9 +9,8 @@ export const loginUser = user => ({
   type: ACTION.LOGIN_USER,
   user
 });
-export const userLogout = (refreshToken) => ({
+export const userLogout = () => ({
   type: ACTION.USER_LOGOUT,
-  refreshToken,
 });
 export const getUser = () => ({
   type: ACTION.GET_USER

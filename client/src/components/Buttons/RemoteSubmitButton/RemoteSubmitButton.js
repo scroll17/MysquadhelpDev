@@ -2,7 +2,6 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {submit} from 'redux-form'
 
-
 import { isEmpty, last } from 'lodash';
 
 const SubmitButton = (props) => {
@@ -11,7 +10,7 @@ const SubmitButton = (props) => {
 
     return (
         <button type="submit" onClick={() => dispatch(submit(formNow))}>
-            {isEmpty(contestQueue) ? "submit" : "next"}
+            {isEmpty(contestQueue) ? "Play now" : "next"}
         </button>
     )
 };

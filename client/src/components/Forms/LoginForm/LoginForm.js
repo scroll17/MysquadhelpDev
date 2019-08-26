@@ -1,28 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import style from './LoginForm.module.sass';
-
 import { Field, reduxForm } from 'redux-form';
 import connect from "react-redux/es/connect/connect";
 
+import style from './LoginForm.module.sass';
+
 import { toast } from 'react-toastify';
 
-import { ERROR } from "../../../utils/consts";
-
 import { getUserResponse } from "../../../actions/actionCreator";
+import { isEqual } from 'lodash'
 
+import {ERROR, FORM} from "../../../utils/consts";
 
 let LoginForm = (props) => {
 
     const [notFoundError, setNotFoundError] = useState(false);
 
     useEffect(() => {
-        if(props.err){
+        if(props.err && props.err.response){
             const response = props.err.response;
 
-            if(response.status === ERROR.NotFound){
+            if( isEqual(response.status, ERROR.NotFound) ){
                 setNotFoundError(true);
             }
-            if(response.status === ERROR.Forbidden) {
+            if( isEqual(response.status, ERROR.Forbidden) ){
                 toast.error(response.statusText, {
                     position: toast.POSITION.TOP_RIGHT
                 });
@@ -85,13 +85,11 @@ let LoginForm = (props) => {
                     </div>
                 </form>
             </div>
-
         );
-
 };
 
 LoginForm = reduxForm ({
-    form: 'login',
+    form: FORM.LOGIN,
 })(LoginForm);
 
 const mapStateToProps = (state) => ({
@@ -100,5 +98,4 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => ({
     getUserResponse: () => dispatch(getUserResponse())
 });
-
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

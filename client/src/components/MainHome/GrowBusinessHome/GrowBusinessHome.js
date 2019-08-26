@@ -11,9 +11,9 @@ function GrowBusinessHome(){
     ];
 
     const rowOfImages = (items) => items.map( item => {
-            return(
-                <div className={style.image} style={images(item)} key={item}/>
-            )
+        return(
+            <div className={style.image} style={images(item)} key={item}/>
+        )
     });
 
     const liItems = (count, text) => (
