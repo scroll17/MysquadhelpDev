@@ -8,7 +8,7 @@ import RemoteSubmitButton from '../../Buttons/RemoteSubmitButton/RemoteSubmitBut
 import BankForm from '../BankForm/BankForm'
 
 import {createContest, prevContestStage, nextContestStage} from "../../../actions/actionCreator";
-import { last, isEmpty } from 'lodash';
+import { last, isEmpty, omit } from 'lodash';
 
 import { CONTEST } from "../../../utils/consts";
 import { DataForTheContestForm } from '../../../utils/textAndLinksForPages'
@@ -20,8 +20,11 @@ function ContestForms(props){
     useEffect(() => {
         sessionStorage.setItem('contestNow', JSON.stringify(contestNow));
         sessionStorage.setItem('contestQueue', JSON.stringify(contestQueue));
-        sessionStorage.setItem('contestFormData', JSON.stringify(contestFormData));
+
+        const formData = omit(contestFormData[last(contestNow)], 'files');
+        sessionStorage.setItem('contestFormData', JSON.stringify(formData));
     });
+
 
     const nowFormContest = last(props.contestNow);
     const styleForBankFor = nowFormContest === CONTEST.BANKS ? {margin: "0 auto", width: "100%"} : {};

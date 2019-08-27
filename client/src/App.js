@@ -11,7 +11,10 @@ import LoginPages from './pages/LoginPages/LoginPages';
 import SignUpPage from './pages/SignUpPage/SignUpPage';
 import AdminListPage from './pages/AdminListPage/AdminListPage';
 import ContestPage from './pages/ContestPage/ContestPage';
+import DashboardPage from './pages/DashboardPage/DashboardPage'
+
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+
 
 import UserLoader from './components/Route/UserLoader';
 import PrivateRoute from './components/Route/PrivateRoute'
@@ -46,6 +49,8 @@ class App extends Component{
                                component={this.IfUserIsLoggedIn(SignUpPage)}/>
 
                         <Route path={URL.CONTEST_TYPE} component={ContestPage} />
+
+                        <Route path={URL.DASHBOARD} component={DashboardPage} />
 
                         <PrivateRoute requireRole={ROLE.ADMIN} path={URL.ADMIN_PANEL} component={AdminListPage} />
 

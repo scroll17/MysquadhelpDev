@@ -54,10 +54,8 @@ let BankForm = (props) => {
                            component="input"
                            type="text"
                            placeholder="Card Number"
-                           format={formatCreditCardNumber}
+                           normalize={formatCreditCardNumber}
                     />
-
-
                     <Field name="name"
                            component="input"
                            type="text"
@@ -70,13 +68,13 @@ let BankForm = (props) => {
                                component="input"
                                type="text"
                                placeholder="Valid Thru"
-                               format={formatExpirationDate}
+                               normalize={formatExpirationDate}
                         />
                         <Field name="cvc"
                                component="input"
                                type="text"
                                placeholder="CVC"
-                               format={formatCVC}
+                               normalize={formatCVC}
                         />
                     </div>
 

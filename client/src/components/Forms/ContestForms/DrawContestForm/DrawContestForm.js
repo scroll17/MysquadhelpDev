@@ -1,6 +1,7 @@
 import React from 'react';
-import {Field, reduxForm} from 'redux-form';
 import connect from "react-redux/es/connect/connect";
+
+import {Field, reduxForm} from 'redux-form';
 
 import style from './DrawContestForm.module.sass';
 
@@ -10,25 +11,33 @@ import { DataForTheContestForm } from '../../../../utils/textAndLinksForPages'
 
 import { TYPE_FIELD } from "../../../../utils/consts";
 
-import { last } from 'lodash'
+import { last, isObject } from 'lodash'
 
 const validation = (value) => {
     if(!value){
         return "Please fill this field"
+    }else if(value && !isObject(value)){
+
+        const str = value.replace(/\s+/g, '');
+        if(str.length === 0){
+            return "Please fill this field"
+        }
     }
 };
 
-let NameForm = (props) => {
-    const { data } = props;
 
-    const {handleSubmit} = props;
+let DrawContestForm = (props) => {
+    const { data, handleSubmit } = props;
+
 
     const renderField = (fieldData) => {
         return <Field validate={validation}
                       {...fieldData}
                       key={fieldData.name}
                       dataSelect={DataForTheContestForm[TYPE_FIELD.SELECT]}
-                      validation={validation}
+                      validation={
+                          fieldData.type === 'file' ? '' : validation
+                      }
                       component={ContestFields}/>
     };
     const renderFields = () => {
@@ -45,15 +54,15 @@ let NameForm = (props) => {
     )
 };
 
-NameForm = reduxForm({
+DrawContestForm = reduxForm({
     destroyOnUnmount: false,
     forceUnregisterOnUnmount: true,
-})(NameForm);
+})(DrawContestForm);
 
-export default NameForm = connect(state => {
+export default DrawContestForm = connect(state => {
     const { contestFormData, contestNow } = state.contestReducers;
     return ({
         initialValues: contestFormData[last(contestNow)],
     })
-})(NameForm)
+})(DrawContestForm)
 

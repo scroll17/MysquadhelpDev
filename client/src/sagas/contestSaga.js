@@ -132,7 +132,6 @@ export function* toContestQueueSaga({stage}) {
 }
 
 export function* writeFormDataToStore({formData}) {
-
     try {
         let {contestReducers: {contestNow, contestFormData}} = yield select();
 

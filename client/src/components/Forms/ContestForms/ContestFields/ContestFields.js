@@ -1,6 +1,9 @@
 import React from 'react';
 
 import Select from 'react-select';
+import { Field } from 'redux-form';
+
+import DropZone from "../DropZone/DropZone";
 
 import style from '../DrawContestForm/DrawContestForm.module.sass';
 
@@ -38,10 +41,12 @@ let ContestFields = ({validation, dataSelect, input, meta, ...props}) => {
                 {...input}
             />
         }else if( isEqual(props.type, TYPE_FIELD.INPUT_FILE) ){
-            fieldInput = <input
-                type={'file'}
+            fieldInput = <Field
+                className={style.input}
+                component={DropZone}
+                placeholder={props.placeholder}
                 {...input}
-            />
+            />;
         }
 
         return (
