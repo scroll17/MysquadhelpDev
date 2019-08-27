@@ -56,7 +56,8 @@ export const FORM = {
 export const TYPE_FIELD = {
     SELECT: "select",
     TEXTAREA: "textarea",
-    INPUT: "input"
+    INPUT: "input",
+    INPUT_FILE: "file"
 };
 
 export const FIELDS_TO_SEND = [

@@ -37,6 +37,11 @@ let ContestFields = ({validation, dataSelect, input, meta, ...props}) => {
                 placeholder={props.placeholder}
                 {...input}
             />
+        }else if( isEqual(props.type, TYPE_FIELD.INPUT_FILE) ){
+            fieldInput = <input
+                type={'file'}
+                {...input}
+            />
         }
 
         return (

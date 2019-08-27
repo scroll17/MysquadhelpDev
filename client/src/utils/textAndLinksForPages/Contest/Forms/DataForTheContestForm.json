@@ -39,6 +39,11 @@
       "hint":"Is there anything else that you haven't covered so far, but might be relevant to the project?",
       "type":"textarea",
       "placeholder":"Share any additional information or direction that might be useful to creatives"
+    },
+    {
+      "name":"files",
+      "label":"Any other details that are relevant to this project?",
+      "type":"file"
     }
   ],
   "logo":[
