@@ -1,5 +1,5 @@
 import ACTION from "../actions/actiontsTypes";
-//import { createContest } from "../api/rest/restContoller";
+import {createContest, loginUser} from "../api/rest/restContoller";
 
 import { put, call, select } from 'redux-saga/effects';
 import history from "../boot/browserHistory";
@@ -48,9 +48,8 @@ export function* createContestSaga({formData}) {
         });
         finalDataToSend.append("formFields", JSON.stringify(dataToSend));
 
-
-
-
+        const { data } = yield createContest(finalDataToSend);
+        console.log(data);
 
         for (let formIndex = 1; formIndex < contestNow.length; formIndex++) {
             yield put(reset(contestNow[formIndex]))

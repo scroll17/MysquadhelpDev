@@ -46,11 +46,6 @@ module.exports = {
                     isIn: [[...ROLES]],
                 }
             },
-            isActive: {
-                type: Sequelize.BOOLEAN,
-                allowNull: false,
-                defaultValue: true,
-            },
             isBanned: {
                 type: Sequelize.BOOLEAN,
                 allowNull: false,

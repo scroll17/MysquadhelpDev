@@ -52,11 +52,6 @@ module.exports = (sequelize, DataTypes) => {
         isIn: [[...ROLES]],
       },
     },
-    isActive: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: true,
-    },
     isBanned: {
       type: DataTypes.BOOLEAN,
       allowNull: false,

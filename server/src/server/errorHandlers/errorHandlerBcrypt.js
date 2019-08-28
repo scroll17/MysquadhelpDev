@@ -4,6 +4,6 @@ module.exports = (err,req,res,next) =>{
         const error = new NotFound();
         res.status(error.status).send(error.message);
     }else{
-      return next()
+      return next(err)
     }
 };

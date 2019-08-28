@@ -29,6 +29,8 @@ const URL = {
         ALL_USER: '/alluser',
         USER_ID: '/user/:id',
         REFRESH: '/refresh',
+
+        CONTEST: '/contest'
     }
 };
 

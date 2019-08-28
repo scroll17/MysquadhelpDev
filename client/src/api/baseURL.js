@@ -1,28 +1,27 @@
-export const baseURL = 'http://192.168.0.107:3000'; //192.168.0.106 //localhost
+export const baseURL = 'http://localhost:3000'; //192.168.0.106 //localhost
 export const restURL = `${baseURL}/api`;
 
 export const URL = {
-  // API
+  // API USER
   USER: '/user',
   LOGIN: '/login',
   LOGOUT: "/logout",
-  SIGNUP: "/signup",
   AUTHORIZE: '/authorize',
   ALL_USER: "/alluser",
-
+  SIGN_UP: "/signup",
   REFRESH: "/refresh",
 
-  //
-  SIGN_UP: "/signup",
-  NOT_FOUND: "/notfound",
-  ADMIN_PANEL: "/adminpanel",
-
   // API CONTEST
-  CONTEST: "/contest",
+  CONTEST: '/contest',
+
+
+  // CONTEST
   CONTEST_TYPE: "/contesttype",
   NAME_IDEAS: "/Name-Ideas",
 
-  //API USER
+  // USER
+  NOT_FOUND: "/notfound",
+  ADMIN_PANEL: "/adminpanel",
   DASHBOARD: "/dashboard",
   MY_ACCOUNT: "/myaccount",
   MESSAGE: "/messages",

@@ -21,7 +21,9 @@ function ContestForms(props){
         const formDataToSave = cloneDeep(contestFormData);
 
         contestStages.forEach( stage => {
-            formDataToSave[stage] = omit(formDataToSave[stage], 'files');
+            if(stage !== CONTEST.BANKS){
+                formDataToSave[stage] = omit(formDataToSave[stage], 'files');
+            }
         });
         sessionStorage.setItem('contestFormData', JSON.stringify(formDataToSave));
 

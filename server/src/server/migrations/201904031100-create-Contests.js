@@ -18,6 +18,13 @@ module.exports = {
                 },
                 allowNull: false,
             },
+            title: {
+                type: Sequelize.STRING,
+                allowNull: true,
+                validate: {
+                    notEmpty: true,
+                },
+            },
             name: {
                 type: Sequelize.STRING,
                 allowNull: true,
@@ -54,13 +61,6 @@ module.exports = {
                 },
             },
             style: {
-                type: Sequelize.TEXT,
-                allowNull: false,
-                validate: {
-                    notEmpty: true,
-                },
-            },
-            description: {
                 type: Sequelize.TEXT,
                 allowNull: false,
                 validate: {
