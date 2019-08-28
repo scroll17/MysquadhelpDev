@@ -23,7 +23,7 @@ import { URL } from './api/baseURL'
 import { ROLE } from './utils/consts'
 
 
-history.listen(_ => {
+history.listen( _ => {
     window.scrollTo(0, 0)
 });
 

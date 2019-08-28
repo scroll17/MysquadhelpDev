@@ -27,13 +27,13 @@
       "src": ["Company-Names","Logos","Taglines"],
       "name":"Name + Logo + Tagline",
       "text":"Establish your entire brand identity and save with this bundle.",
-      "contestTo":["startcontest"]
+      "contestTo":["name","logo","tagline"]
     },
     {
       "src": ["Logos","Business-Cards"],
       "name":"Logo + Business Cards",
       "text":"Get your logo and business cards designed together and save",
-      "contestTo":["startcontest"]
+      "contestTo":["name","logo","tagline"]
     },
     {
       "src": ["Logos","Taglines"],

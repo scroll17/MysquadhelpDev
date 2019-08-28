@@ -9,6 +9,7 @@ import ContestFields from '../ContestFields/ContestFields'
 
 import { DataForTheContestForm } from '../../../../utils/textAndLinksForPages'
 
+
 import { TYPE_FIELD } from "../../../../utils/consts";
 
 import { last, isObject } from 'lodash'
@@ -17,7 +18,6 @@ const validation = (value) => {
     if(!value){
         return "Please fill this field"
     }else if(value && !isObject(value)){
-
         const str = value.replace(/\s+/g, '');
         if(str.length === 0){
             return "Please fill this field"
@@ -27,27 +27,39 @@ const validation = (value) => {
 
 
 let DrawContestForm = (props) => {
-    const { data, handleSubmit } = props;
+    const { handleSubmit, contestStageNow } = props;
 
 
     const renderField = (fieldData) => {
-        return <Field validate={validation}
+        return <Field
                       {...fieldData}
                       key={fieldData.name}
                       dataSelect={DataForTheContestForm[TYPE_FIELD.SELECT]}
-                      validation={
-                          fieldData.type === 'file' ? '' : validation
+                      funcForValidate={validation}
+                      validate={
+                          fieldData.isRequired  ? validation : null
                       }
                       component={ContestFields}/>
     };
-    const renderFields = () => {
-        return data.map(fieldData => renderField(fieldData));
+
+    const renderFields = (fields) => {
+        const fieldsShown = [];
+
+        fields.forEach(fieldData => {
+            if(fieldData.belongsToForm.includes(contestStageNow)){
+                fieldsShown.push(
+                    renderField(fieldData)
+                )
+            }
+        });
+
+        return fieldsShown
     };
     return (
         <div className={style.clearFix}>
             <form onSubmit={handleSubmit}>
                 {
-                    renderFields()
+                    renderFields(DataForTheContestForm['fields'])
                 }
             </form>
         </div>
@@ -61,8 +73,11 @@ DrawContestForm = reduxForm({
 
 export default DrawContestForm = connect(state => {
     const { contestFormData, contestNow } = state.contestReducers;
+    const contestStageNow = last(contestNow);
+
     return ({
-        initialValues: contestFormData[last(contestNow)],
+        contestStageNow: contestStageNow,
+        initialValues: contestFormData[contestStageNow],
     })
 })(DrawContestForm)
 

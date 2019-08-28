@@ -18,13 +18,13 @@ const onBlurValidation = (input, validation) => {
     return input.onBlur()
 };
 
-let ContestFields = ({validation, dataSelect, input, meta, ...props}) => {
+let ContestFields = ({funcForValidate, dataSelect, input, meta, ...props}) => {
         let fieldInput;
 
         if( isEqual(props.type, TYPE_FIELD.SELECT) ){
             fieldInput = <Select
                 {...input}
-                onBlur={() => onBlurValidation(input, validation)}
+                onBlur={() => onBlurValidation(input, funcForValidate)}
                 options={dataSelect[props.dataType]}
                 isMulti={props.isMulti}
             />
@@ -54,6 +54,7 @@ let ContestFields = ({validation, dataSelect, input, meta, ...props}) => {
                 <label className={style.label}>
                     {props.label}
                 </label>
+
                 <span className={style.span}>
                     {props.hint}
                 </span>

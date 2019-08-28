@@ -7,6 +7,13 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
             type: DataTypes.INTEGER
         },
+        title: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            validate: {
+                notEmpty: true,
+            },
+        },
         name: {
             type: DataTypes.STRING,
             allowNull: true,
@@ -48,14 +55,7 @@ module.exports = (sequelize, DataTypes) => {
             validate: {
                 notEmpty: true,
             },
-        },
-        description: {
-            type: DataTypes.TEXT,
-            allowNull: false,
-            validate: {
-                notEmpty: true,
-            },
-        },
+        }
     });
 
 

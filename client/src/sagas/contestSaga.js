@@ -4,62 +4,53 @@ import ACTION from "../actions/actiontsTypes";
 import { put, call, select } from 'redux-saga/effects';
 import history from "../boot/browserHistory";
 
-import { last, size } from 'lodash';
+import { last, size, isObject } from 'lodash';
 
-import {reset} from 'redux-form';
+import { reset } from 'redux-form';
 
 import { CONTEST } from "../utils/consts";
 
 import * as _ from 'lodash';
 
 export function* createContestSaga({formData}) {
-    console.log('formData', formData);
     try {
         yield put({type: ACTION.WRITE_FORM_DATA_TO_STORE, formData});
 
         const { contestReducers: { contestNow, contestFormData } } = yield select();
 
-        console.log('contestFormData', contestFormData);
+        const finalDataToSend = new FormData();
 
+        const dataToSend = {};
+        Object.keys(contestFormData).forEach( form => {
+            const currentFormData = contestFormData[form];
 
-/*        let contestSend;
-        _.keys(newContestFormData).forEach( form => {
-            console.log(form);
-            FIELDS_TO_SEND.forEach( field => {
-                contestSend[form] = newContestFormData[form] || null;
-            });
+            const convertedFormData = {};
 
-            console.log('contestSend form', contestSend[form]);
-        });*/
+            for (const field in currentFormData) {
 
+                if(currentFormData.hasOwnProperty(field)){
+                    const currentDataField = currentFormData[field];
 
-       /* const contestForms = _.keys(newContestFormData);
+                    if(field === 'files'){
+                        convertedFormData[field] = currentDataField.timeStamp;
+                        finalDataToSend.append(currentDataField.name, currentDataField);
+                    }else if(Array.isArray(currentDataField)){
+                        convertedFormData[field] = currentDataField.map( data => data.value)
+                    }else if(isObject(currentDataField)){
+                        convertedFormData[field] = currentDataField.value
+                    }else{
+                        convertedFormData[field] = currentDataField
+                    }
+                }
+            }
 
-        let contestSend;
-        contestForms.forEach( form => {
-            const  formFields = _.keys(form);
-            const  formFieldValues = _.values(newContestFormData[form]);
-
-            formFields.forEach( (field, id) => {
-                contestSend[form][field] = formFieldValues[id]
-            });
+            dataToSend[form] = convertedFormData;
         });
+        finalDataToSend.append("formFields", JSON.stringify(dataToSend));
 
-        console.log(contestSend);*/
 
 
-/*        const contestSend = {
-            type: contest.name || null,
-            name: contest.type.value || null,
-            typeOfVenture: contest.typeOfVenture.value || null,
-            whatVentureDoes: contest.whatVentureDoes || null,
-            targetCustomers: contest.targetCustomers || null,
-            style: contest.style || null,
-            description: contest.description || null,
-            userId: user.id,
-        };
 
-        const { data } = yield createContest(contestSend);*/
 
         for (let formIndex = 1; formIndex < contestNow.length; formIndex++) {
             yield put(reset(contestNow[formIndex]))

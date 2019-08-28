@@ -30,9 +30,7 @@ const DropZone = ({ input }) => {
     }, [acceptedFiles]);
 
     return (
-        <div {...getRootProps(
-            {...input}
-        )} className={style.dropZone}>
+        <div {...getRootProps( {...input} )} className={style.dropZone}>
 
             <label className={style.label}>
                 <span>
@@ -43,6 +41,7 @@ const DropZone = ({ input }) => {
                     }
                 </span>
             </label>
+
             <div className={style.selected}>
                 {
                     size(acceptedFiles) ? (

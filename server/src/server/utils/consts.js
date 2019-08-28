@@ -16,12 +16,14 @@ const ROLES = ['buyer','creative','admin'];
 
 const TOKEN = {
   ACCESS: "accessToken",
-  REFRESH: "refreshToken"
+  REFRESH: "refreshToken",
+  MAX_NUMBER_OF_REFRESH_TOKEN: 3
 };
 
 const URL = {
     API: {
-        USER: '/user',
+        AUTHORIZE: '/authorize',
+        SIGNUP: '/signup',
         LOGIN: '/login',
         LOGOUT: '/logout',
         ALL_USER: '/alluser',
@@ -46,6 +48,49 @@ const ABILITY = {
     }
 };
 
+const HTTP_CODE = {
+    SUCCESS: {
+        OK: {
+            CODE: 200,
+            TEXT: 'OK',
+        }
+    },
+    SERVER_ERROR:{
+        INTERNAL_SERVER_ERROR:{
+            CODE: 500,
+            TEXT: 'Internal Server Error'
+        },
+        UNAUTHORIZED:{
+            CODE: 401,
+            TEXT: 'Unauthorized'
+        },
+        NOT_FOUND:{
+            CODE: 404,
+            TEXT: 'Not found'
+        },
+        REMOVED:{
+            CODE: 410,
+            TEXT: 'Removed'
+        },
+        FORBIDDEN:{
+            CODE: 403,
+            TEXT: 'Forbidden'
+        },
+        CONFLICT:{
+            CODE: 409,
+            TEXT: 'Conflict'
+        },
+        BAD_REQUEST:{
+            CODE: 400,
+            TEXT: 'Bad Request'
+        },
+        AUTHENTICATION_TIMEOUT:{
+            CODE: 419,
+            TEXT: 'AuthenticationTimeout'
+        }
+    }
+};
+
 module.exports = {
     PORT,
 
@@ -63,5 +108,7 @@ module.exports = {
     URL,
 
     ABILITY,
+
+    HTTP_CODE,
 };
 

@@ -1,0 +1,29 @@
+const { NotFound } = require("../../errors/errors");
+const { User } = require('../../models/index');
+
+module.exports = (idSource) => async (req,res,next) => {
+    let id;
+
+    if(idSource === 'decoded'){
+        id = req.body.decoded.userId;
+    }else if(idSource === 'params'){
+        id = req.params.id;
+    }
+
+
+    try{
+        req.body.user = await User.findByPk( id, {
+            attributes: {
+                exclude: ['updatedAt', 'createdAt', 'password']
+            }
+        });
+
+        if(req.body.user){
+            next();
+        }else{
+            next(new NotFound())
+        }
+    }catch (err) {
+        next(err)
+    }
+};

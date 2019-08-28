@@ -1,7 +1,11 @@
 const ApplicationError = require('./ApplicationError');
-class AuthenticationTimeout extends ApplicationError {
+const { HTTP_CODE : {
+    SERVER_ERROR: { CONFLICT }
+}} = require('../utils/consts');
+
+class ConflictError extends ApplicationError {
     constructor(message) {
-        super(message || 'Conflict !', 409);
+        super(message || CONFLICT.TEXT, CONFLICT.CODE);
     }
 }
-module.exports = AuthenticationTimeout;
+module.exports = ConflictError;

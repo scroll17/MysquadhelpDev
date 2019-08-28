@@ -3,9 +3,11 @@ export const restURL = `${baseURL}/api`;
 
 export const URL = {
   // API
+  USER: '/user',
   LOGIN: '/login',
   LOGOUT: "/logout",
-  USER: '/user',
+  SIGNUP: "/signup",
+  AUTHORIZE: '/authorize',
   ALL_USER: "/alluser",
 
   REFRESH: "/refresh",

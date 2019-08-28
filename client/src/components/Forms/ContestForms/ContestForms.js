@@ -8,21 +8,25 @@ import RemoteSubmitButton from '../../Buttons/RemoteSubmitButton/RemoteSubmitBut
 import BankForm from '../BankForm/BankForm'
 
 import {createContest, prevContestStage, nextContestStage} from "../../../actions/actionCreator";
-import { last, isEmpty, omit } from 'lodash';
+import { last, isEmpty, omit, tail, cloneDeep } from 'lodash';
 
 import { CONTEST } from "../../../utils/consts";
-import { DataForTheContestForm } from '../../../utils/textAndLinksForPages'
 
 function ContestForms(props){
     const { contestNow, contestQueue, contestFormData} = props;
 
 
     useEffect(() => {
+        const contestStages = tail(contestNow);
+        const formDataToSave = cloneDeep(contestFormData);
+
+        contestStages.forEach( stage => {
+            formDataToSave[stage] = omit(formDataToSave[stage], 'files');
+        });
+        sessionStorage.setItem('contestFormData', JSON.stringify(formDataToSave));
+
         sessionStorage.setItem('contestNow', JSON.stringify(contestNow));
         sessionStorage.setItem('contestQueue', JSON.stringify(contestQueue));
-
-        const formData = omit(contestFormData[last(contestNow)], 'files');
-        sessionStorage.setItem('contestFormData', JSON.stringify(formData));
     });
 
 
@@ -52,14 +56,18 @@ function ContestForms(props){
                               <DrawContestForm
                                 onSubmit={createNewContest}
                                 form={CONTEST.NAME}
-                                data={DataForTheContestForm[CONTEST.NAME]}
                               />)}
 
                             {nowFormContest === CONTEST.LOGO && (
                                 <DrawContestForm
                                     onSubmit={createNewContest}
                                     form={CONTEST.LOGO}
-                                    data={DataForTheContestForm[CONTEST.LOGO]}
+                                />)}
+
+                            {nowFormContest === CONTEST.TAGLINE && (
+                                <DrawContestForm
+                                    onSubmit={createNewContest}
+                                    form={CONTEST.TAGLINE}
                                 />)}
 
                             {nowFormContest === CONTEST.BANKS && (

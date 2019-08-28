@@ -33,6 +33,7 @@ function ItemContestType(props){
             <h5>{props.name}</h5>
             <hr />
             <p>{props.text}</p>
+
         </span>
     )
 }

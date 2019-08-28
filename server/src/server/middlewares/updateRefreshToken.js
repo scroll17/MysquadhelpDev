@@ -1,9 +1,9 @@
-const {jwtSignAccess, jwtSignRefresh } = require('../utils/checkJwtTokens');
+const {jwtSignAccess, jwtSignRefresh } = require('./token/checkJwtTokens');
 const { RefreshToken } = require('../models/index');
 
 
 module.exports = async (req, res, next) => {
-    const { user } = Object.assign({},req);
+    const { user } = Object.assign({}, req);
     try{
         let tokenPair = {
             accessToken: await jwtSignAccess(user.email, user.firstName, user.role, user.id),
