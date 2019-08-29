@@ -4,8 +4,6 @@ import {createContest, getPriceOfContests} from "../api/rest/restContoller";
 import { put, call, select } from 'redux-saga/effects';
 import history from "../boot/browserHistory";
 
-import { last, size, isObject, cloneDeep } from 'lodash';
-
 import { reset } from 'redux-form';
 
 import { CONTEST } from "../utils/consts";
@@ -14,20 +12,15 @@ import * as _ from 'lodash';
 
 export function* createContestSaga({formData}) {
     try {
-        yield put({type: ACTION.WRITE_FORM_DATA_TO_STORE, formData});
-
         const { contestReducers: { contestNow, contestFormData, priceOfContest } } = yield select();
 
-        const contestFormDataToSend = cloneDeep(contestFormData);
+        const contestFormDataToSend = _.cloneDeep(contestFormData);
         const finalDataToSend = new FormData();
 
 
         const dataToSend = [];
         const forms = Object.keys(contestFormDataToSend);
-/*        if(forms.includes(CONTEST.BANKS)){
-            delete contestFormDataToSend[CONTEST.BANKS];
-        }
-        */
+
         forms.forEach( form => {
             const currentFormData = contestFormData[form];
 
@@ -50,7 +43,7 @@ export function* createContestSaga({formData}) {
 
                         convertedFormData[field] = currentDataField.map( data => data.value)
 
-                    }else if(isObject(currentDataField)){
+                    }else if(_.isObject(currentDataField)){
 
                         convertedFormData[field] = currentDataField.value
                     }else{
@@ -124,7 +117,7 @@ export function* toContestQueueSaga({stage}) {
         let contest = [..._.clone(prevContest), _.first(stage)];
 
         let newQueue;
-        if(size(stage) > 1){
+        if(_.size(stage) > 1){
             newQueue = [..._.tail(stage), CONTEST.BANKS]
         }else{
             newQueue = [CONTEST.BANKS];
@@ -141,15 +134,18 @@ export function* writeFormDataToStore({formData}) {
     try {
         let {contestReducers: {contestNow, contestFormData}} = yield select();
 
+        console.log('formData', formData);
+
         if(formData){
             const newContestFormData = _.cloneDeep(contestFormData);
-            newContestFormData[last(contestNow)] = _.clone(formData);
+            newContestFormData[_.last(contestNow)] = _.clone(formData);
             yield put({type: ACTION.WRITE_CONTEST_FORM_DATA, contestFormData: newContestFormData } );
         }
     } catch (e) {
         yield put({type: ACTION.USERS_ERROR, error: e})
     }
 }
+
 
 export function* priceOfContestToStore() {
     try {

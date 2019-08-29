@@ -12,7 +12,7 @@ module.exports = {
                 type: Sequelize.INTEGER
             },
             contestId: {
-                type: Sequelize.STRING,
+                type: Sequelize.UUID,
                 onDelete: 'CASCADE',
                 allowNull: false,
             },
@@ -55,7 +55,7 @@ module.exports = {
                 },
             },
             type: {
-                type: Sequelize.STRING,
+                type: Sequelize.ARRAY(Sequelize.STRING),
                 allowNull: true,
                 validate: {
                     isIn: ["Company", "Product", 'Project']
@@ -84,10 +84,7 @@ module.exports = {
             },
             style: {
                 type: Sequelize.STRING,
-                allowNull: false,
-                validate: {
-                    notEmpty: true,
-                },
+                allowNull: true,
             },
             files: {
                 type: Sequelize.STRING,

@@ -28,14 +28,17 @@ module.exports.createContest = async (req, res, next) => {
     });
 
     try{
-        console.log('contests', contests);
+        //console.log('contests', contests);
 
-        const createdContest = await Contests.create(
-            [...contests],
-            {returning: true}
+        const createdContest = await Contests.bulkCreate(
+            contests,
+            {
+                /*validate: true,*/
+                returning: true
+            }
         );
 
-        console.log(createdContest);
+        //console.log('createdContest', createdContest);
 
         res.send('OK')
 

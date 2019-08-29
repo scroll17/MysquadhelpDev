@@ -16,11 +16,13 @@ const { URL: { API, QUERY } } = require('../utils/consts');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
+
         cb(null, path.join(__dirname, '../tmp/taskFiles'))
     },
     filename: function (req, file, cb) {
-        cb(null, `${Date.now()}_${file.originalname}`);
+        const originalFileName = `${Date.now()}_${file.originalname}`;
 
+        cb(null, originalFileName);
     }
 });
 const upload = multer({storage: storage});

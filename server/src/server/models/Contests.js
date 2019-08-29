@@ -8,6 +8,11 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
             type: DataTypes.INTEGER
         },
+        contestId: {
+            type: DataTypes.UUID,
+            onDelete: 'CASCADE',
+            allowNull: false,
+        },
         contestType: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -37,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
             },
         },
         type: {
-            type: DataTypes.STRING,
+            type: DataTypes.ARRAY(DataTypes.STRING),
             allowNull: true,
             validate: {
                 isIn: ["Company", "Product", 'Project']
@@ -66,10 +71,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         style: {
             type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                notEmpty: true,
-            },
+            allowNull: true,
         },
         files: {
             type: DataTypes.STRING,

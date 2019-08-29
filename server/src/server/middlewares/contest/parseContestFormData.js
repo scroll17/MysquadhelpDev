@@ -5,10 +5,15 @@ module.exports = (req, res, next) => {
     req.body.contests = JSON.parse(req.body.formFields);
 
     if (req.files) {
+        req.body.files = {};
+
         req.files.forEach( file => {
-            req.body.files[file.originalname] = file.filename;
+            const {originalname, filename} = file;
+            req.body.files[originalname] = filename;
         });
     }
+
+    console.log('next');
 
     next();
 };
