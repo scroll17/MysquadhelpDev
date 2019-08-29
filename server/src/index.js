@@ -5,6 +5,7 @@ const errorHandlerJWT  = require("./server/errorHandlers/errorHandlerJWT");
 const errorHandlerCasl  = require("./server/errorHandlers/errorHandlerCasl");
 const errorHandlerSequelize  = require("./server/errorHandlers/errorHandlerSequelize");
 const errorHandlerBcrypt  = require("./server/errorHandlers/errorHandlerBcrypt");
+const errorHandlerMulter  = require("./server/errorHandlers/errorHandlerMulter");
 
 const router = require("./server/router/index");
 const { PORT } = require("./server/utils/consts");
@@ -23,7 +24,8 @@ app.use(
     errorHandlerBcrypt,
     errorHandlerSequelize,
     errorHandlerCasl,
-    errorHandlerDefault
+    errorHandlerMulter,
+    errorHandlerDefault,
 );
 
 app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`));

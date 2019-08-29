@@ -1,10 +1,10 @@
 import ACTION from "../actions/actiontsTypes";
-import {createContest, loginUser} from "../api/rest/restContoller";
+import {createContest, getPriceOfContests} from "../api/rest/restContoller";
 
 import { put, call, select } from 'redux-saga/effects';
 import history from "../boot/browserHistory";
 
-import { last, size, isObject } from 'lodash';
+import { last, size, isObject, cloneDeep } from 'lodash';
 
 import { reset } from 'redux-form';
 
@@ -16,15 +16,25 @@ export function* createContestSaga({formData}) {
     try {
         yield put({type: ACTION.WRITE_FORM_DATA_TO_STORE, formData});
 
-        const { contestReducers: { contestNow, contestFormData } } = yield select();
+        const { contestReducers: { contestNow, contestFormData, priceOfContest } } = yield select();
 
+        const contestFormDataToSend = cloneDeep(contestFormData);
         const finalDataToSend = new FormData();
 
-        const dataToSend = {};
-        Object.keys(contestFormData).forEach( form => {
+
+        const dataToSend = [];
+        const forms = Object.keys(contestFormDataToSend);
+/*        if(forms.includes(CONTEST.BANKS)){
+            delete contestFormDataToSend[CONTEST.BANKS];
+        }
+        */
+        forms.forEach( form => {
             const currentFormData = contestFormData[form];
 
-            const convertedFormData = {};
+            const convertedFormData = {
+                price: priceOfContest[form],
+                contestType: form
+            };
 
             for (const field in currentFormData) {
 
@@ -32,26 +42,32 @@ export function* createContestSaga({formData}) {
                     const currentDataField = currentFormData[field];
 
                     if(field === 'files'){
-                        convertedFormData[field] = currentDataField.timeStamp;
-                        finalDataToSend.append(currentDataField.name, currentDataField);
+
+                        convertedFormData[field] = currentDataField.name;
+                        finalDataToSend.append(field, currentDataField);
+
                     }else if(Array.isArray(currentDataField)){
+
                         convertedFormData[field] = currentDataField.map( data => data.value)
+
                     }else if(isObject(currentDataField)){
+
                         convertedFormData[field] = currentDataField.value
                     }else{
+
                         convertedFormData[field] = currentDataField
                     }
                 }
             }
 
-            dataToSend[form] = convertedFormData;
+            dataToSend.push(convertedFormData);
         });
         finalDataToSend.append("formFields", JSON.stringify(dataToSend));
 
         const { data } = yield createContest(finalDataToSend);
         console.log(data);
 
-        for (let formIndex = 1; formIndex < contestNow.length; formIndex++) {
+        for (let formIndex = 1; formIndex <= contestNow.length; formIndex++) {
             yield put(reset(contestNow[formIndex]))
         }
         sessionStorage.clear();
@@ -130,6 +146,16 @@ export function* writeFormDataToStore({formData}) {
             newContestFormData[last(contestNow)] = _.clone(formData);
             yield put({type: ACTION.WRITE_CONTEST_FORM_DATA, contestFormData: newContestFormData } );
         }
+    } catch (e) {
+        yield put({type: ACTION.USERS_ERROR, error: e})
+    }
+}
+
+export function* priceOfContestToStore() {
+    try {
+        const { data } = yield call(getPriceOfContests);
+
+        yield put({type: ACTION.WRITE_PRICE_OF_CONTEST, priceOfContest: data});
     } catch (e) {
         yield put({type: ACTION.USERS_ERROR, error: e})
     }

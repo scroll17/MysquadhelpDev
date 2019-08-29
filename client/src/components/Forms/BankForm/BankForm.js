@@ -7,6 +7,8 @@ import style from './BankForm.module.sass'
 import Cards from 'react-credit-cards';
 import 'react-credit-cards/lib/styles.scss';
 
+import { tail } from 'lodash';
+
 import { CONTEST } from '../../../utils/consts'
 
 import {
@@ -17,7 +19,8 @@ import {
 
 
 let BankForm = (props) => {
-    const {handleSubmit, fields, number, name, expiry, cvc } = props;
+    const {handleSubmit, priceOfContest , fields, number, name, expiry, cvc } = props;
+    const contestForms = tail(props.contestNow);
 
     const focused = (fields) => {
         let focusOnField;
@@ -29,14 +32,44 @@ let BankForm = (props) => {
         return focusOnField;
     };
 
+    const calculateTheTotalOrder = () => {
+        let total = 0;
+        const theCostOfEachContest = [];
+
+        contestForms.forEach( form => {
+            const price = priceOfContest[form];
+            if(price){
+                total += price;
+                theCostOfEachContest.push(
+                    <div className={style.contestPrice} key={form}>
+                        <span>{form}:</span>
+                        <span>${price}</span>
+                    </div>
+                )
+            }
+        });
+
+        return(
+            <>
+                <div className={style.costOfContest}>
+                    {theCostOfEachContest}
+                </div>
+                <div className={style.total}>
+                    <span>Total:</span>
+                    <span>${total} USD</span>
+                </div>
+            </>
+        )
+
+    };
+
     return (
         <div className={style.container}>
 
             <div className={style.orderSummary}>
                 <span className={style.order}>Order Summary</span>
                 <div className={style.orderTotal}>
-                    <span className={style.total}>Total:</span>
-                    <span className={style.price}>$448.00 USD</span>
+                    {calculateTheTotalOrder()}
                 </div>
             </div>
 
@@ -93,9 +126,17 @@ BankForm = reduxForm({
 const selector = formValueSelector(CONTEST.BANKS); // <-- same as form name
 const mapStateToProps = state => {
     const fields = getFormMeta(CONTEST.BANKS)(state);
+
+    const priceOfContest = state.contestReducers.priceOfContest;
+    const contestNow = state.contestReducers.contestNow;
+
     const {number, name, expiry, cvc} = selector(state, 'number','name','expiry','cvc');
     return {
         fields,
+
+        priceOfContest,
+        contestNow,
+
         number, name, expiry, cvc
     }
 };

@@ -13,6 +13,7 @@ export const URL = {
 
   // API CONTEST
   CONTEST: '/contest',
+  CONTEST_PRICE: '/contest/price',
 
 
   // CONTEST

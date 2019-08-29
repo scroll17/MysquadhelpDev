@@ -8,6 +8,7 @@ const initialState = {
     contestNow: restoreValues('contestNow') || ['select'],
     contestQueue: restoreValues('contestQueue') || [],
     contestFormData: restoreValues('contestFormData') || {},
+    priceOfContest: {},
     error: null,
 };
 
@@ -25,6 +26,13 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 contestFormData: action.contestFormData,
+                error: null
+            }
+        }
+        case ACTION.WRITE_PRICE_OF_CONTEST: {
+            return {
+                ...state,
+                priceOfContest: action.priceOfContest,
                 error: null
             }
         }

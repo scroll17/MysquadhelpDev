@@ -17,7 +17,8 @@ import {
     nextContestStageSaga,
     prevContestStageSaga,
     toContestQueueSaga,
-    writeFormDataToStore
+    writeFormDataToStore,
+    priceOfContestToStore
 } from './contestSaga'
 
 function* rootSaga() {
@@ -38,6 +39,8 @@ function* rootSaga() {
 
     yield takeLatest(ACTION.ADD_TO_CONTEST_QUEUE, toContestQueueSaga);
     yield takeLatest(ACTION.WRITE_FORM_DATA_TO_STORE, writeFormDataToStore);
+
+    yield takeLatest(ACTION.GET_PRICE_OF_CONTEST, priceOfContestToStore);
 }
 
 export default rootSaga;

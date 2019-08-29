@@ -1,3 +1,4 @@
+const { CONTEST_TYPE } = require('../utils/consts');
 
 module.exports = (sequelize, DataTypes) => {
     const Contests = sequelize.define('Contests', {
@@ -6,6 +7,13 @@ module.exports = (sequelize, DataTypes) => {
             autoIncrement: true,
             primaryKey: true,
             type: DataTypes.INTEGER
+        },
+        contestType: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                isIn: Object.keys(CONTEST_TYPE)
+            },
         },
         title: {
             type: DataTypes.STRING,
@@ -17,6 +25,13 @@ module.exports = (sequelize, DataTypes) => {
         name: {
             type: DataTypes.STRING,
             allowNull: true,
+            validate: {
+                notEmpty: true,
+            },
+        },
+        price: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
             validate: {
                 notEmpty: true,
             },
@@ -50,12 +65,16 @@ module.exports = (sequelize, DataTypes) => {
             },
         },
         style: {
-            type: DataTypes.TEXT,
+            type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 notEmpty: true,
             },
-        }
+        },
+        files: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
     });
 
 

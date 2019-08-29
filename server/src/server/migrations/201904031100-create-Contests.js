@@ -1,4 +1,7 @@
 'use strict';
+
+const { CONTEST_TYPE } = require('../utils/consts');
+
 module.exports = {
     up: (queryInterface, Sequelize) => {
         return queryInterface.createTable('Contests', {
@@ -7,6 +10,11 @@ module.exports = {
                 autoIncrement: true,
                 primaryKey: true,
                 type: Sequelize.INTEGER
+            },
+            contestId: {
+                type: Sequelize.STRING,
+                onDelete: 'CASCADE',
+                allowNull: false,
             },
             userId: {
                 type: Sequelize.INTEGER,
@@ -18,6 +26,13 @@ module.exports = {
                 },
                 allowNull: false,
             },
+            contestType: {
+                type: Sequelize.STRING,
+                allowNull: false,
+                validate: {
+                    isIn: Object.keys(CONTEST_TYPE)
+                },
+            },
             title: {
                 type: Sequelize.STRING,
                 allowNull: true,
@@ -28,6 +43,13 @@ module.exports = {
             name: {
                 type: Sequelize.STRING,
                 allowNull: true,
+                validate: {
+                    notEmpty: true,
+                },
+            },
+            price: {
+                type: Sequelize.INTEGER,
+                allowNull: false,
                 validate: {
                     notEmpty: true,
                 },
@@ -61,11 +83,15 @@ module.exports = {
                 },
             },
             style: {
-                type: Sequelize.TEXT,
+                type: Sequelize.STRING,
                 allowNull: false,
                 validate: {
                     notEmpty: true,
                 },
+            },
+            files: {
+                type: Sequelize.STRING,
+                allowNull: true,
             },
             createdAt: {
                 allowNull: false,

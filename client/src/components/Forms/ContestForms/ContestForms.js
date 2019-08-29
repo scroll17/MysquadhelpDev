@@ -7,23 +7,29 @@ import DrawContestForm from './DrawContestForm/DrawContestForm'
 import RemoteSubmitButton from '../../Buttons/RemoteSubmitButton/RemoteSubmitButton'
 import BankForm from '../BankForm/BankForm'
 
-import {createContest, prevContestStage, nextContestStage} from "../../../actions/actionCreator";
-import { last, isEmpty, omit, tail, cloneDeep } from 'lodash';
+import {
+    createContest,
+    prevContestStage,
+    nextContestStage,
+    getPriceOfContests
+} from "../../../actions/actionCreator";
+
+import { last, isEmpty, omit } from 'lodash';
 
 import { CONTEST } from "../../../utils/consts";
 
 function ContestForms(props){
     const { contestNow, contestQueue, contestFormData} = props;
 
+    useEffect(() => {
+        props.getPriceOfContests()
+    },[]);
 
     useEffect(() => {
-        const contestStages = tail(contestNow);
-        const formDataToSave = cloneDeep(contestFormData);
+        const formDataToSave = omit(contestFormData, CONTEST.BANKS);
 
-        contestStages.forEach( stage => {
-            if(stage !== CONTEST.BANKS){
-                formDataToSave[stage] = omit(formDataToSave[stage], 'files');
-            }
+        Object.keys(formDataToSave).forEach( stage => {
+            formDataToSave[stage] = omit(formDataToSave[stage], 'files');
         });
         sessionStorage.setItem('contestFormData', JSON.stringify(formDataToSave));
 
@@ -110,6 +116,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => ({
     createNewContest: contest => dispatch(createContest(contest)),
     backToPrevStage: () => dispatch(prevContestStage()),
-    nextContestForm: (contest) => dispatch(nextContestStage(contest))
+    nextContestForm: (contest) => dispatch(nextContestStage(contest)),
+    getPriceOfContests: () => dispatch(getPriceOfContests()),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(ContestForms);

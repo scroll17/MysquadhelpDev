@@ -48,3 +48,6 @@ export const createContest = formData => ({
   type: ACTION.CREATE_CONTEST,
   formData
 });
+export const getPriceOfContests = () => ({
+  type: ACTION.GET_PRICE_OF_CONTEST,
+});

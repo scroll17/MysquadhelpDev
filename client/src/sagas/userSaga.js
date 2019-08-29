@@ -70,7 +70,7 @@ export function* getUserSaga() {
 // ----- ADMIN -----
 export function* getAllUserSaga() {
     try {
-        const {data} = yield call(getAllUser);
+        const { data } = yield call(getAllUser);
         yield put({type: ACTION.USERS_RESPONSE, users: data});
     } catch (e) {
         yield put({type: ACTION.USERS_ERROR, error: e})

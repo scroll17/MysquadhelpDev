@@ -1,3 +1,8 @@
+%span
+  font-size: 22px
+  line-height: 1.42857143
+  font-weight: 400
+
 .container
   display: flex
   flex-direction: row
@@ -36,7 +41,7 @@
 
   .orderSummary
     margin-top: 5px
-    padding: 30px 60px
+    padding: 40px 60px
     width: 50vw
     height: 300px
     display: flex
@@ -44,26 +49,47 @@
 
     .orderTotal
       width: 100%
-      padding: 25px 0 25px 0
       font-weight: 400
+
       display: flex
-      flex-direction: row
+      flex-direction: column
       justify-content: space-between
 
-      .total
-        font-size: 22px
-        text-align: right
-        font-weight: 400
+      .costOfContest
+        display: flex
+        flex-direction: column
+        width: 100%
 
-      .price
-        font-size: 22px
-        text-align: right
-        top: 1px
+        margin: 15px 0
+
+        border-top: 3px solid #28d2d0
+        border-bottom: 3px solid #28d2d0
+
+        .contestPrice
+          display: flex
+          flex-direction: row
+          justify-content: space-between
+
+          padding: 0 10px
+
+          span
+            text-transform: capitalize
+            margin: 5px 0
+            @extend %span
+
+
+      .total
+        display: flex
+        justify-content: space-between
+
+        span
+          @extend %span
+
 
     .order
       font-size: 22px
       line-height: 1.42857143
-      border-bottom: 3px solid #28d2d0
+      margin-bottom: 5px
 
 @media only screen and (max-width: 850px)
   .container
@@ -75,4 +101,4 @@
       min-width: 290px
       width: 70vw
       padding: 0
-      height: 200px
+      height: 250px

@@ -19,3 +19,4 @@ export const banUserById = (userId, isBanned) => axios.put(`${restURL}${URL.USER
 
 //----- CONTEST -----
 export const createContest = ( contest ) => axios.post(`${restURL}${URL.CONTEST}`,  contest );
+export const getPriceOfContests = () => axios.get(`${restURL}${URL.CONTEST_PRICE}`);
