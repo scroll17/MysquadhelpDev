@@ -7,7 +7,7 @@ import style from './SignupForm.module.sass';
 import Input from './Input/Input'
 import JoinAs from './JoinAs/JoinAs'
 
-import { ROLE, FORM } from '../../../utils/consts'
+import { ROLE, FORM } from '../../../utils/constants/consts'
 
 import { asyncValidationSignUpForm } from '../../../validation/asyncValidationSignUpForm'
 

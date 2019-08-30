@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import style from './ListItem.module.sass';
 
 import { URL } from "../../../api/baseURL";
-import { DISPLAY } from "../../../utils/consts";
+import { DISPLAY } from "../../../utils/constants/consts";
 
 import { isEqual } from 'lodash';
 
@@ -20,7 +20,7 @@ function ListItem(props){
                         return <hr key={id}/>;
                     }
                     return (
-                        <Link to={"/"} key={item}>
+                        <Link to={URL.HOME} key={item}>
                             <li>{item}</li>
                         </Link>
                     )

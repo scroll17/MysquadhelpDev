@@ -35,7 +35,7 @@ module.exports = {
             },
             title: {
                 type: Sequelize.STRING,
-                allowNull: true,
+                allowNull: false,
                 validate: {
                     notEmpty: true,
                 },
@@ -44,7 +44,7 @@ module.exports = {
                 type: Sequelize.STRING,
                 allowNull: true,
                 validate: {
-                    notEmpty: true,
+                    notEmpty: false,
                 },
             },
             price: {
@@ -77,14 +77,17 @@ module.exports = {
             },
             targetCustomers: {
                 type: Sequelize.TEXT,
-                allowNull: false,
+                allowNull: true,
                 validate: {
-                    notEmpty: true,
+                    notEmpty: false,
                 },
             },
             style: {
                 type: Sequelize.STRING,
-                allowNull: true,
+                allowNull: false,
+                validate: {
+                    notEmpty: true,
+                },
             },
             files: {
                 type: Sequelize.STRING,

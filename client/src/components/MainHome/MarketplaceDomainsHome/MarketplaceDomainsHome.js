@@ -1,7 +1,7 @@
 import React  from 'react';
 import style from './MarketplaceDomainsHome.module.sass';
 
-import { textForMarketplaceDomainsHome } from '../../../utils/textAndLinksForPages'
+import { textForMarketplaceDomainsHome } from '../../../utils/textAndLinksForPages/textAndLinksForPages'
 
 function MarketplaceDomainsHome(){
 

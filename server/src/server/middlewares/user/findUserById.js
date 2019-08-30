@@ -2,10 +2,11 @@ const { NotFound } = require("../../errors/errors");
 const { User } = require('../../models/index');
 
 module.exports = (idSource) => async (req,res,next) => {
-    let id;
 
+    let id;
     if(idSource === 'decoded'){
-        id = req.body.decoded.userId;
+        console.log('decoded 2', req.decoded);
+        id = req.decoded.userId;
     }else if(idSource === 'params'){
         id = req.params.id;
     }

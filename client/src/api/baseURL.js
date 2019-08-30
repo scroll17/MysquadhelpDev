@@ -21,10 +21,15 @@ export const URL = {
   NAME_IDEAS: "/Name-Ideas",
 
   // USER
+  HOME: '/',
   NOT_FOUND: "/notfound",
   ADMIN_PANEL: "/adminpanel",
   DASHBOARD: "/dashboard",
   MY_ACCOUNT: "/myaccount",
   MESSAGE: "/messages",
   AFFILIATE_DASHBOARD: "/affiliate-dashboard"
+};
+
+export const SEARCH = {
+  TYPE: '?type='
 };

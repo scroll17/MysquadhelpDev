@@ -7,7 +7,7 @@ import style from './UserMenu.module.sass';
 import { userLogout } from "../../../actions/actionCreator";
 
 import { URL } from '../../../api/baseURL'
-import { ROLE, DISPLAY, VIEW } from '../../../utils/consts'
+import { ROLE, DISPLAY, VIEW } from '../../../utils/constants/consts'
 
 function UserNavigationSmartphone(props){
     const [displayStyle, setDisplayStyle] = useState(DISPLAY.NONE);
@@ -55,7 +55,7 @@ function UserNavigationSmartphone(props){
                         <Link to={URL.MESSAGE}><li> Messages </li></Link>
                         <Link to={URL.AFFILIATE_DASHBOARD}> <li> Affiliate Dashboard </li></Link>
                         {adminPanel}
-                        <Link to={""} onClick={props.clickToLogout} ><li>Logout</li></Link>
+                        <span  onClick={props.clickToLogout}><li>Logout</li></span>
                     </ul>
                 }
 

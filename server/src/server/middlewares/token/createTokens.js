@@ -3,7 +3,6 @@ const {  RefreshToken } = require('../../models/index');
 
 module.exports = async (req, res, next) => {
     const { user } = req.body;
-
     try{
         const tokenPair = {
             accessToken: await jwtSignAccess(user.email, user.firstName, user.role, user.id),

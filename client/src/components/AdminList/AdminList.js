@@ -3,7 +3,6 @@ import connect from "react-redux/es/connect/connect";
 
 import style from './AdminList.module.sass';
 
-import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import ListTo from './ListTo/ListTo';
@@ -58,21 +57,11 @@ class AdminList extends Component {
             this.props.getAllUser();
         }
     }
-
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        const { error } = this.props;
-        if(error && error.response){
-            toast.error(error.response.data.statusText, {
-                position: toast.POSITION.TOP_RIGHT
-            });
-        }
-    }
 }
 
 const mapStateToProps = (state) => ({
     user: state.userReducers.user,
     users: state.userReducers.users,
-    error: state.userReducers.error
 });
 const mapDispatchToProps = dispatch => ({
     getAllUser: () => dispatch(getAllUser()),

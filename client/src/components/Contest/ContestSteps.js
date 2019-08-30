@@ -5,9 +5,9 @@ import ContestTypes from './СontestTypes/СontestTypes'
 import {
     ContestPopularCategories,
     ContestOtherCategories,
-    ContestBundlePackages }  from '../../utils/textAndLinksForPages'
+    ContestBundlePackages }  from '../../utils/textAndLinksForPages/textAndLinksForPages'
 
-import { HEX_COLOR } from "../../utils/consts";
+import { HEX_COLOR } from "../../utils/constants/consts";
 
 function ContestSteps(){
         const style = {

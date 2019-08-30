@@ -1,7 +1,7 @@
 import React  from 'react';
 import style from './StepsForHowDoNameContestsWork.module.sass';
 
-import { HEX_COLOR } from "../../../../utils/consts";
+import { HEX_COLOR } from "../../../../utils/constants/consts";
 
 function StepsForHowDoNameContestsWork(props ){
 

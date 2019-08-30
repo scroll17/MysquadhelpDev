@@ -1,7 +1,13 @@
-import config from '../boot/config';
+import config from '../../boot/config';
+
 export const STORE = config();
 
-export const ROLES = ['admin','buyer','creative'];
+export const SUCCESS_CODE = {
+    OK: 200,
+    CREATED: 201,
+    ACCEPTED: 202
+};
+
 
 export const ERROR = {
     Forbidden: 403,

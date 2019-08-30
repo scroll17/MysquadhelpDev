@@ -4,7 +4,7 @@ import App from '../App';
 
 import { toast } from 'react-toastify';
 
-import { STORE } from '../utils/consts';
+import { STORE } from '../utils/constants/consts';
 
 toast.configure({
     autoClose: 2000,

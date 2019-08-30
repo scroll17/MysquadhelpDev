@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import style from './ListTo.module.sass';
 
 import * as _ from 'lodash';
+import {URL} from "../../../api/baseURL";
 
 function ListTo(props){
     const { clickToItem, bannedUsers} = props;
@@ -34,7 +35,7 @@ function ListTo(props){
                     {renderNames()}
                 </div>
             </div>
-            <Link to={'/'} className={style.headerHome}>
+            <Link to={URL.HOME} className={style.headerHome}>
                 <span>
                     Home
                 </span>

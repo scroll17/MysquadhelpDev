@@ -7,7 +7,7 @@ import style from './UserNavigationSmartphone.module.sass';
 import UserMenu from '../UserMenu/UserMenu'
 
 import { URL } from '../../../api/baseURL'
-import { DISPLAY } from '../../../utils/consts'
+import { DISPLAY } from '../../../utils/constants/consts'
 
 function UserNavigationSmartphone(props) {
     const [displayStyle, setDisplayStyle] = useState(DISPLAY.NONE);
@@ -23,7 +23,7 @@ function UserNavigationSmartphone(props) {
                 <div className={style.container}>
                     <div className={style.navBarHeader}>
 
-                        <Link to={'/'} className={style.navBarBrand}>
+                        <Link to={URL.HOME} className={style.navBarBrand}>
                             <img src={'https://www.squadhelp.com/images/squadhelp-logo-color.jpg'} alt={''} />
                         </Link>
 
@@ -54,11 +54,11 @@ function UserNavigationSmartphone(props) {
                                     </li>
                                 }
 
-                                <li><Link to={"/"}>Name ideas</Link></li>
-                                <li><Link to={"/"}>Contest</Link></li>
-                                <li><Link to={"/"}>Our work</Link></li>
-                                <li><Link to={"/"}>Names for sale</Link></li>
-                                <li><Link to={"/"}>Blog</Link></li>
+                                <li><Link to={URL.HOME}>Name ideas</Link></li>
+                                <li><Link to={URL.HOME}>Contest</Link></li>
+                                <li><Link to={URL.HOME}>Our work</Link></li>
+                                <li><Link to={URL.HOME}>Names for sale</Link></li>
+                                <li><Link to={URL.HOME}>Blog</Link></li>
                             </ul>
                         }
 

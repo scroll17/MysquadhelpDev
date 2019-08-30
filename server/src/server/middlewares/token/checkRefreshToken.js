@@ -6,9 +6,8 @@ module.exports = async (req, res, next) => {
     const { refreshToken } = req.body;
     try{
         req.decoded = await verifyToken(refreshToken, TOKEN.REFRESH);
-        if(req.decoded){
-            return next()
-        }
+
+        return next()
     }catch (err) {
         next(err)
     }

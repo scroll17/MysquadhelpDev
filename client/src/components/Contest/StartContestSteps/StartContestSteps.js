@@ -5,7 +5,7 @@ import style from './StartContestSteps.module.sass';
 
 import ProgressMain from './ProgressMain/ProgressMain'
 
-import { textForStartContestSteps  } from '../../../utils/textAndLinksForPages'
+import { textForStartContestSteps  } from '../../../utils/textAndLinksForPages/textAndLinksForPages'
 
 import { last } from 'lodash';
 

@@ -12,40 +12,22 @@
       "contestTo": ["name","logo"]
     },
     {
-      "src":  ["Company-Names","Logos"],
-      "name":"Name + Logo + Business Cards",
-      "text":"Get the branding essentials plus matching business cards and save'",
-      "contestTo":["startcontest"]
-    },
-    {
       "src": ["Company-Names","Taglines"],
       "name":"Name + Tagline",
       "text":"Communicate your vision with the perfect Name/Tagline combo.",
-      "contestTo":["startcontest"]
-    },
-    {
-      "src": ["Company-Names","Logos","Taglines"],
-      "name":"Name + Logo + Tagline",
-      "text":"Establish your entire brand identity and save with this bundle.",
-      "contestTo":["name","logo","tagline"]
-    },
-    {
-      "src": ["Logos","Business-Cards"],
-      "name":"Logo + Business Cards",
-      "text":"Get your logo and business cards designed together and save",
-      "contestTo":["name","logo","tagline"]
+      "contestTo": ["name","tagline"]
     },
     {
       "src": ["Logos","Taglines"],
       "name":"Logo + Tagline",
       "text":"Description for Logo + Tagline will come here",
-      "contestTo":["startcontest"]
+      "contestTo": ["logo","tagline"]
     },
     {
-      "src": ["Logos","Business-Cards","Stationary"],
-      "name":"Logo + Business Cards + Stationery",
-      "text":"Get your logo, business cards and stationery designed together and save",
-      "contestTo":["startcontest"]
+      "src": ["Company-Names","Logos","Taglines"],
+      "name":"Name + Logo + Tagline",
+      "text":"Establish your entire brand identity and save with this bundle.",
+      "contestTo": ["name","tagline","logo"]
     }
   ]
 }

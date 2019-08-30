@@ -20,7 +20,7 @@ import UserLoader from './components/Route/UserLoader';
 import PrivateRoute from './components/Route/PrivateRoute'
 
 import { URL } from './api/baseURL'
-import { ROLE } from './utils/consts'
+import { ROLE } from './utils/constants/consts'
 
 
 history.listen( _ => {
@@ -30,7 +30,7 @@ history.listen( _ => {
 class App extends Component{
     IfUserIsLoggedIn(component){
         if(this.props.user){
-            return () => <Redirect to='/'/>
+            return () => <Redirect to={URL.HOME}/>
         }
         return component
     }
@@ -40,7 +40,7 @@ class App extends Component{
             <UserLoader>
                 <Router history={history}>
                     <Switch>
-                        <Route exact path={"/"}  component={MainHomePage}/>
+                        <Route exact path={URL.HOME}  component={MainHomePage}/>
 
                         <Route path={URL.LOGIN}
                                component={this.IfUserIsLoggedIn(LoginPages)}/>

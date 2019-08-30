@@ -1,6 +1,6 @@
 import isEmpty from 'lodash/isEmpty';
 
-import {ContestNameForm as contestForm} from './../utils/textAndLinksForPages'
+import {ContestNameForm as contestForm} from '../utils/textAndLinksForPages/textAndLinksForPages'
 
 
 const validateA = (value) => {

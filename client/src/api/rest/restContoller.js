@@ -1,7 +1,7 @@
 import axios from '../axios/config';
 
 import { restURL, URL  } from '../baseURL';
-import { TOKEN } from "../../utils/consts";
+import { TOKEN } from "../../utils/constants/consts";
 
 //----- USER -----
 export const loginUser = ( user ) => axios.post(`${restURL}${URL.LOGIN}`,  user );

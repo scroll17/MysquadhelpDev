@@ -4,12 +4,10 @@ import connect from "react-redux/es/connect/connect";
 
 import style from './LoginForm.module.sass';
 
-import { toast } from 'react-toastify';
-
 import { getUserResponse } from "../../../actions/actionCreator";
 import { isEqual } from 'lodash'
 
-import {ERROR, FORM} from "../../../utils/consts";
+import {ERROR, FORM} from "../../../utils/constants/consts";
 
 let LoginForm = (props) => {
 
@@ -21,11 +19,6 @@ let LoginForm = (props) => {
 
             if( isEqual(response.status, ERROR.NotFound) ){
                 setNotFoundError(true);
-            }
-            if( isEqual(response.status, ERROR.Forbidden) ){
-                toast.error(response.statusText, {
-                    position: toast.POSITION.TOP_RIGHT
-                });
             }
         }
         return () => {

@@ -68,6 +68,14 @@ const HTTP_CODE = {
         OK: {
             CODE: 200,
             TEXT: 'OK',
+        },
+        CREATED:{
+            CODE: 201,
+            TEXT: 'Created',
+        },
+        ACCEPTED: {
+            CODE: 202,
+            TEXT: 'Accepted',
         }
     },
     SERVER_ERROR:{

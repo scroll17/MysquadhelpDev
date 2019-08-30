@@ -6,9 +6,10 @@ import history from "../boot/browserHistory";
 
 import { reset } from 'redux-form';
 
-import { CONTEST } from "../utils/consts";
+import { CONTEST } from "../utils/constants/consts";
 
 import * as _ from 'lodash';
+import {URL} from "../api/baseURL";
 
 export function* createContestSaga({formData}) {
     try {
@@ -35,9 +36,10 @@ export function* createContestSaga({formData}) {
                     const currentDataField = currentFormData[field];
 
                     if(field === 'files'){
+                        const originalFileName = `${performance.now()}_${currentDataField.name}`;
 
-                        convertedFormData[field] = currentDataField.name;
-                        finalDataToSend.append(field, currentDataField);
+                        convertedFormData[field] = originalFileName;
+                        finalDataToSend.append(field, currentDataField, originalFileName);
 
                     }else if(Array.isArray(currentDataField)){
 
@@ -58,9 +60,9 @@ export function* createContestSaga({formData}) {
         finalDataToSend.append("formFields", JSON.stringify(dataToSend));
 
         const { data } = yield createContest(finalDataToSend);
-        console.log(data);
+        yield put({type: ACTION.USERS_RESPONSE});
 
-        for (let formIndex = 1; formIndex <= contestNow.length; formIndex++) {
+        for (let formIndex = 1; formIndex <= _.size(contestNow); formIndex++) {
             yield put(reset(contestNow[formIndex]))
         }
         sessionStorage.clear();
@@ -68,9 +70,7 @@ export function* createContestSaga({formData}) {
         yield put({type: ACTION.STAGE_CONTEST, contestNow: [CONTEST.SELECT], contestQueue:[]});
         yield put({type: ACTION.WRITE_CONTEST_FORM_DATA, contestFormData: {}});
 
-        yield put({type: ACTION.USERS_RESPONSE});
-
-        yield call(history.push, '/');
+        yield call(history.push, URL.HOME);
     } catch (e) {
         yield put({type: ACTION.USERS_ERROR, error: e})
     }

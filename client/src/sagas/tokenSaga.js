@@ -3,7 +3,7 @@ import { call, put } from 'redux-saga/effects';
 import history from '../boot/browserHistory';
 
 import { URL } from '../api/baseURL';
-import { TOKEN } from '../utils/consts'
+import { TOKEN } from '../utils/constants/consts'
 
 
 export function saveTokenSaga({tokens}) {

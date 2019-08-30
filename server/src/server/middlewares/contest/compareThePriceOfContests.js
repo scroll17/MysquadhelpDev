@@ -4,8 +4,6 @@ const { CONTEST_PRICE } = require('../../utils/consts');
 module.exports = (req, res, next) => {
     const { contests } = req.body;
 
-    console.log('compareThePriceOfContests');
-
     contests.forEach( form => {
         const priceClient = form.price;
         const priceServer = CONTEST_PRICE.get(form.contestType);

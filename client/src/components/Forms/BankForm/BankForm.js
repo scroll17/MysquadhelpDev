@@ -9,7 +9,7 @@ import 'react-credit-cards/lib/styles.scss';
 
 import { tail } from 'lodash';
 
-import { CONTEST } from '../../../utils/consts'
+import { CONTEST } from '../../../utils/constants/consts'
 
 import {
     formatCreditCardNumber,

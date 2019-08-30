@@ -13,7 +13,10 @@ import {
     getAllUser,
     banUserById,
 } from '../api/rest/restContoller';
-import {TOKEN} from "../utils/consts";
+import {TOKEN} from "../utils/constants/consts";
+import {URL} from "../api/baseURL";
+
+import historyPushOrBack from '../utils/historyPushOrBack';
 
 
 //----- USER -----
@@ -24,7 +27,9 @@ export function* loginUserSaga({user}) {
         yield put({type: ACTION.USERS_RESPONSE, user: data.user});
         yield put({type: ACTION.SAVE_TOKENS_LOCALLY, tokens: data.tokenPair});
 
-        yield call(history.push, '/');
+
+        //console.log(document.referrer);
+        yield historyPushOrBack(history, call, URL.HOME);
 
     } catch (e) {
         yield put({type: ACTION.USERS_ERROR, error: e})
@@ -38,7 +43,8 @@ export function* createUserSaga({user}) {
         yield put({type: ACTION.USERS_RESPONSE, user: data.user});
         yield put({type: ACTION.SAVE_TOKENS_LOCALLY, tokens: data.tokenPair});
 
-        yield call(history.push, '/');
+        yield historyPushOrBack(history, call, URL.HOME);
+
     } catch (e) {
         yield put({type: ACTION.USERS_ERROR, error: e})
     }
@@ -96,3 +102,4 @@ export function* banUserByIdSaga({userId, isBanned}) {
         yield put({type: ACTION.USERS_ERROR, error: e});
     }
 }
+

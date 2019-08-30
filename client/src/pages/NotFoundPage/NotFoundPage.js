@@ -3,14 +3,15 @@ import {Link} from "react-router-dom";
 
 import style from './NotFoundPage.module.sass';
 
-import { ERROR } from '../../utils/consts'
+import { ERROR } from '../../utils/constants/consts'
+import {URL} from "../../api/baseURL";
 
 function NotFoundPages() {
     return (
         <div className={style.notFoundPages}>
             <div className={style.nameError}>{ERROR.NotFound}</div>
             <div className={style.errorMassage}>Not Found !</div>
-            <Link to={'/'}>
+            <Link to={URL.HOME}>
                 <div className={style.logo} />
             </Link>
         </div>

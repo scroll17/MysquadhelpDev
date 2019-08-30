@@ -5,7 +5,7 @@ import style from './ItemContestType.module.sass';
 
 import { addToContestQueue } from "../../../actions/actionCreator";
 
-import { HEX_COLOR } from "../../../utils/consts";
+import { HEX_COLOR } from "../../../utils/constants/consts";
 
 function ItemContestType(props){
     const { contestTo } = props;

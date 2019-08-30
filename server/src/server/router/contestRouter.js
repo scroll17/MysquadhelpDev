@@ -20,9 +20,8 @@ const storage = multer.diskStorage({
         cb(null, path.join(__dirname, '../tmp/taskFiles'))
     },
     filename: function (req, file, cb) {
-        const originalFileName = `${Date.now()}_${file.originalname}`;
 
-        cb(null, originalFileName);
+        cb(null, file.originalname);
     }
 });
 const upload = multer({storage: storage});

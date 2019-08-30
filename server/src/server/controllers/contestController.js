@@ -1,6 +1,8 @@
 const uuidv1 = require('uuid/v1');
 
 const error = require("../errors/errors");
+const {HTTP_CODE : { SUCCESS }} = require('../utils/consts');
+
 const { Contests } = require('../models/index');
 
 const { CONTEST_PRICE } = require('../utils/consts');
@@ -13,7 +15,7 @@ const {
 
 
 module.exports.createContest = async (req, res, next) => {
-    const { contests, files } = req.body;
+    const { contests } = req.body;
     const { accessToken } = req;
     const uuid = uuidv1();
 
@@ -21,29 +23,18 @@ module.exports.createContest = async (req, res, next) => {
     contests.forEach( contest => {
        contest.contestId = uuid;
        contest.userId = accessToken.id;
-
-       if(contest.files){
-           contest.files = files[contest.files]
-       }
     });
 
     try{
-        //console.log('contests', contests);
-
         const createdContest = await Contests.bulkCreate(
-            contests,
-            {
-                /*validate: true,*/
-                returning: true
-            }
-        );
+                contests, {
+                    returning: true,
+                }
+            );
 
-        //console.log('createdContest', createdContest);
-
-        res.send('OK')
-
+        res.status(SUCCESS.CREATED .CODE).send("Contest created!")
     }catch (err) {
-        next(new error.NotFound(err.name))
+        next(new error.BadRequest(err.name))
     }
 };
 

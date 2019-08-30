@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         title: {
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: false,
             validate: {
                 notEmpty: true,
             },
@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: true,
             validate: {
-                notEmpty: true,
+                notEmpty: false,
             },
         },
         price: {
@@ -64,14 +64,17 @@ module.exports = (sequelize, DataTypes) => {
         },
         targetCustomers: {
             type: DataTypes.TEXT,
-            allowNull: false,
+            allowNull: true,
             validate: {
-                notEmpty: true,
+                notEmpty: false,
             },
         },
         style: {
             type: DataTypes.STRING,
-            allowNull: true,
+            allowNull: false,
+            validate: {
+                notEmpty: true,
+            },
         },
         files: {
             type: DataTypes.STRING,

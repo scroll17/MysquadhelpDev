@@ -6,7 +6,7 @@ import TemplateCarouselHome from '../TemplateCarouselHome/TemplateCarouselHome'
 
 import { URL } from '../../../api/baseURL';
 
-import { LinksForHowItWorksHome } from '../../../utils/textAndLinksForPages';
+import { LinksForHowItWorksHome } from '../../../utils/textAndLinksForPages/textAndLinksForPages';
 
 function HowItWorksHome(){
 

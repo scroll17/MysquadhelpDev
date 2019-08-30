@@ -7,7 +7,7 @@ import DropZone from "../DropZone/DropZone";
 
 import style from '../DrawContestForm/DrawContestForm.module.sass';
 
-import { TYPE_FIELD } from "../../../../utils/consts";
+import { TYPE_FIELD } from "../../../../utils/constants/consts";
 
 import { isEqual } from 'lodash';
 

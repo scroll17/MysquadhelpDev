@@ -1,9 +1,26 @@
 import axios from 'axios';
 import ACTION from '../../actions/actiontsTypes';
 
+import { toast } from 'react-toastify';
+
 import { refreshToken } from '../rest/restContoller'
 
-import { STORE, TOKEN, ERROR } from '../../utils/consts';
+import { STORE, TOKEN, ERROR, SUCCESS_CODE } from '../../utils/constants/consts';
+
+const responseHandler = (response) => {
+    console.log(response);
+    switch (response.status) {
+        case SUCCESS_CODE.CREATED:
+            toast.success(response.data, {
+                position: toast.POSITION.TOP_RIGHT
+            });
+            break;
+        default:
+            break;
+    }
+
+    return response;
+};
 
 const requestHandler = (config) => {
     STORE.dispatch({type: ACTION.USERS_REQUEST});
@@ -31,6 +48,9 @@ const errorHandler = async (error) => {
 
                 return axios.request();
             default:
+                toast.error(error.response.statusText, {
+                    position: toast.POSITION.TOP_RIGHT
+                });
                 return await Promise.reject(error);
         }
     } catch (err) {
@@ -48,7 +68,7 @@ axios.interceptors.request.use(
 
 
 axios.interceptors.response.use(
-    response => response,
+    response => responseHandler(response),
     error => errorHandler(error)
 );
 

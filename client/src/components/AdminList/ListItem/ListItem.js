@@ -1,8 +1,8 @@
 import React from 'react';
 import style from './ListItem.module.sass';
 
-import { ROLE } from '../../../utils/consts'
-import { HEX_COLOR } from "../../../utils/consts";
+import { ROLE } from '../../../utils/constants/consts'
+import { HEX_COLOR } from "../../../utils/constants/consts";
 
 function ListItem(props){
     const { clickToItem, name, id, status, role } = props;

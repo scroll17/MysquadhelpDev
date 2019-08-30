@@ -1,11 +1,12 @@
 import React from 'react'
-import {connect} from 'react-redux'
-import {submit} from 'redux-form'
+import { connect } from 'react-redux'
+import { submit } from 'redux-form'
 
-import { isEmpty, last } from 'lodash';
+import { isEmpty , last } from 'lodash';
+
 
 const SubmitButton = (props) => {
-    const {dispatch, contestQueue, contestNow} = props;
+    const { dispatch, contestQueue, contestNow } = props;
     const formNow = last(contestNow);
 
     return (
