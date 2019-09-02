@@ -1,4 +1,4 @@
-const { RefreshToken } = require('../../models/index');
+const { RefreshToken } = require('../../models');
 const { TOKEN: MAX_NUMBER_OF_REFRESH_TOKEN } = require('../../utils/consts');
 
 module.exports = async (req, res, next) => {

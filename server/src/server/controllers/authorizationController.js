@@ -1,5 +1,5 @@
 const error = require("../errors/errors");
-const { User, RefreshToken } = require('../models/index');
+const { User, RefreshToken } = require('../models');
 
 const {
     TOKEN,
@@ -81,10 +81,7 @@ module.exports.giveAccessUser = async (req,res,next) => {
             }
         });
 
-        /*if(req.ability.cannot(ACTIONS.READ, user)){
-            return next(new error.Forbidden());
-        }*/
-        //req.ability.throwUnlessCan('read', user);
+        req.ability.throwUnlessCan('read', user);
 
         return res.send(user);
     }catch (err) {

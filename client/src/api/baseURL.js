@@ -1,4 +1,4 @@
-export const baseURL = 'http://localhost:3000'; //192.168.0.106 //localhost
+export const baseURL = 'http://192.168.0.106:3000'; //192.168.0.106 //localhost
 export const restURL = `${baseURL}/api`;
 
 export const URL = {

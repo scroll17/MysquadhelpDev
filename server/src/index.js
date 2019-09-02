@@ -28,4 +28,12 @@ app.use(
     errorHandlerDefault,
 );
 
-app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`));
+const server = require('http').Server(app);
+const io = require('socket.io').listen(server);
+
+io.on('connection', function (socket) {
+    console.log('usre connetion');
+    socket.emit('connected', "your connected");
+});
+
+server.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`));

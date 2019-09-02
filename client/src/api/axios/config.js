@@ -2,13 +2,13 @@ import axios from 'axios';
 import ACTION from '../../actions/actiontsTypes';
 
 import { toast } from 'react-toastify';
+import toastifyErrorMessage from '../../utils/toastifyErrorMessage'
 
 import { refreshToken } from '../rest/restContoller'
 
 import { STORE, TOKEN, ERROR, SUCCESS_CODE } from '../../utils/constants/consts';
 
 const responseHandler = (response) => {
-    console.log(response);
     switch (response.status) {
         case SUCCESS_CODE.CREATED:
             toast.success(response.data, {
@@ -48,7 +48,9 @@ const errorHandler = async (error) => {
 
                 return axios.request();
             default:
-                toast.error(error.response.statusText, {
+                const { statusText, data } = error.response;
+                console.log(error.response);
+                toast.error(toastifyErrorMessage(statusText, data), {
                     position: toast.POSITION.TOP_RIGHT
                 });
                 return await Promise.reject(error);

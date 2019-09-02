@@ -19,7 +19,6 @@ router.get(API.ALL_USER,
 router.put(API.USER_ID,
     findUserById('params'),
     updateUserById,
-
 );
 
 module.exports = router;

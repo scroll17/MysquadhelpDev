@@ -1,5 +1,5 @@
 const { jwtSignAccess, jwtSignRefresh } = require('./checkJwtTokens');
-const {  RefreshToken } = require('../../models/index');
+const {  RefreshToken } = require('../../models');
 
 module.exports = async (req, res, next) => {
     const { user } = req.body;

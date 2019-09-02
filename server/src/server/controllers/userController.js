@@ -1,5 +1,5 @@
 const error = require("../errors/errors");
-const { User } = require('../models/index');
+const { User } = require('../models');
 
 const {
     ABILITY: { SUBJECT, ACTIONS },

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import connect from "react-redux/es/connect/connect";
 
+
 import style from "./SignUpPage.module.sass";
 
 import HeaderLoginAndSignUp from "../../components/HeaderLoginAndSignUp/HeaderLoginAndSignUp";

@@ -7,6 +7,7 @@ const defineAbilities = require('../middlewares/defineAbilities');
 import authorizationRouter from './authorizationRouter';
 import userRouter from './userRouter';
 import contestRouter from './contestRouter';
+import paymentRouter from './paymentRouter';
 
 
 const router = express.Router();
@@ -18,7 +19,8 @@ router.use(defineAbilities);
 router.use(
     authorizationRouter,
     userRouter,
-    contestRouter
+    contestRouter,
+    paymentRouter
 );
 
 

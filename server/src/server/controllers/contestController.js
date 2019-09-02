@@ -3,7 +3,7 @@ const uuidv1 = require('uuid/v1');
 const error = require("../errors/errors");
 const {HTTP_CODE : { SUCCESS }} = require('../utils/consts');
 
-const { Contests } = require('../models/index');
+const { Contests } = require('../models');
 
 const { CONTEST_PRICE } = require('../utils/consts');
 
@@ -26,13 +26,9 @@ module.exports.createContest = async (req, res, next) => {
     });
 
     try{
-        const createdContest = await Contests.bulkCreate(
-                contests, {
-                    returning: true,
-                }
-            );
+        await Contests.bulkCreate(contests);
 
-        res.status(SUCCESS.CREATED .CODE).send("Contest created!")
+        res.status(SUCCESS.CREATED.CODE).send("Contest created!")
     }catch (err) {
         next(new error.BadRequest(err.name))
     }
@@ -47,5 +43,3 @@ module.exports.sendPriceToContests =  (req, res, next) => {
         next( new error.NotFound())
     }
 };
-
-

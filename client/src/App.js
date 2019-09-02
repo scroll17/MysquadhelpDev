@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, Redirect } from "react-router-dom";
-import { Router } from 'react-router'
+import { Router, Route, Switch, Redirect } from "react-router-dom";
 
 import connect from "react-redux/es/connect/connect";
 import history from "./boot/browserHistory";
@@ -15,9 +14,10 @@ import DashboardPage from './pages/DashboardPage/DashboardPage'
 
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 
-
 import UserLoader from './components/Route/UserLoader';
 import PrivateRoute from './components/Route/PrivateRoute'
+
+import ChatPage from './pages/ChatPage/ChatPage'
 
 import { URL } from './api/baseURL'
 import { ROLE } from './utils/constants/consts'
@@ -57,6 +57,8 @@ class App extends Component{
                         <Route component={ NotFoundPage } />
                     </Switch>
                 </Router>
+
+                {this.props.user && <ChatPage />}
             </UserLoader>
         )
     }

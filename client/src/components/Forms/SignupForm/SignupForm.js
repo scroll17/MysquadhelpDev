@@ -13,6 +13,10 @@ import { asyncValidationSignUpForm } from '../../../validation/asyncValidationSi
 
 class SignUpForm extends Component {
 
+    styleButtonWithPristine = {
+      cursor: 'not-allowed',
+    };
+
     firstInputs =  props => <Input {...props}
                           name={{one:"firstName", two:'lastName'}}
                           placeholder={{one:"First name", two:'Last name'}}
@@ -29,7 +33,7 @@ class SignUpForm extends Component {
                          type={{one:"password", two:'password'}}  />;
 
     render () {
-        const { handleSubmit, submitting } = this.props;
+        const { handleSubmit, submitting, pristine } = this.props;
 
         return (
             <div className={style.signUpForm}>
@@ -47,7 +51,12 @@ class SignUpForm extends Component {
                     <JoinAs roles={ROLE.CREATIVE} />
 
                     <div className={style.button}>
-                        <button type="submit" disabled={submitting}>Create account</button>
+                        <button type="submit"
+                                disabled={pristine || submitting}
+                                style={pristine ? this.styleButtonWithPristine : null}
+                        >
+                            Create account
+                        </button>
                     </div>
 
                     <div className={style.finePrint}>

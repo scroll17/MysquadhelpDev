@@ -5,22 +5,21 @@ const multer = require('multer');
 
 const {
  createContest,
- sendPriceToContests
+ sendPriceToContests,
+ paymentOfContests,
 } = require('../controllers/contestController');
 
 
 const parseContestFormData = require('../middlewares/contest/parseContestFormData');
 const compareThePriceOfContests = require('../middlewares/contest/compareThePriceOfContests');
 
-const { URL: { API, QUERY } } = require('../utils/consts');
+const { URL: { API } } = require('../utils/consts');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-
         cb(null, path.join(__dirname, '../tmp/taskFiles'))
     },
     filename: function (req, file, cb) {
-
         cb(null, file.originalname);
     }
 });
@@ -40,6 +39,5 @@ router.post(API.CONTEST,
 router.get(API.CONTEST_PRICE,
     sendPriceToContests,
 );
-
 
 module.exports = router;

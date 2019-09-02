@@ -1,5 +1,5 @@
 const { NotFound } = require("../../errors/errors");
-const { User } = require('../../models/index');
+const { User } = require('../../models');
 
 module.exports = (idSource) => async (req,res,next) => {
 

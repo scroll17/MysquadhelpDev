@@ -60,6 +60,7 @@ export function* createContestSaga({formData}) {
         finalDataToSend.append("formFields", JSON.stringify(dataToSend));
 
         const { data } = yield createContest(finalDataToSend);
+        console.log(data);
         yield put({type: ACTION.USERS_RESPONSE});
 
         for (let formIndex = 1; formIndex <= _.size(contestNow); formIndex++) {

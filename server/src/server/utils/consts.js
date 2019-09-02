@@ -7,6 +7,12 @@ const REFRESH_SECRET = "xzzzzzzzzz";
 const EXPIRES_IN_ACCESS = '30min'; //TODO
 const EXPIRES_IN_REFRESH = '15d';
 
+const SQUAD_HELP_BANK_CARD = {
+    number: '0000000000000001',
+    expiry: '01/25',
+    cvc: '120',
+};
+
 const ROLE = {
     ADMIN: "admin",
     BUYER: "buyer",
@@ -43,7 +49,9 @@ const URL = {
         REFRESH: '/refresh',
 
         CONTEST: '/contest',
-        CONTEST_PRICE: '/contest/price'
+        CONTEST_PRICE: '/contest/price',
+
+        PAYMENT: '/payment'
     },
 };
 
@@ -114,6 +122,10 @@ const HTTP_CODE = {
     }
 };
 
+const ERROR_MESSAGE = {
+    YOUR_BANNED: 'Your banned !'
+};
+
 module.exports = {
     PORT,
 
@@ -136,5 +148,9 @@ module.exports = {
 
     CONTEST_TYPE,
     CONTEST_PRICE,
+
+    ERROR_MESSAGE,
+
+    SQUAD_HELP_BANK_CARD,
 };
 
