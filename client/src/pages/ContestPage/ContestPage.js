@@ -10,7 +10,7 @@ import UserNavigation from "../../components/UserNavigation/UserNavigation";
 import Footer from '../../components/Footer/Footer'
 
 import { last } from 'lodash';
-import { CONTEST } from "../../utils/constants/consts";
+import { CONTEST } from "../../constants";
 
 class ContestPage extends Component{
 

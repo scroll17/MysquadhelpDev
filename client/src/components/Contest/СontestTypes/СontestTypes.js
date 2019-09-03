@@ -4,7 +4,7 @@ import style from './СontestTypes.module.sass';
 import ItemContestType from '../ItemContestType/ItemContestType'
 import Heading from '../Heading/Heading'
 
-import { HEX_COLOR } from "../../../utils/constants/consts";
+import { HEX_COLOR } from "../../../constants";
 
 function ContestTypes(props) {
     const {heading, itemsContestType} = props.textAndLinks;

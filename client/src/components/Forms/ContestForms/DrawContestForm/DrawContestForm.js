@@ -10,7 +10,7 @@ import ContestFields from '../ContestFields/ContestFields'
 import { DataForTheContestForm } from '../../../../utils/textAndLinksForPages/textAndLinksForPages'
 
 
-import { TYPE_FIELD } from "../../../../utils/constants/consts";
+import { TYPE_FIELD } from "../../../../constants";
 
 import { last, isObject } from 'lodash'
 

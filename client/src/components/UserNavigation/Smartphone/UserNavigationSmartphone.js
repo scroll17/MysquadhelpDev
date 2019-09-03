@@ -7,7 +7,7 @@ import style from './UserNavigationSmartphone.module.sass';
 import UserMenu from '../UserMenu/UserMenu'
 
 import { URL } from '../../../api/baseURL'
-import { DISPLAY } from '../../../utils/constants/consts'
+import { DISPLAY } from '../../../constants'
 
 function UserNavigationSmartphone(props) {
     const [displayStyle, setDisplayStyle] = useState(DISPLAY.NONE);

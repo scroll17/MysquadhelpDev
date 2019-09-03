@@ -51,3 +51,14 @@ export const createContest = formData => ({
 export const getPriceOfContests = () => ({
   type: ACTION.GET_PRICE_OF_CONTEST,
 });
+
+
+// ----- CHAT -----
+export const closeOrOpenChat = () => ({
+  type: ACTION.CLOSE_OR_OPEN_CHAT,
+});
+
+
+
+
+

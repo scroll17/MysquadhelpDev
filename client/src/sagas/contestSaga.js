@@ -6,7 +6,7 @@ import history from "../boot/browserHistory";
 
 import { reset } from 'redux-form';
 
-import { CONTEST } from "../utils/constants/consts";
+import { CONTEST } from "../constants";
 
 import * as _ from 'lodash';
 import {URL} from "../api/baseURL";

@@ -9,7 +9,7 @@ import 'react-credit-cards/lib/styles.scss';
 
 import { tail } from 'lodash';
 
-import { CONTEST } from '../../../utils/constants/consts'
+import { CONTEST } from '../../../constants'
 
 import {
     formatCreditCardNumber,
@@ -27,6 +27,8 @@ let BankForm = (props) => {
         Object.keys(fields).forEach( field => {
             if(fields[field].active){
                 focusOnField = field;
+            }else{
+                focusOnField = ''
             }
         });
         return focusOnField;

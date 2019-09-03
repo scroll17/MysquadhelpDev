@@ -13,7 +13,7 @@ import {
     getAllUser,
     banUserById,
 } from '../api/rest/restContoller';
-import {TOKEN} from "../utils/constants/consts";
+import {TOKEN} from "../constants";
 import {URL} from "../api/baseURL";
 
 import historyPushOrBack from '../utils/historyPushOrBack';

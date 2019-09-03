@@ -7,7 +7,7 @@ import {
     ContestOtherCategories,
     ContestBundlePackages }  from '../../utils/textAndLinksForPages/textAndLinksForPages'
 
-import { HEX_COLOR } from "../../utils/constants/consts";
+import { HEX_COLOR } from "../../constants";
 
 function ContestSteps(){
         const style = {

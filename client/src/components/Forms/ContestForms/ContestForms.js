@@ -18,7 +18,7 @@ import {
 
 import { last, isEmpty, omit } from 'lodash';
 
-import { CONTEST } from "../../../utils/constants/consts";
+import { CONTEST } from "../../../constants";
 
 function ContestForms(props){
     const { contestNow, contestQueue, contestFormData} = props;

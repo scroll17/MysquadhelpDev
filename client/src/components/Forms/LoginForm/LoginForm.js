@@ -7,7 +7,7 @@ import style from './LoginForm.module.sass';
 import { getUserResponse } from "../../../actions/actionCreator";
 import { isEqual } from 'lodash'
 
-import {ERROR, FORM} from "../../../utils/constants/consts";
+import {ERROR, FORM} from "../../../constants";
 
 let LoginForm = (props) => {
 

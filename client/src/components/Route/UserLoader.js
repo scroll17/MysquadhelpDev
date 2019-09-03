@@ -3,7 +3,7 @@ import connect from "react-redux/es/connect/connect";
 
 import { getUser } from "../../actions/actionCreator";
 
-import { TOKEN } from '../../utils/constants/consts'
+import { TOKEN } from '../../constants'
 
 class UserLoader extends Component{
     componentDidMount() {

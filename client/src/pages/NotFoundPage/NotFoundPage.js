@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 import style from './NotFoundPage.module.sass';
 
-import { ERROR } from '../../utils/constants/consts'
+import { ERROR } from '../../constants'
 import {URL} from "../../api/baseURL";
 
 function NotFoundPages() {

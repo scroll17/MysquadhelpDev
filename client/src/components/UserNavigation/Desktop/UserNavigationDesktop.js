@@ -7,7 +7,7 @@ import ContactsDetails from './ContactsDetails/ContactsDetails'
 import LoginSignUp from './LoginSignUp/LoginSignUp'
 import UserMenu from '../UserMenu/UserMenu'
 
-import { VIEW } from "../../../utils/constants/consts";
+import { VIEW } from "../../../constants";
 
 function UserNavigationDesktop(props) {
     return (

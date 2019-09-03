@@ -2,7 +2,7 @@ import React  from 'react';
 
 import StepsForHowDoNameContestsWork from './StepsForHowDoNameContestsWork/StepsForHowDoNameContestsWork'
 
-import { HEX_COLOR } from "../../../utils/constants/consts";
+import { HEX_COLOR } from "../../../constants";
 
 import { textAndLinksForHowDoNameContestsWork } from '../../../utils/textAndLinksForPages/textAndLinksForPages'
 

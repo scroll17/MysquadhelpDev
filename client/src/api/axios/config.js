@@ -6,7 +6,7 @@ import toastifyErrorMessage from '../../utils/toastifyErrorMessage'
 
 import { refreshToken } from '../rest/restContoller'
 
-import { STORE, TOKEN, ERROR, SUCCESS_CODE } from '../../utils/constants/consts';
+import { STORE, TOKEN, ERROR, SUCCESS_CODE } from '../../constants';
 
 const responseHandler = (response) => {
     switch (response.status) {

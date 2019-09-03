@@ -1,32 +1,36 @@
 const mongoose = require("mongoose");
+const { ObjectId } = mongoose.Schema.Types;
 
-const MessageModel = new mongoose.Schema({
-    date: {
-        type: Date,
-        required: true
+const Message = new mongoose.Schema(
+    {
+        content: {
+            type: String,
+            required: true,
+            minLength: 1,
+        },
+        ownerId: {
+            type: Number,
+            required: true,
+        },
+        conversationId: {
+            type: ObjectId,
+            ref: 'Conversation',
+            required: true,
+        }
     },
-    content: {
-        type: String,
-        required: true,
-        minLength: 1,
-    },
-    authorId: {
-        type: Number,
-        required: true,
-    },
-    chatId: {
-        type: Number,
-        ref: 'Chat',
-        required: true,
+    {
+        autoIndex: true,
+        timestamps: true,
+        versionKey: false,
+        collection: 'MessageCollection'
     }
-},{
-    autoIndex: true,
-    versionKey: false,
-    collection: 'MessageCollection'
-});
+);
 
 
-module.exports = mongoose.model('MessageModel', MessageModel);
+module.exports = {
+    name: 'Message',
+    schema: Message
+};
 
 
 

@@ -20,7 +20,7 @@ import PrivateRoute from './components/Route/PrivateRoute'
 import ChatPage from './pages/ChatPage/ChatPage'
 
 import { URL } from './api/baseURL'
-import { ROLE } from './utils/constants/consts'
+import { ROLE } from './constants'
 
 
 history.listen( _ => {

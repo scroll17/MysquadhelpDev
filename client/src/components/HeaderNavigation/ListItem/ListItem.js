@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import style from './ListItem.module.sass';
 
 import { URL } from "../../../api/baseURL";
-import { DISPLAY } from "../../../utils/constants/consts";
+import { DISPLAY } from "../../../constants";
 
 import { isEqual } from 'lodash';
 

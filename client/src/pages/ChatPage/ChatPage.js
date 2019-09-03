@@ -1,139 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+
 import connect from "react-redux/es/connect/connect";
 
+import style from './ChatPage.module.sass';
 
-import style from './ChatPage.module.sass'
+import Chat from '../../components/Chat/Chat'
+import OpenChatButton from '../../components/Chat/OpenChatButton/OpenChatButton'
 
-import { Field, reduxForm } from 'redux-form';
-
-import { toast } from 'react-toastify';
-
-import { cloneDeep } from 'lodash'
-
-import io from 'socket.io-client';
-const socket = io('http://localhost:3000');
-
-const renderNewMessage = (messages) => {
- return messages.map( (message, index) => {
-     const { text, fullName} = message;
-      return(
-          <div className={style.messageContainer} key={index}>
-              <div className={style.iconUses} />
-              <div className={style.message}>
-                  <span>{fullName}</span>
-                  <span>{text}</span>
-              </div>
-          </div>
-      )
-  })
-};
-
-let ChatPage = (props) => {
-    const [message, pushMessage] = useState([{
-        id: '3',
-        text: 'Hey !',
-        fullName: 'Adnre Poltava'
-    }]);
-
-    const [users, setUsers] = useState(null);
-
-    const { handleSubmit, submitting, reset, user} = props;
-
-
-    useEffect(() => {
-        socket.on('connected', (msg) => console.log('msg : ', msg.text));
-
-        socket.on('connect_error', err => {
-            toast.error('socket error', {
-                position: toast.POSITION.TOP_RIGHT
-            });
-            console.log('Socket err:', err);
-        })
-    });
-
-    useEffect(() => {
-        socket.on('new message', (msg) => {
-            const newMessages = cloneDeep(message);
-            newMessages.push(msg);
-
-            pushMessage(newMessages)
-        });
-    });
-
-    const submit = (values) =>{
-        console.log('submit', values);
-
-        if(values.message){
-            socket.emit('msg', {
-                date: Date.now(),
-                id: user.id,
-                fullName: `${user.firstName} ${user.lastName}`,
-                text: values.message
-            });
-        }
-
-        return reset()
-    };
-
-    const findUsers = (e) => {
-        const value = e.target.value;
-
-        socket.emit('find users', { data: value });
-    };
-
-    useEffect(() => {
-        socket.on('finded user', users => {
-            setUsers(users)
-        })
-    });
-
-    const showFindedUsers = (users) => {
-        return users.map( user => {
-            return(
-                <div key={user.id}>
-                    {user.firstName}{user.lastName}
-                </div>
-            )
-        })
-    };
-
-    return (
-        <>
-            <div className={style.chatContainer}>
-                <Field name={'users'}
-                       component={'input'}
-                       type={'text'}
-                       placeholder="Search"
-                       onChange={findUsers}
-                />
-                {users && showFindedUsers(users)}
-                {
-                    !users &&
-                    <div className={style.allMessage}>
-                        {renderNewMessage(message)}
-                    </div>
-                }
-                <form onSubmit={handleSubmit(submit)}>
-                    <Field name={'message'}
-                           component={'input'}
-                           type={'text'}
-                           placeholder="Write a message..."
-                    />
-                    <button type="submit" disabled={submitting}>
-                        <i className="fas fa-paper-plane" />
-                    </button>
-                </form>
-            </div></>
+function ChatPage(props){
+    const { chatIsOpen } = props;
+    return(
+       <div className={style.chatContainer}>
+           {chatIsOpen && <Chat />}
+           <OpenChatButton />
+       </div>
     )
-};
-
-ChatPage = reduxForm ({
-    form: 'chat',
-})(ChatPage);
+}
 
 const mapStateToProps = (state) => ({
-    user: state.userReducers.user,
+    chatIsOpen: state.chatReducers.isOpen,
 });
 export default connect(mapStateToProps)(ChatPage);
-
 
