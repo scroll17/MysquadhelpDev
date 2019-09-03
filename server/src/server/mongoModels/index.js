@@ -29,4 +29,6 @@ fs
         db[fileName] = mongoose.model(fileName, modelSchema);
     });
 
+mongoose.set('debug', true);
+
 module.exports = db;

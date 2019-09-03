@@ -4,6 +4,12 @@
     "password": "password",
     "database": "todo-dev",
     "host": "db-dev",
+
+    "mongoUrl": "mongodb://mongodb:27017",
+    "mongoUsername": "mongo",
+    "mongoPassword": "password",
+    "mongoName": "chat-dev",
+
     "dialect": "postgres",
     "operatorsAliases": "Op"
   },
