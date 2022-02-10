@@ -11,7 +11,7 @@
     "history": "^4.9.0",
     "lodash": "^4.17.15",
     "mdbreact": "^4.19.1",
-    "node-sass": "^4.11.0",
+    "node-sass": "^7.0.0",
     "payment": "^2.3.0",
     "react": "^16.8.3",
     "react-bank-card": "^0.1.0",
